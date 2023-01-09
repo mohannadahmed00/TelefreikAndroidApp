@@ -27,4 +27,14 @@
     <color name="offers_bg">#382c698d</color>
     <color name="dashboard_chips">#24214995</color>
     <color name="inactive_dot">#292c698d</color>
+    <color name="yellow_light">#ffd893</color>
+    <color name="yellow_dark">#c2994e</color>
+    <color name="green_light">#b2e3af</color>
+    <color name="green_dark">#82d17d</color>
+    <color name="blue_light">#8fa3ca</color>
+    <color name="blue_dark">#4465a6</color>
+    <color name="gray_light">#858585</color>
+    <color name="gray_dark">#3f3f3f</color>
+    <color name="yellow">#FFC107</color>
+
 </resources>

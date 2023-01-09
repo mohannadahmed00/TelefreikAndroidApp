@@ -11,10 +11,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <!-- Status bar color. -->
-<!--        <item name="android:navigationBarColor">@color/base_app_color</item>-->
+        <!--        <item name="android:navigationBarColor">@color/base_app_color</item>-->
 
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-<!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <!--        <item name="android:windowTranslucentStatus">true</item>-->
         <!-- Customize your theme here. -->
     </style>
 
@@ -43,14 +43,15 @@
 
     </style>
 
-    <style name="Widget.BottomNavigationView"
-        parent="Widget.Design.BottomNavigationView">
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/medium</item>
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="circleImageView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">50%</item>
     </style>
+
     <style name="roundedImage" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">10%</item>
     </style>
@@ -63,5 +64,12 @@
         <item name="android:padding">@dimen/normal_padding</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="HeaderCardTheme" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSizeBottomLeft">50dp</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
     </style>
 </resources>

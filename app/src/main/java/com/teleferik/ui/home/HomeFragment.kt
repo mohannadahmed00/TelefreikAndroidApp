@@ -78,7 +78,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                 Transport("Voyage", getString(R.string.voyage), R.drawable.ic_ship),
                 Transport("Trains", getString(R.string.train), R.drawable.ic_high_speed_train),
                 Transport("Bus", getString(R.string.bus), R.drawable.ic_bus),
-                Transport("Private", "Private", R.drawable.ic_premium),
+                Transport("Private", getString(R.string.private_trip), R.drawable.ic_premium),
             ), this
         )
     }

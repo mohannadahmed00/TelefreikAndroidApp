@@ -32,10 +32,14 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
 
     override fun handleView() {
         initClicks()
+        binding.btnNoSearchResults.setOnClickListener {
+            findNavController().navigate(SearchResultsFragmentDirections.actionSearchResultsFragmentToSeatSelectionFragment())
+        }
         callSearchResultsRequest()
     }
 
     private fun callSearchResultsRequest() {
+        //if (flight)
         mViewModel.getTripsSearchResults(args.searchUrl + "?apikey=prtl6749387986743898559646983194&sortType=price&sortOrder=asc")
         observeSearchResults()
     }

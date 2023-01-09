@@ -135,6 +135,16 @@
     <string name="reservation_price">سعر الحجز</string>
     <string name="report_problem">الإبلاغ عن مشكلة</string>
     <string name="trip_other_details">تفاصيل اخرى</string>
+    <string name="private_trip">رحلة خاصة</string>
+    <string name="seat_confirmation">تأكيد المقعد</string>
+    <string name="first">أولى</string>
+    <string name="first_premium">أولى برايم</string>
+    <string name="business_men_premium">رجال أعمل برايم</string>
+    <string name="seat_selection">أختار مقعدك</string>
+    <string name="your_choice">أختيارتك</string>
+    <string name="available">متاحة</string>
+    <string name="reserved">محجوزة</string>
+
 
     <!--    <string-array name="passengers_adult">-->
 <!--        <item>1 فردى</item>-->

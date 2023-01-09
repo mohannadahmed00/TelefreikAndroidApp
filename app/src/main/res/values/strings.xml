@@ -17,6 +17,7 @@
     <string name="terms_and_conditions">
 <u>Terms and Conditions</u>
 </string>
+    <string name="private_trip">Private</string>
     <string name="by_using_the_application_you_agree_to_the">By using the application, you Be agree to the</string>
     <string name="enter_code_hint">Enter the confirmation code %s</string>
     <string name="did_you_not_receive_the_code">Did you not receive the code?</string>
@@ -177,4 +178,12 @@ Account created successfully ! \n You will be taken to the home page
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="seat_confirmation">Seat Confirmation</string>
+    <string name="first">First</string>
+    <string name="first_premium">First Premium</string>
+    <string name="business_men_premium">Business Men Premium</string>
+    <string name="seat_selection">Select Your Seat</string>
+    <string name="your_choice">Your Choice</string>
+    <string name="available">Available</string>
+    <string name="reserved">Reserved</string>
 </resources>

@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_airplane" />
+        app:srcCompat="@drawable/ic_airplane_inbound" />
 
     <TextView
         android:id="@+id/tvOriginStationOut"

@@ -11,6 +11,7 @@
         android:id="@+id/ivPlaneIn"
         android:layout_width="@dimen/_60dp"
         android:layout_height="@dimen/_60dp"
+        android:visibility="gone"
         android:layout_marginStart="@dimen/_24dp"
         android:layout_marginTop="@dimen/_16dp"
         android:src="@drawable/plan_icon"
@@ -27,7 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_airplane_inbound" />
+        app:srcCompat="@drawable/ic_airplane" />
 
     <TextView
         android:id="@+id/tvOriginStationIn"
