@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/_8dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_reservation_row"
+        android:padding="@dimen/_15dp">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/bold"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="تم حجز تذكره بنجاح" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:checked="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="48dp"
+            android:text="@string/all"
+            android:enabled="false"
+            android:textColor="@color/dashboard_chip_text"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/bold"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_14sp"
+            android:text="@string/eg_currency"
+            app:layout_constraintBottom_toBottomOf="@+id/type"
+            app:layout_constraintEnd_toStartOf="@+id/type"
+            app:layout_constraintTop_toTopOf="@+id/type"
+            tools:text="EGP" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/bold"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCurrency"
+            app:layout_constraintEnd_toStartOf="@+id/tvCurrency"
+            app:layout_constraintTop_toTopOf="@+id/tvCurrency"
+            tools:text="3.3000" />
+
+        <TextView
+            android:id="@+id/tvDeb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/regular"
+            android:lineSpacingExtra="@dimen/_12dp"
+            android:maxLines="@integer/line_number"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray4"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            tools:text="من الأوتوستراد الي رمسيس رقم التذكرة #114242" />
+
+        <TextView
+            android:id="@+id/tvArr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/regular"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray_3"
+            android:textSize="@dimen/_14sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/tvDeb"
+            tools:text="منذ يومين" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.07" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout3"
+            android:layout_width="20dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:weightSum="6"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/tvDate"
+            app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_circle_from"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="@dimen/_1dp"
+                android:layout_height="@dimen/_3dp"
+                android:background="@drawable/ic_line_264"
+                android:layout_marginTop="@dimen/_2dp"
+                android:layout_marginBottom="@dimen/_1dp"
+                android:layout_weight="2"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="@dimen/_1dp"
+                android:layout_height="@dimen/_3dp"
+                android:background="@drawable/ic_line_264"
+                android:layout_marginTop="@dimen/_1dp"
+                android:layout_marginBottom="@dimen/_2dp"
+                android:layout_weight="2"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_circle_to"
+                android:layout_weight="1"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

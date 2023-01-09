@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="childrens_allowed">
+        <item quantity="zero">"%d - طفل متاح"</item>
+        <item quantity="one">"%d - طفل متاح"</item>
+        <item quantity="two">"%d - طفلان متاح"</item>
+        <item quantity="few">"%d - أطفال متاح"</item>
+        <item quantity="many">"%d - طفل متاح"</item>
+    </plurals>
+</resources>

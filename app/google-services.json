@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916406848976",
+    "project_id": "telefreik",
+    "storage_bucket": "telefreik.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916406848976:android:791dfc80c17a908a79bdd5",
+        "android_client_info": {
+          "package_name": "com.teleferik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916406848976-qr3ham3n8e7dh4kc4e8dkedqc0va3qo0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdLjEFLiAg1Q0GhqtvFmGeOL076RvXn3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916406848976-qr3ham3n8e7dh4kc4e8dkedqc0va3qo0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

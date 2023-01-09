@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#1D4179</color>
+    <color name="purple_500">#1D4179</color>
+    <color name="purple_700">#1D4179</color>
+    <color name="teal_200">#1D4179</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="gray_2">#777777</color>
+    <color name="gray_3">#8c8c8c</color>
+    <color name="app_black">#0C0C0C</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="base_app_color">#1D4179</color>
+    <color name="grey">#D1D0CF</color>
+    <color name="more_tap_bg">#fcfcfc</color>
+    <color name="gray4">#707070</color>
+    <color name="gray5">#bfbfbf</color>
+    <color name="gray6">#b9bbba</color>
+    <color name="gray7">#e4e4e4</color>
+    <color name="gray8">#c4c4c4</color>
+    <color name="gray9">#bcbcbc</color>
+    <color name="gray10">#9f9f9f</color>
+    <color name="green">#67c760</color>
+    <color name="green2">#10be67</color>
+    <color name="black2">#0c0c0c</color>
+    <color name="red">#912E2E</color>
+    <color name="offers_bg">#382c698d</color>
+    <color name="dashboard_chips">#24214995</color>
+    <color name="inactive_dot">#292c698d</color>
+</resources>

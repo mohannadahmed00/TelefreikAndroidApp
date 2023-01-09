@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:foregroundGravity="center"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60dp"
+        android:background="@color/base_app_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_app_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_notification" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipsgroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        app:checkedChip="@id/all"
+        app:chipMinTouchTargetSize="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:selectionRequired="true"
+        app:singleLine="true"
+        app:singleSelection="true">
+<!--        app:chipSpacingHorizontal="@dimen/_30dp"-->
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:checked="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/all"
+            app:chipEndPadding="@dimen/_15dp"
+            app:chipStartPadding="@dimen/_15dp"
+            android:textColor="@color/dashboard_chip_text"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false"
+            app:chipBackgroundColor="@color/dashboard_chip_bg" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/waiting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/waiting"
+            app:chipEndPadding="@dimen/_15dp"
+            app:chipStartPadding="@dimen/_15dp"
+            android:textColor="@color/dashboard_chip_text"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false"
+            app:chipBackgroundColor="@color/dashboard_chip_bg" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/upcoming"
+            app:chipEndPadding="@dimen/_15dp"
+            app:chipStartPadding="@dimen/_15dp"
+            android:textColor="@color/dashboard_chip_text"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false"
+            app:chipBackgroundColor="@color/dashboard_chip_bg" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/finished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/finished"
+            app:chipEndPadding="@dimen/_15dp"
+            app:chipStartPadding="@dimen/_15dp"
+            android:textColor="@color/dashboard_chip_text"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false"
+            app:chipBackgroundColor="@color/dashboard_chip_bg" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReservations"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layoutDirection="rtl"
+        android:paddingBottom="@dimen/_116dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipsgroup">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/empty_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar_rafiki"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="@string/no_reservations"
+        android:textColor="@color/black"
+        android:alpha=".6"
+        android:textSize="@dimen/_20sp"
+        android:layout_marginTop="@dimen/_30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

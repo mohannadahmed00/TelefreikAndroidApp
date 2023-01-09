@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboarding.OnBoardingFragment">
+
+    <Button
+        android:id="@+id/btnEnter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/base_app_color"
+        app:cornerRadius="@dimen/_5dp"
+        android:fontFamily="@font/medium"
+        android:text="@string/enter_txt"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:paddingTop="@dimen/_14dp"
+        android:paddingBottom="@dimen/_16dp"
+        android:drawableEnd="@drawable/ic_confirm"
+        android:paddingStart="@dimen/_20dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:textSize="@dimen/_16sp"
+        android:layout_marginStart="@dimen/_24dp"
+        android:layout_marginEnd="@dimen/_24dp"
+        android:layout_marginBottom="@dimen/_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_24dp"
+        android:layout_marginEnd="@dimen/_24dp"
+        app:backgroundTint="@color/base_app_color"
+        android:fontFamily="@font/medium"
+        android:text="@string/next"
+        android:paddingEnd="@dimen/_20dp"
+        android:paddingTop="@dimen/_14dp"
+        android:paddingBottom="@dimen/_16dp"
+        android:paddingStart="@dimen/_20dp"
+        app:cornerRadius="@dimen/_5dp"
+
+        android:drawableEnd="@drawable/ic_next_onboarding"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSkip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSkip"
+        app:layout_constraintTop_toTopOf="@+id/btnSkip"
+        app:rippleColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnSkip"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        app:backgroundTint="@color/white"
+        android:fontFamily="@font/medium"
+        android:text="@string/skip"
+        android:paddingTop="@dimen/_14dp"
+        android:paddingBottom="@dimen/_16dp"
+        app:cornerRadius="@dimen/_5dp"
+        app:strokeColor="@color/base_app_color"
+        app:strokeWidth="1dp"
+        android:textAllCaps="false"
+        android:textColor="@color/base_app_color"
+        android:textSize="@dimen/_16sp"
+        app:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/base_app_color" />
+
+    <ImageView
+        android:id="@+id/ivOnboardingDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/on_boarding_dots_1" />
+
+    <TextView
+        android:id="@+id/tvIntroTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_46dp"
+        android:layout_marginEnd="@dimen/_46dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/medium"
+        android:lineSpacingExtra="@dimen/_10dp"
+        android:maxLines="@integer/line_number"
+        android:text="تلفريك - هو التطبيق الأفضل للمقارنة بين وسائل المواصلات المختلفة واختيار "
+        android:textAlignment="center"
+        android:textColor="@color/app_black"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/ivOnboardingDots"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgOnBoarding" />
+
+    <ImageView
+        android:id="@+id/imgOnBoarding"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/_458"
+        android:src="@drawable/on_boarding_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:id="@+id/linNoMessages"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/contact_us_amico"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_messages_hint"
+        android:textAlignment="center"
+        android:textSize="@dimen/_16sp"
+        android:layout_marginTop="@dimen/_25dp"
+        android:textColor="@color/gray10"
+        android:fontFamily="@font/medium"
+        android:lineSpacingExtra="@dimen/_12dp"
+        android:layout_marginHorizontal="@dimen/_40dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/curved_line_dashed"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_120dp"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>

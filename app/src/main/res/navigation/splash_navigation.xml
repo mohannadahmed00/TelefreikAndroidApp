@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash"
+    app:startDestination="@id/splashFragment2">
+
+    <fragment
+        android:id="@+id/splashFragment2"
+        android:name="com.teleferik.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment2_to_on_boarding_graph"
+            app:destination="@id/on_boarding_graph" />
+        <action
+            android:id="@+id/action_splashFragment2_to_language_graph4"
+            app:destination="@id/language_graph" />
+        <action
+            android:id="@+id/action_splashFragment2_to_mobile_navigation"
+            app:destination="@id/mobile_navigation" />
+        <action
+            android:id="@+id/action_splashFragment2_to_auth_graph"
+            app:destination="@id/auth_graph" />
+    </fragment>
+    <include app:graph="@navigation/on_boarding_graph" />
+    <include app:graph="@navigation/language_graph" />
+    <include app:graph="@navigation/teleferik_navigation" />
+    <include app:graph="@navigation/auth_graph" />
+</navigation>

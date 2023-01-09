@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">تليفريك</string>
+    <string name="title_home">الرئيسية</string>
+    <string name="title_dashboard">الرئيسية</string>
+    <string name="title_notifications">الإشعارات</string>
+    <string name="choose_app_language">حدد لغة التطبيق</string>
+    <string name="arabic_lang">اللغة العربية </string>
+    <string name="english_lang">English</string>
+    <string name="skip">تخطي</string>
+    <string name="next">التالي</string>
+    <string name="enter_txt">دخول</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="enter_your_phone_number">ادخل رقم الهاتف الخاص بك</string>
+    <string name="terms_and_conditions"><u>الشروط و الأحكام</u></string>
+    <string name="by_using_the_application_you_agree_to_the">استخدامك للتطبيق يعني موافقتك على</string>
+    <string name="enter_code_hint">قم بإدخال رمز التأكيد الذى تم إرساله \n على جوالك إلى الرقم التالي \n %s</string>
+    <string name="did_you_not_receive_the_code">لم يصلك الرمز ؟</string>
+    <string name="resend">إعادة إرسال</string>
+    <string name="back">رجوع</string>
+    <string name="code_resend">تم إعادة إرسال الرمز مرة أخرى</string>
+    <string name="Enter_by_phone">دخول بواسطة الهاتف</string>
+    <string name="signUp">انشاء حساب</string>
+    <string name="full_name">الاسم كاملا</string>
+    <string name="please_enter_your_full_name">الرجاء ادخال الاسم كاملا</string>
+    <string name="e_mail">البريد الالكتروني</string>
+    <string name="please_enter_your_email_address">الرجاء ادخال البريد الالكتروني</string>
+    <string name="title_reservations">الحجوزات</string>
+    <string name="more">المزيد</string>
+    <string name="choose_transportation_type">حدد وسيلة المواصلات</string>
+    <string name="plane">طيران</string>
+    <string name="start_station">محطة القيام</string>
+    <string name="arrival_station">محطة الوصول</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="terms_and_conditions_">الشروط و الأحكام</string>
+    <string name="about_app">الاسئلة الشائعة</string>
+    <string name="help_and_support">الدعم و المساعدة</string>
+    <string name="change_lang">تغيير اللغة</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="notifications">الاشعارات</string>
+    <string name="choose_trip_type">حدد نوع الرحلة</string>
+    <string name="go_only">ذهاب</string>
+    <string name="go_and_return">ذهاب وعودة</string>
+    <string name="messages_center">مركز الرسائل</string>
+    <string name="write_a_message">اكتب رسالة</string>
+    <string name="travel_date">تاريخ القيام</string>
+    <string name="choose_date">اختار التاريخ</string>
+    <string name="back_day">تاريخ العودة</string>
+    <string name="personal_info">المعلومات الشخصية</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="confirm">تأكيد</string>
+    <string name="save_chnages">حفظ التغييرات</string>
+    <string name="confirm_phone_number">تأكيد رقم الهاتف</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="contact_us_hint">اكتب هنا ما تريد او يواجهك وسنسعي جاهدين ان نتواصل معك في اقرب وقت ممكن</string>
+    <string name="message_title">عنوان الرسالة</string>
+    <string name="passenger_number">حدد عدد الركاب</string>
+    <string name="message_hint">عنوان الرسالة يكتب هنا</string>
+    <string name="message_content">نص الرسالة</string>
+    <string name="message_content_hint">نص الرسالة يكتب هنا</string>
+    <string name="send">إرسال</string>
+    <string name="adults">بالغين</string>
+    <string name="childrens">اطفال</string>
+    <string name="search_and_compare">إبحث وقارن</string>
+    <string name="account_card">البطاقات والحسابات</string>
+    <string name="places">الأماكن والعناوين</string>
+    <string name="phone_number_verified_successfuly">تم التحقق من الهاتف بنجاح</string>
+    <string name="check_your_internet_connection_txt">يرجي التحقق من اتصالك بالانترنت</string>
+    <string name="end_point_not_found">لم يتم العثور على نقطة النهاية</string>
+    <string name="internal_server_error">خطأ في الخادم</string>
+    <string name="enter_your_phone_number_hint">ادخل رقم هاتف صحيح</string>
+    <string name="enter_valid_name">ادخل اسم المستخدم</string>
+    <string name="enter_valid_email">ادخل بريد الكتروني صالح</string>
+    <string name="account_created">تم انشاء الحساب بنجاح ! \n سيتم تحويلك للصفحة الرئيسية</string>
+    <string name="no_reservations">لا توجد لديك حجوزات</string>
+    <string name="soon">ستتاح قريبا</string>
+    <string name="search_results">نتائج البحث</string>
+    <string name="book_now">احجز الآن</string>
+    <string name="field_not_empty">يجب ألا يكون الحقل فارغًا</string>
+    <string name="choose_travel_date">اختر تاريخ القيام</string>
+    <string name="choose_back_date">اختر تاريخ العوده</string>
+    <string name="choose_adults_num">حدد عدد البالغين</string>
+    <string name="choose_childs_num">حدد عدد الاطفال</string>
+    <string name="select_category">اختر وسيلة مواصلات</string>
+    <string name="select_start_station">اختر محطه القيام</string>
+    <string name="select_arrival_station">اختر محطة الوصول</string>
+    <string name="stops_Number"> %s محطات توقف</string>
+    <string name="from_price">تبدا من %s %s</string>
+    <string name="economy">اقتصادي</string>
+    <string name="regular">عادي</string>
+    <string name="vip">ممتاز</string>
+    <string name="ok">تم</string>
+    <string name="cant_open_ticket">لا يمكن فتح هذه التذكرة</string>
+    <string name="yesterday_date">بالأمس, %s</string>
+    <string name="since_hrs">منذ %s ساعات</string>
+    <string name="since_days">منذ %s ايام</string>
+    <string name="since_mins">منذ %s دقائق</string>
+    <string name="from_date_to_date"><font color='#10be67'>من</font> %s <font color='#10be67'>إلى</font> %s</string>
+    <string name="one_stop">محطة توقف واحده</string>
+    <string name="choose">اختر</string>
+    <string name="trip_duration">%1$s س %2$s د</string>
+    <string name="price_offers">%s عروض اسعار</string>
+    <string name="total_price">اجمالي %s %s</string>
+    <string name="cant_open_payment">لا يمكن فتح الدفع</string>
+    <string name="search_a_place">ابحث عن مكان</string>
+    <string name="search_here">ابحث هنا</string>
+    <string name="no_messages_hint">لا توجد رسائل في بريدك الوارد\nاضغط علي + لبدا التحدث</string>
+    <string name="no_search_results">لم يتم العثور على نتيجة\n لم نتمكن من العثور على ما تبحث عنه</string>
+    <string name="enter_verification_code">أدخل رمز التحقق</string>
+    <string name="plan">طيران</string>
+    <string name="bus">اتوبيسات</string>
+    <string name="train">قطارات</string>
+    <string name="minibus">ميكروباص</string>
+    <string name="car">سيارة</string>
+    <string name="motorbike">سكوتر</string>
+    <string name="no_notifications">لا توجد اشعارات</string>
+    <string name="avatar">صورة</string>
+    <string name="choose_class">اختر درجة</string>
+    <string name="all">الكل</string>
+    <string name="waiting">قيد الانتظار</string>
+    <string name="upcoming">قادمة</string>
+    <string name="finished">منتهية</string>
+    <string name="promotional_offers">العروض الترويجية</string>
+    <string name="business">بيزنس</string>
+    <string name="business_men">رجال أعمال</string>
+    <string name="premium">بريميم</string>
+    <string name="voyage">نقل بحري</string>
+    <string name="limousine">ليموزين</string>
+    <string name="unauthorized">دخول غير مصرح تواصل مع خدمة الدعم الفني</string>
+    <string name="check_your_credentials_or_support">تحقق من صحة بياناتك او تواصل مع خدمة الدعم الفني</string>
+    <string name="welcome">مرحبا, %s</string>
+    <string name="failed_operation">عملية غير ناجحة</string>
+    <string name="login_by_social_media">تسجيل الدخول بواسطة</string>
+    <string name="eg_currency">ج.م</string>
+    <string name="title_reservation_details">تفاصيل الحجز</string>
+    <string name="reservation_price">سعر الحجز</string>
+    <string name="report_problem">الإبلاغ عن مشكلة</string>
+    <string name="trip_other_details">تفاصيل اخرى</string>
+
+    <!--    <string-array name="passengers_adult">-->
+<!--        <item>1 فردى</item>-->
+<!--        <item>2 ثنائى</item>-->
+<!--        <item>3 ثلاثى</item>-->
+<!--        <item>4 رباعى</item>-->
+<!--    </string-array>-->
+
+<!--    <string-array name="passengers_child">-->
+<!--        <item>لايوجد</item>-->
+<!--        <item>1 فردى</item>-->
+<!--        <item>2 ثنائى</item>-->
+<!--        <item>3 ثلاثى</item>-->
+<!--    </string-array>-->
+
+    <string-array name="passengers_adult">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="passengers_child">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>

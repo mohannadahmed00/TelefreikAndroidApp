@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.teleferik.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_searchAriPortsFragment"
+            app:destination="@id/searchAriPortsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_support_graph"
+            app:destination="@id/support_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.teleferik.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_reservation_details"
+            app:destination="@id/navigation_reservation_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_reservation_details"
+        android:name="com.teleferik.ui.dashboard.ReservationDetailsFragment"
+        android:label="@string/title_reservation_details"
+        tools:layout="@layout/fragment_reservation_details" >
+        <argument
+            android:name="reservation"
+            app:argType="com.teleferik.models.ticketReservation.SingleTicketReservation"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_navigation_reservation_details_to_support_graph"
+            app:destination="@id/support_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_more"
+        android:name="com.teleferik.ui.more.MoreFragment"
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_navigation_more_to_support_graph"
+            app:destination="@id/support_graph" />
+        <action
+            android:id="@+id/action_navigation_more_to_profile_graph"
+            app:destination="@id/profile_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.teleferik.ui.notifications.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_support_graph"
+            app:destination="@id/support_graph" />
+    </fragment>
+    <include app:graph="@navigation/support_graph" />
+    <include app:graph="@navigation/profile_graph" />
+    <include app:graph="@navigation/auth_graph" />
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.teleferik.ui.searchResults.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" >
+        <argument
+            android:name="searchUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_skyScannerTripDetailsFragment"
+            app:destination="@id/skyScannerTripDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/skyScannerTripDetailsFragment"
+        android:name="com.teleferik.ui.searchResults.sky_scanner_trip_details.SkyScannerTripDetailsFragment"
+        android:label="fragment_sky_scanner_trip_details"
+        tools:layout="@layout/fragment_sky_scanner_trip_details" >
+        <argument
+            android:name="searchData"
+            app:argType="com.teleferik.models.skyscanner.searchResults.SearchResultsResponse"
+            app:nullable="true" />
+        <argument
+            android:name="tripData"
+            app:argType="com.teleferik.models.skyscanner.searchResults.Itinerary"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_skyScannerTripDetailsFragment_to_seatConfirmationFragment"
+            app:destination="@id/seatConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchAriPortsFragment"
+        android:name="com.teleferik.ui.home.searchAirPorts.SearchAriPortsFragment"
+        android:label="fragment_search_ari_ports"
+        tools:layout="@layout/fragment_search_ari_ports" >
+        <argument
+            android:name="isSearchFromStart"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <argument
+            android:name="searchKey"
+            app:argType="string"
+            android:defaultValue="-" />
+    </fragment>
+    <fragment
+        android:id="@+id/seatConfirmationFragment"
+        android:name="com.teleferik.ui.seatConfirmation.SeatConfirmationFragment"
+        tools:layout="@layout/fragment_seat_confirmation">
+        <argument
+            android:name="searchData"
+            app:argType="com.teleferik.models.skyscanner.searchResults.SearchResultsResponse"
+            app:nullable="true" />
+        <argument
+            android:name="tripData"
+            app:argType="com.teleferik.models.skyscanner.searchResults.Itinerary"
+            app:nullable="true" />
+        <argument
+            android:name="priceOption"
+            app:argType="com.teleferik.models.skyscanner.searchResults.PricingOption"
+            app:nullable="true" />
+
+    </fragment>
+
+</navigation>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.more.support.addNewSupportTicket.AddNewSupportTicketFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_56dp"
+        android:background="@color/base_app_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            android:fontFamily="@font/regular"
+            android:text="@string/help_and_support"
+            android:textSize="@dimen/_18sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imgback"
+            app:layout_constraintStart_toEndOf="@+id/imgback"
+            app:layout_constraintTop_toTopOf="@+id/imgback" />
+
+        <ImageView
+            android:id="@+id/imgback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_25dp"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="@string/contact_us"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:lineSpacingExtra="@dimen/_12dp"
+            android:text="@string/contact_us_hint"
+            android:textColor="@color/gray5"
+            android:textSize="@dimen/_14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="@string/message_title"
+            android:layout_marginTop="@dimen/_28dp"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_16sp" />
+
+
+
+            <EditText
+                android:id="@+id/edMessageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_8dp"
+                android:background="@drawable/message_title_input_box"
+                android:fontFamily="@font/regular"
+                android:textAlignment="viewStart"
+                android:hint="@string/message_hint"
+                android:imeOptions="actionNext"
+                android:layout_marginTop="@dimen/_8dp"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:textColorHint="@color/gray5"
+                android:paddingTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_16dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/message_content"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_16sp" />
+
+
+
+            <EditText
+                android:id="@+id/edMessageContent"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150dp"
+                android:paddingHorizontal="@dimen/_8dp"
+                android:background="@drawable/message_bag"
+                android:fontFamily="@font/regular"
+                android:gravity="top|start"
+                android:textAlignment="viewStart"
+                android:hint="@string/message_content_hint"
+                android:lines="100"
+                android:textColorHint="@color/gray5"
+                android:layout_marginTop="@dimen/_8dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="@dimen/_10dp"
+                android:paddingTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_16dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sp" />
+
+
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_32dp"
+            android:fontFamily="@font/medium"
+            android:paddingStart="@dimen/_20dp"
+            android:paddingTop="@dimen/_14dp"
+            android:paddingEnd="@dimen/_20dp"
+            android:paddingBottom="@dimen/_16dp"
+            android:text="@string/send"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_58dp"
+            android:textSize="@dimen/_16sp"
+            app:backgroundTint="@color/base_app_color"
+            app:cornerRadius="@dimen/_5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:rippleColor="@color/white" />
+
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

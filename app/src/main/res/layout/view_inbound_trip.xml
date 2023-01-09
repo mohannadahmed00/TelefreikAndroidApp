@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintInboundTripHolder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvInboundOriginStation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".4"
+        android:background="@drawable/price_holder"
+        android:fontFamily="@font/medium"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:paddingHorizontal="@dimen/_10dp"
+        android:text="القاهرة"
+        android:textColor="@color/app_black"
+        android:textSize="@dimen/_12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toEndOf="@+id/imageView110"
+        app:layout_constraintTop_toTopOf="@+id/imageView110" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginHorizontal="@dimen/_4dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toStartOf="@+id/tvInboundDestinationStation"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_airplane_inbound" />
+
+    <TextView
+        android:id="@+id/tvInboundDestinationStation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_weight=".4"
+        android:background="@drawable/price_holder"
+        android:fontFamily="@font/medium"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:paddingHorizontal="@dimen/_10dp"
+        android:text="المانيا"
+        android:textColor="@color/app_black"
+        android:textSize="@dimen/_12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/ivInboundTravelCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35dp"
+        android:layout_marginTop="@dimen/_11dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/tvInboundOriginStation"
+        app:layout_constraintTop_toBottomOf="@+id/tvInboundOriginStation"
+        app:srcCompat="@drawable/egypt_air_place_holder" />
+
+    <TextView
+        android:id="@+id/tvInboundCarriers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/regular"
+        android:maxLines="2"
+        android:textColor="@color/gray8"
+        android:textSize="@dimen/_10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatButton"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvInboundOriginStation"
+        app:layout_constraintTop_toTopOf="@+id/appCompatButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/egypt_air_place_holder" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/trip_type"
+        android:fontFamily="@font/regular"
+        android:paddingHorizontal="@dimen/_12dp"
+        android:paddingVertical="@dimen/_1dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivInboundTravelCompany"
+        app:layout_constraintStart_toEndOf="@+id/ivInboundTravelCompany"
+        app:layout_constraintTop_toTopOf="@+id/ivInboundTravelCompany"
+        android:text="@string/economy"
+        tools:text="@string/economy" />
+
+    <TextView
+        android:id="@+id/tvInboundDates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/regular"
+        android:maxLines="1"
+        android:textColor="@color/gray8"
+        android:textSize="@dimen/_10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ivInboundTravelCompany"
+        app:layout_constraintTop_toBottomOf="@+id/ivInboundTravelCompany"
+        tools:text="@string/from_date_to_date" />
+
+    <TextView
+        android:id="@+id/tvInboundStopsNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_11dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/green2"
+        android:textDirection="anyRtl"
+        android:textSize="@dimen/_10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvDuration"
+        app:layout_constraintTop_toBottomOf="@+id/tvInboundDates"
+        tools:text="+1 محطات توقف" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/base_app_color"
+        android:textSize="@dimen/_10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvInboundStopsNumber"
+        app:layout_constraintStart_toStartOf="@+id/tvInboundDates"
+        app:layout_constraintTop_toTopOf="@+id/tvInboundStopsNumber"
+        tools:text="2h" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

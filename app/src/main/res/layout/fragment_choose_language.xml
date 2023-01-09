@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.chooseLanguage.ChooseLanguageFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_120dp"
+        android:src="@drawable/language_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:textSize="@dimen/_18sp"
+        android:textColor="@color/app_black"
+        android:text="@string/choose_app_language"
+        android:layout_marginTop="@dimen/_120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btnArabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_80dp"
+        android:layout_marginEnd="@dimen/_80dp"
+        android:paddingTop="@dimen/_14dp"
+        android:fontFamily="@font/medium"
+        android:layout_marginTop="@dimen/_38dp"
+        android:paddingBottom="@dimen/_16dp"
+        android:text="@string/arabic_lang"
+        app:cornerRadius="@dimen/_5dp"
+        app:backgroundTint="@color/base_app_color"
+        app:elevation="2dp"
+        android:textSize="@dimen/_16sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:rippleColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_80dp"
+        android:layout_marginEnd="@dimen/_80dp"
+        android:paddingTop="@dimen/_14dp"
+        android:paddingBottom="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_25dp"
+        android:text="@string/english_lang"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="@dimen/_5dp"
+        app:elevation="2dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/base_app_color"
+        android:textAllCaps="false"
+        android:textColor="@color/base_app_color"
+        android:textSize="@dimen/_16sp"
+        android:fontFamily="@font/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnArabic"
+        app:rippleColor="@color/white" />
+</androidx.constraintlayout.widget.ConstraintLayout>

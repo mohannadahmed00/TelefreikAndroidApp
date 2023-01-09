@@ -1,0 +1,180 @@
+<resources>
+    <string name="app_name">Telefreik</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!--  TODO: Remove or change this placeholder text  -->
+    <string name="blank_fragment">blank fragment</string>
+    <string name="choose_app_language">حدد لغة التطبيق</string>
+    <string name="arabic_lang">اللغة العربية</string>
+    <string name="english_lang">English</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="enter_txt">Enter</string>
+    <string name="login">Log in</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_your_phone_number_hint">Enter valid phone number</string>
+    <string name="terms_and_conditions">
+<u>Terms and Conditions</u>
+</string>
+    <string name="by_using_the_application_you_agree_to_the">By using the application, you Be agree to the</string>
+    <string name="enter_code_hint">Enter the confirmation code %s</string>
+    <string name="did_you_not_receive_the_code">Did you not receive the code?</string>
+    <string name="resend">Resend</string>
+    <string name="back">Back</string>
+    <string name="code_resend">code has been resent again</string>
+    <string name="Enter_by_phone">Enter by phone number</string>
+    <string name="signUp">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="please_enter_your_full_name">Please Enter your full name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="please_enter_your_email_address">Please enter your email address</string>
+    <string name="title_reservations">Reservations</string>
+    <string name="more">More</string>
+    <string name="choose_transportation_type">Choose Transportation Type</string>
+    <string name="plane">Plane</string>
+    <string name="start_station">Start Station</string>
+    <string name="arrival_station">Arrival Station</string>
+    <string name="profile">Profile</string>
+    <string name="terms_and_conditions_">Terms and Conditions</string>
+    <string name="about_app">About Application</string>
+    <string name="help_and_support">Help And support</string>
+    <string name="change_lang">Change language</string>
+    <string name="log_out">Log Out</string>
+    <string name="notifications">Notifications</string>
+    <string name="choose_trip_type">Choose Trip Type</string>
+    <string name="go_only">One Way</string>
+    <string name="go_and_return">Round Trip</string>
+    <string name="messages_center">Messages Center</string>
+    <string name="write_a_message">Type a message</string>
+    <string name="travel_date">Departure Date</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="back_day">Return Date</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm">Confirm</string>
+    <string name="save_chnages">Save Changes</string>
+    <string name="confirm_phone_number">Confirm Phone number</string>
+    <string name="contact_us">Contact us</string>
+    <string name="contact_us_hint">
+Write here what you want or confront you and we will strive to communicate with you as soon as possible
+</string>
+    <string name="message_title">Message Title</string>
+    <string name="passenger_number">Passengers Number</string>
+    <string name="message_hint">Type message title here</string>
+    <string name="message_content">Message content</string>
+    <string name="message_content_hint">Type message content here</string>
+    <string name="send">Send</string>
+    <string name="adults">Adults</string>
+    <string name="childrens">Children\'s</string>
+    <string name="search_and_compare">Search &amp; Compare</string>
+    <string name="account_card">accounts and Cards</string>
+    <string name="places">Places and Addresses</string>
+    <string name="phone_number_verified_successfuly">Phone verified successfully</string>
+    <string name="check_your_internet_connection_txt">Check your internet connection</string>
+    <string name="end_point_not_found">Endpoint Not Found</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="enter_valid_name">Enter your name</string>
+    <string name="enter_valid_email">Enter Valid E-mail address</string>
+    <string name="account_created">
+Account created successfully ! \n You will be taken to the home page
+</string>
+    <string name="no_reservations">you don\'t have reservations</string>
+    <string name="soon">Soon</string>
+    <string name="search_results">Search Results</string>
+    <string name="book_now">Book Now</string>
+    <string name="field_not_empty">Field shouldn\'t be empty</string>
+    <string name="choose_travel_date">Choose Departure Date</string>
+    <string name="choose_back_date">Choose Return Date</string>
+    <string name="choose_adults_num">Choose adults number</string>
+    <string name="choose_childs_num">Choose children number</string>
+    <string name="select_category">Select category</string>
+    <string name="select_start_station">Select start station</string>
+    <string name="select_arrival_station">Select arrival station</string>
+    <string name="one_stop">One Stop Stations</string>
+    <string name="stops_Number">%s Stop Stations</string>
+    <string name="from_price">From %s %s</string>
+    <string name="total_price">Total %s %s</string>
+    <string name="economy">Economy</string>
+    <string name="regular">Regular</string>
+    <string name="vip">VIP</string>
+    <string name="from_date_to_date"><font color='#10be67'>From</font> %s <font color='#10be67'>To</font> %s</string>
+    <string name="ok">Ok</string>
+    <string name="cant_open_ticket">Can\'t open ticket</string>
+    <string name="yesterday_date">Yesterday, %s</string>
+    <string name="since_hrs">Since %s hrs</string>
+    <string name="since_days">Since %s days</string>
+    <string name="since_mins">Since %s mins</string>
+    <string name="choose">Choose</string>
+    <string name="trip_duration">%1$s H %2$s M</string>
+    <string name="price_offers">%s Price Offers</string>
+    <string name="cant_open_payment">Can not open payment</string>
+    <string name="search_a_place">Find a place</string>
+    <string name="search_here">Search here</string>
+    <string name="no_messages_hint">There are no messages in your inbox\nPress + to start talking</string>
+    <string name="no_search_results">No result found.\nWe couldn\'t find what you were looking for</string>
+    <string name="enter_verification_code">Enter verification code</string>
+    <string name="plan">Flight</string>
+    <string name="bus">Buses</string>
+    <string name="train">Trains</string>
+    <string name="minibus">Minibus</string>
+    <string name="car">Car</string>
+    <string name="motorbike">Ccooter</string>
+    <string name="no_notifications">No notifications</string>
+    <string name="avatar">Avatar</string>
+    <string name="choose_class">Choose Class</string>
+    <string name="all">All</string>
+    <string name="waiting">Waiting</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="finished">Finished</string>
+    <string name="promotional_offers">Promotional Offers</string>
+    <string name="business">Business</string>
+    <string name="business_men">Business Men</string>
+    <string name="premium">Premium</string>
+    <string name="voyage">Voyage</string>
+    <string name="limousine">Limousine</string>
+    <string name="unauthorized">Unauthorized Access Contact Support</string>
+    <string name="check_your_credentials_or_support">Check your Credentials or Contact Technical Support</string>
+    <string name="welcome">Welcome, %s</string>
+    <string name="failed_operation">Failed Operation</string>
+    <string name="login_by_social_media">Login By</string>
+    <string name="eg_currency">EGP</string>
+
+    <string name="facebook_app_id">810071980432899</string>
+    <string name="fb_login_protocol_scheme">fb810071980432899</string>
+    <string name="facebook_client_token">8e01b130dd9e32ba982fa99f69915eee</string>
+    <string name="title_reservation_details">Reservation Details</string>
+    <string name="reservation_price">Reservation Price</string>
+    <string name="report_problem">Report Problem</string>
+    <string name="trip_other_details">Other Details</string>
+
+    <!--    <string-array name="passengers_adult">-->
+    <!--        <item>1 Single</item>-->
+    <!--        <item>2 Duo</item>-->
+    <!--        <item>3 Triple</item>-->
+    <!--        <item>4 Quad</item>-->
+    <!--    </string-array>-->
+
+    <string-array name="passengers_adult">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!--    <string-array name="passengers_child">-->
+    <!--        <item>None</item>-->
+    <!--        <item>1 Single</item>-->
+    <!--        <item>2 Duo</item>-->
+    <!--        <item>3 Triple</item>-->
+    <!--    </string-array>-->
+
+    <string-array name="passengers_child">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

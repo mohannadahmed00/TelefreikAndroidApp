@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60dp"
+                android:background="@color/base_app_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_app_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="TODO" />
+
+                <ImageView
+                    android:id="@+id/imgNotifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_notifications_black_24dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_27dp"
+                android:layout_marginTop="@dimen/_15dp"
+                android:fontFamily="@font/medium"
+                android:text="@string/choose_transportation_type"
+                android:textColor="@color/app_black"
+                android:textSize="@dimen/_15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTransportationType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_24dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:listitem="@layout/row_transportation_type" />
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/view_from_to_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_20dp"
+                app:layout_constraintTop_toBottomOf="@+id/rvTransportationType"
+                tools:layout_editor_absoluteX="16dp" />
+
+
+            <include
+                android:id="@+id/includeTripType"
+                layout="@layout/view_trip_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                app:layout_constraintTop_toBottomOf="@+id/include"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <include
+                android:id="@+id/includeDates"
+                layout="@layout/view_home_dates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_24dp"
+                app:layout_constraintTop_toBottomOf="@+id/includeTripType"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <include
+                android:id="@+id/includePassengersNumber"
+                layout="@layout/view_passenger_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_24dp"
+                app:layout_constraintTop_toBottomOf="@+id/includeDates"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <include
+                android:id="@+id/includeClasses"
+                layout="@layout/view_classes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/includePassengersNumber"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:paddingHorizontal="@dimen/_30dp"
+                android:paddingTop="@dimen/_7dp"
+                android:paddingBottom="@dimen/_7dp"
+                android:text="@string/search_and_compare"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sp"
+                app:backgroundTint="@color/base_app_color"
+                app:cornerRadius="@dimen/_13dp"
+                app:icon="@drawable/ic_search_black_24_dp_1"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/_4dp"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/includeClasses"
+                app:rippleColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textView111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/medium"
+                android:text="@string/promotional_offers"
+                android:textColor="@color/app_black"
+                android:textSize="@dimen/_15sp"
+                app:layout_constraintEnd_toEndOf="@+id/btnSearch"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
+
+            <include
+                android:id="@+id/includePromotionalOffers"
+                layout="@layout/view_promotional_offers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_24dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView111"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/includePromotionalOffers" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
