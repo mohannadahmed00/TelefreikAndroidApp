@@ -3,12 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintInboundTripHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/ivPlaneIn"
+        android:id="@+id/ivPlaneOut"
         android:layout_width="@dimen/_60dp"
         android:layout_height="@dimen/_60dp"
         android:layout_marginStart="@dimen/_24dp"
@@ -18,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivDirPlaneIn"
+        android:id="@+id/ivDirPlaneOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -27,10 +26,10 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_airplane_inbound" />
+        app:srcCompat="@drawable/ic_airplane" />
 
     <TextView
-        android:id="@+id/tvOriginStationIn"
+        android:id="@+id/tvOriginStationOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -51,7 +50,7 @@
         tools:text="القاهرة" />
 
     <TextView
-        android:id="@+id/tvDestinationStationIn"
+        android:id="@+id/tvDestinationStationOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -72,17 +71,17 @@
         tools:text="المانيا" />
 
     <ImageView
-        android:id="@+id/ivTravelCompanyIn"
+        android:id="@+id/ivTravelCompanyOut"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_35dp"
         android:layout_marginTop="@dimen/_11dp"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="@+id/tvOriginStationIn"
-        app:layout_constraintTop_toBottomOf="@+id/tvOriginStationIn"
+        app:layout_constraintStart_toStartOf="@+id/tvOriginStationOut"
+        app:layout_constraintTop_toBottomOf="@+id/tvOriginStationOut"
         app:srcCompat="@drawable/egypt_air_place_holder" />
 
     <TextView
-        android:id="@+id/tvCarriersIn"
+        android:id="@+id/tvCarriersOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -91,14 +90,14 @@
         android:maxLines="2"
         android:textColor="@color/gray8"
         android:textSize="@dimen/_10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/appCompatButtonIn"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatButtonIn"
-        app:layout_constraintStart_toStartOf="@+id/tvOriginStationIn"
-        app:layout_constraintTop_toTopOf="@+id/appCompatButtonIn"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatButtonOut"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatButtonOut"
+        app:layout_constraintStart_toStartOf="@+id/tvOriginStationOut"
+        app:layout_constraintTop_toTopOf="@+id/appCompatButtonOut"
         app:srcCompat="@drawable/egypt_air_place_holder" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButtonIn"
+        android:id="@+id/appCompatButtonOut"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_20dp"
         android:layout_marginStart="24dp"
@@ -109,12 +108,12 @@
         android:text="@string/economy"
         android:textColor="@color/white"
         android:textSize="@dimen/_10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ivTravelCompanyIn"
-        app:layout_constraintStart_toEndOf="@+id/ivTravelCompanyIn"
-        app:layout_constraintTop_toTopOf="@+id/ivTravelCompanyIn" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivTravelCompanyOut"
+        app:layout_constraintStart_toEndOf="@+id/ivTravelCompanyOut"
+        app:layout_constraintTop_toTopOf="@+id/ivTravelCompanyOut" />
 
     <TextView
-        android:id="@+id/tvDatesIn"
+        android:id="@+id/tvDatesOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -126,12 +125,12 @@
         android:textSize="@dimen/_10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ivTravelCompanyIn"
-        app:layout_constraintTop_toBottomOf="@+id/ivTravelCompanyIn"
+        app:layout_constraintStart_toStartOf="@+id/ivTravelCompanyOut"
+        app:layout_constraintTop_toBottomOf="@+id/ivTravelCompanyOut"
         tools:text="@string/from_date_to_date" />
 
     <TextView
-        android:id="@+id/tvStopsNumberIn"
+        android:id="@+id/tvStopsNumberOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_11dp"
@@ -141,22 +140,23 @@
         android:textColor="@color/green2"
         android:textDirection="anyRtl"
         android:textSize="@dimen/_10sp"
-        app:layout_constraintBottom_toTopOf="@+id/incInboundTripIn"
-        app:layout_constraintStart_toEndOf="@+id/tvDurationIn"
-        app:layout_constraintTop_toBottomOf="@+id/tvDatesIn"
+        app:layout_constraintBottom_toTopOf="@+id/incInboundTripOut"
+        app:layout_constraintStart_toEndOf="@+id/tvDurationOut"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatesOut"
         tools:text="+1 محطات توقف" />
 
     <TextView
-        android:id="@+id/tvDurationIn"
+        android:id="@+id/tvDurationOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
         android:textColor="@color/base_app_color"
         android:textSize="@dimen/_10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvStopsNumberIn"
-        app:layout_constraintStart_toStartOf="@+id/tvDatesIn"
-        app:layout_constraintTop_toTopOf="@+id/tvStopsNumberIn"
+        app:layout_constraintBottom_toBottomOf="@+id/tvStopsNumberOut"
+        app:layout_constraintStart_toStartOf="@+id/tvDatesOut"
+        app:layout_constraintTop_toTopOf="@+id/tvStopsNumberOut"
         tools:text="2h" />
+
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -187,7 +187,8 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
 
-</androidx.constraintlayout.widget.ConstraintLayout><!--
+</androidx.constraintlayout.widget.ConstraintLayout>
+<!--
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

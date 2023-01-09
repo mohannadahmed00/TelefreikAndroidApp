@@ -50,10 +50,10 @@ class ReservationDetailsFragment : BaseFragment<DashboardViewModel,FragmentReser
         }
 
         binding.incInboundTrip.apply {
-            tvInboundCarriers.text = resources.getString(R.string.plane)
-            tvInboundDestinationStation.text = reservation.arrival
-            tvInboundOriginStation.text = reservation.departure
-            tvInboundDates.text = reservation.date
+            tvCarriersIn.text = resources.getString(R.string.plane)
+            tvDestinationStationIn.text = reservation.arrival
+            tvOriginStationIn.text = reservation.departure
+            tvDatesIn.text = reservation.date
         }
 
         binding.tvPrice.text = reservation.price.toString()

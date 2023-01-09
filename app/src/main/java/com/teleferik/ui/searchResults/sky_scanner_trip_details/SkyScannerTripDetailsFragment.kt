@@ -62,12 +62,12 @@ class SkyScannerTripDetailsFragment :
             val outBoundLeg = searchData?.legs?.let {
                 it.find { item -> tripData?.outboundLegId == item.id }
             }
-            bindAirPortCompany(outBoundLeg!!, ivTravelCompany, tvCarriers)
-            bindDestinationStation(outBoundLeg.destinationStation, tvDestinationStation)
-            bindOriginStation(outBoundLeg.originStation, tvOriginStation)
-            bindStops(outBoundLeg.stops, tvStopsNumber)
-            bindDates(outBoundLeg.departure, outBoundLeg.arrival, tvDates)
-            bindDuration(outBoundLeg.duration, tvDuration)
+            bindAirPortCompany(outBoundLeg!!, incOutboundTrip.ivTravelCompanyOut, incOutboundTrip.tvCarriersOut)
+            bindDestinationStation(outBoundLeg.destinationStation, incOutboundTrip.tvDestinationStationOut)
+            bindOriginStation(outBoundLeg.originStation, incOutboundTrip.tvOriginStationOut)
+            bindStops(outBoundLeg.stops, incOutboundTrip.tvStopsNumberOut)
+            bindDates(outBoundLeg.departure, outBoundLeg.arrival, incOutboundTrip.tvDatesOut)
+            bindDuration(outBoundLeg.duration, incOutboundTrip.tvDurationOut)
 
             val inBoundLeg = searchData?.legs?.let {
                 it.find { item -> tripData?.inboundLegId == item.id }
@@ -76,17 +76,17 @@ class SkyScannerTripDetailsFragment :
                 incInboundTrip.constraintInboundTripHolder.showHideView(true)
                 bindAirPortCompany(
                     inBoundLeg,
-                    incInboundTrip.ivInboundTravelCompany,
-                    incInboundTrip.tvInboundCarriers
+                    incInboundTrip.ivTravelCompanyIn,
+                    incInboundTrip.tvCarriersIn
                 )
                 bindDestinationStation(
                     inBoundLeg.destinationStation,
-                    incInboundTrip.tvInboundDestinationStation
+                    incInboundTrip.tvDestinationStationIn
                 )
-                bindOriginStation(inBoundLeg.originStation, incInboundTrip.tvInboundOriginStation)
-                bindStops(inBoundLeg.stops, incInboundTrip.tvInboundStopsNumber)
-                bindDates(inBoundLeg.departure, inBoundLeg.arrival, incInboundTrip.tvInboundDates)
-                bindDuration(inBoundLeg.duration, incInboundTrip.tvDuration)
+                bindOriginStation(inBoundLeg.originStation, incInboundTrip.tvOriginStationIn)
+                bindStops(inBoundLeg.stops, incInboundTrip.tvStopsNumberIn)
+                bindDates(inBoundLeg.departure, inBoundLeg.arrival, incInboundTrip.tvDatesIn)
+                bindDuration(inBoundLeg.duration, incInboundTrip.tvDurationIn)
 
             } else incInboundTrip.constraintInboundTripHolder.showHideView(false)
 

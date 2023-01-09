@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="@dimen/_16dp"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="@drawable/ic_new_search_bg">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView11"
         android:layout_width="@dimen/_60dp"
         android:layout_height="@dimen/_60dp"
@@ -42,11 +43,11 @@
         android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10dp"
         android:layout_marginTop="@dimen/_25dp"
         app:layout_constraintEnd_toStartOf="@+id/tvDestinationStation"
         app:layout_constraintStart_toStartOf="@+id/tvOriginStation"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginHorizontal="@dimen/_10dp"
         app:srcCompat="@drawable/ic_airplane" />
 
 
@@ -116,28 +117,28 @@
         android:id="@+id/tvDates"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="من تاريخ الي تاريخ"
         android:layout_marginTop="@dimen/_8dp"
-        android:maxLines="1"
+        android:layout_marginEnd="@dimen/_16dp"
         android:ellipsize="end"
         android:fontFamily="@font/regular"
-        android:textSize="@dimen/_10sp"
+        android:maxLines="1"
         android:textColor="@color/gray8"
-        android:layout_marginEnd="@dimen/_16dp"
+        android:textSize="@dimen/_10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/ivTravelCompany"
-        app:layout_constraintTop_toBottomOf="@+id/ivTravelCompany" />
+        app:layout_constraintTop_toBottomOf="@+id/ivTravelCompany"
+        tools:text="من تاريخ الي تاريخ" />
 
     <TextView
         android:id="@+id/tvStopsNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_11dp"
         android:layout_marginTop="@dimen/_8dp"
         android:fontFamily="@font/regular"
         android:textColor="@color/green2"
         android:textDirection="anyRtl"
         android:textSize="@dimen/_10sp"
-        android:layout_marginStart="@dimen/_11dp"
         app:layout_constraintStart_toEndOf="@+id/tvDuration"
         app:layout_constraintTop_toBottomOf="@+id/tvDates"
         tools:text="+1 محطات توقف" />
@@ -147,44 +148,79 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-        tools:text="2h"
         android:textColor="@color/base_app_color"
         android:textSize="@dimen/_10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvStopsNumber"
         app:layout_constraintStart_toStartOf="@+id/tvDates"
-        app:layout_constraintTop_toTopOf="@+id/tvStopsNumber" />
-
-
-    <include
-        android:id="@+id/incInboundTrip"
-        layout="@layout/view_inbound_trip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_8dp"
-        android:layout_marginTop="@dimen/_16dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvStopsNumber"
-         />
-
+        app:layout_constraintTop_toTopOf="@+id/tvStopsNumber"
+        tools:text="2h" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/incInboundTrip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="@dimen/_10dp"
-        android:paddingHorizontal="@dimen/_10dp"
-        android:layout_marginBottom="@dimen/_20dp"
-        >
+        android:orientation="vertical">
 
+        <include
+            android:id="@+id/incOutboundTrip"
+            layout="@layout/view_outbound_trip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/incInboundTrip"
+            layout="@layout/view_inbound_trip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChoose"
+            android:layout_width="@dimen/_96dp"
+            android:layout_height="@dimen/_30dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_book_now"
+            android:drawableEnd="@drawable/ic_baseline_arrow_back_24"
+            android:drawablePadding="@dimen/_5dp"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_12dp"
+            android:paddingEnd="@dimen/_20dp"
+            android:paddingStart="@dimen/_20dp"
+            android:text="@string/choose"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPriceOffers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gray8"
+            android:textSize="@dimen/_10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
+            app:layout_constraintEnd_toStartOf="@id/btnChoose"
+            app:layout_constraintStart_toEndOf="@id/tvPrice"
+            app:layout_constraintTop_toTopOf="@+id/btnChoose"
+            tools:text="TextView" />
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/price_holder"
             android:fontFamily="@font/medium"
             android:gravity="center"
@@ -193,19 +229,45 @@
             android:textColor="@color/app_black"
             android:textSize="@dimen/_14sp"
             android:textStyle="bold"
-            android:layout_gravity="center_vertical" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:paddingHorizontal="@dimen/_10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/incInboundTrip">
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/price_holder"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8dp"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            tools:text="تبدا من ٢٣٤٥ ج.م" />
 
         <TextView
             android:id="@+id/tvPriceOffers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10dp"
-            tools:text="TextView"
-            android:fontFamily="@font/regular"
-            android:textSize="@dimen/_10sp"
-            android:textColor="@color/gray8"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gray8"
+            android:textSize="@dimen/_10sp"
+            tools:text="TextView" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnChoose"
@@ -216,18 +278,15 @@
             android:drawablePadding="@dimen/_5dp"
             android:fontFamily="@font/regular"
             android:gravity="center"
-            android:textAllCaps="false"
             android:paddingHorizontal="@dimen/_12dp"
             android:paddingEnd="@dimen/_20dp"
             android:text="@string/choose"
             android:textAlignment="textEnd"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sp"
-             />
+            android:textSize="@dimen/_12sp" />
 
-    </LinearLayout>
-
-
+    </LinearLayout>-->
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -251,4 +310,4 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
