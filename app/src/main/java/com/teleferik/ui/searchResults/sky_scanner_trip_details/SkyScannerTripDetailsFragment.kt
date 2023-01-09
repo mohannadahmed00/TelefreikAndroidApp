@@ -173,20 +173,20 @@ class SkyScannerTripDetailsFragment :
 
     override fun onPriceOptionClicked(item: PricingOption) {
         if (item.deeplinkUrl != null) {
-            /*val intent = Intent(requireActivity(), WebViewActivity::class.java)
+            val intent = Intent(requireActivity(), WebViewActivity::class.java)
             intent.putExtra(
                 Constants.PARAMS.SCREEN_TITLE,
                 getString(R.string.app_name)
             )
             intent.putExtra(Constants.PARAMS.SCREEN_URL,item.deeplinkUrl)
-            startActivity(intent)*/
-            findNavController().navigate(
+            startActivity(intent)
+            /*findNavController().navigate(
                 SkyScannerTripDetailsFragmentDirections.actionSkyScannerTripDetailsFragmentToSeatConfirmationFragment(
                     searchData,
                     tripData,
                     item
                 )
-            )
+            )*/
         }else showTopToast(getString(R.string.cant_open_payment))
     }
 
@@ -213,14 +213,16 @@ class SkyScannerTripDetailsFragment :
         val hours = time % (24 * 60) / 60
         val min = time % (24 * 60) % 60
         t = "$days:$hours:$min"
-        return context.getString(
-            R.string.trip_duration,
-            "${days.toString()}",
-            "${hours.toString()}",
-            "${min.toString()}"
-        )
+        return context.getString(R.string.trip_duration, "${days.toString()}", "${hours.toString()}", "${min.toString()}")
 
 
     }*/
+    fun timeConvert(time: Int,context: Context): String? {
+        var t = ""
+        //val days = time / (24 * 60)
+        val hours = time % (24 * 60) / 60
+        val min = time % (24 * 60) % 60
+        return context.getString(R.string.trip_duration,"${hours.toString()}","${min.toString()}")
+    }
 
 }
