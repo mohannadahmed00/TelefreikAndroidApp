@@ -162,7 +162,7 @@
         android:name="com.teleferik.ui.seatSelection.SeatSelectionFragment"
         tools:layout="@layout/fragment_seat_selection">
         <action
-            android:id="@+id/action_searchResultsFragment_to_seatConfirmationFragment"
+            android:id="@+id/action_seatSelectionFragment_to_seatConfirmationFragment"
             app:destination="@id/seatConfirmationFragment" />
     </fragment>
 

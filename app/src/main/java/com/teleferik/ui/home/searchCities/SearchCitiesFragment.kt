@@ -129,7 +129,7 @@ class SearchCitiesFragment :
     }
 
     private fun initStartRv(value: CitiesResponse) {
-        val cities = value.cities?.filter { it.name.contains(binding.edtSearch.text) } as MutableList
+        val cities = value.cities?.filter { it.name.contains(binding.edtSearch.text, ignoreCase = true) } as MutableList
         mCitySearchResultsAdapter = CitiesSearchResultsAdapter(cities, this)
         binding.rvPlaces.adapter = mCitySearchResultsAdapter
         binding.rvPlaces.showHideView(true)

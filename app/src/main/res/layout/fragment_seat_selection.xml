@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.seatSelection.SeatSelectionFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.seatSelection.SeatSelectionFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80dp"
@@ -35,17 +35,20 @@
             app:layout_constraintStart_toEndOf="@+id/imgBack"
             app:layout_constraintTop_toTopOf="@+id/imgBack" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.card.MaterialCardView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple_200"
-        app:shapeAppearance="@style/HeaderCardTheme">
+        android:background="@drawable/bg_top_card">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_20dp"
-            android:orientation="vertical">
+            android:layout_marginVertical="@dimen/_10dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tvDuration"
@@ -59,12 +62,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10dp">
+                android:layout_marginTop="@dimen/_5dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_green_circle" />
+                    android:src="@drawable/ic_green_circle"
+                     />
 
                 <TextView
 
@@ -73,9 +77,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:fontFamily="@font/regular"
-                    android:text="سيدي جابر , محطة سكة حديد أبو قير"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp" />
+                    android:textSize="@dimen/_12sp"
+                    android:text="Station Sidi gaber , Alex" />
 
             </LinearLayout>
 
@@ -83,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20dp"
                 android:src="@drawable/ic_overflow"
-                app:tint="@color/yellow_dark" />
+                app:tint="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,101 +96,41 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_white_circle" />
+                    android:src="@drawable/ic_white_circle"
+                     />
 
                 <TextView
+
                     android:id="@+id/tv_destination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:fontFamily="@font/regular"
-                    android:text=" القاهرة شارع 9 تقاطع شارع 10"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp" />
+                    android:textSize="@dimen/_12sp"
+                    android:text=" Destination Sidi gaber , Alex" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!--<androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_20dp">
 
-            <TextView
-                android:id="@+id/tvDuration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="08 Jan 2022"
-                android:textColor="@color/white"
-                android:fontFamily="@font/medium"
-                android:textSize="@dimen/_14sp"
-                app:layout_constraintStart_toStartOf="@id/ivStartEnd"
-                app:layout_constraintBottom_toTopOf="@id/ivStartEnd"
-                />
-
-            <ImageView
-                android:id="@+id/ivStartEnd"
-                android:layout_width="8dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="@dimen/_10dp"
-                android:src="@drawable/start_end"
-                app:layout_constraintEnd_toEndOf="@+id/tvDate"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintTop_toBottomOf="@+id/tvDuration" />
-
-            <TextView
-                android:id="@+id/tv_station"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/medium"
-                android:text="Station : Cairo"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
-                app:layout_constraintStart_toEndOf="@+id/ivStartEnd"
-                app:layout_constraintTop_toTopOf="@+id/ivStartEnd" />
-
-            <TextView
-                android:id="@+id/tv_destination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/medium"
-                android:text="Destination : Alex"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ivStartEnd"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_station"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_10dp">
+        android:layout_marginHorizontal="@dimen/_20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5dp"
-                android:layout_marginBottom="@dimen/_5dp"
-                android:padding="@dimen/_5dp"
                 android:textColor="@color/yellow_dark"
                 android:backgroundTint="@color/yellow_light"
-                android:background="@drawable/round_white"
                 android:text="@string/business_men_premium" />
 
             <TextView
@@ -205,8 +149,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10dp"
-        android:layout_marginEnd="@dimen/_10dp"
+        android:layout_marginStart="@dimen/_20dp"
         android:weightSum="3">
 
         <LinearLayout
@@ -231,27 +174,24 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_weight="1">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_rectangle"
-                android:tint="@color/green" />
+                app:tint="@color/yellow" />
 
             <TextView
-                android:textColor="@color/green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_5dp"
+                android:layout_marginStart="@dimen/_5dp"
                 android:fontFamily="@font/medium"
                 android:text="@string/available" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="end"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -260,124 +200,63 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_rectangle"
-                android:tint="@color/yellow" />
+                app:tint="@color/green" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginStart="@dimen/_5dp"
                 android:fontFamily="@font/medium"
-                android:textColor="@color/yellow"
                 android:text="@string/your_choice" />
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="4">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/_10dp"
-            android:layout_marginTop="@dimen/_10dp"
-            android:layout_weight="4">
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/row1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/_50dp"
+                android:layout_height="@dimen/_50dp"
+                android:src="@drawable/ic_seat"
+                app:tint="@color/purple_200" />
 
-                <ImageView
-                    android:layout_width="@dimen/_50dp"
-                    android:layout_height="@dimen/_50dp"
-                    android:src="@drawable/ic_seat"
-                    android:tint="@color/purple_200" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/medium"
-                    android:textColor="@color/base_app_color"
-                    android:text="@string/driver"
-                    android:textAlignment="center" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/grid_view"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/row1"
-                app:spanCount="4"
-                tools:itemCount="12"
-                tools:listitem="@layout/row_seat_item" />
-
-            <!-- <androidx.recyclerview.widget.RecyclerView
-                 android:id="@+id/rv_liftSide"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_10dp"
-                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                 app:layout_constraintTop_toBottomOf="@id/row1"
-                 app:spanCount="2"
-                 tools:listitem="@layout/row_seat_item"
-                 />
-
-             <androidx.recyclerview.widget.RecyclerView
-                 android:id="@+id/rv_rightSide"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_10dp"
-                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintTop_toBottomOf="@id/row1"
-                 app:spanCount="2"
-                 tools:listitem="@layout/row_seat_item" />
-
-             <androidx.recyclerview.widget.RecyclerView
-                 android:id="@+id/list3"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_10dp"
-                 android:orientation="horizontal"
-                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                 app:layout_constraintTop_toBottomOf="@id/rv_rightSide"
-                 app:spanCount="1"
-                 tools:listitem="@layout/row_seat_item" />-->
+                android:fontFamily="@font/medium"
+                android:text="@string/driver"
+                android:textColor="@color/base_app_color"
+                android:textAlignment="center" />
+        </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_seats_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="@dimen/_10dp">
+            app:layout_constraintTop_toBottomOf="@id/row1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSeatConfirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/base_blue_btn_bg"
-                android:fontFamily="@font/medium"
-                android:text="@string/seat_confirmation"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="@color/white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
 
 
 </LinearLayout>
+

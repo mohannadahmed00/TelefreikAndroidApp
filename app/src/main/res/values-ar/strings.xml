@@ -146,6 +146,7 @@
     <string name="reserved">محجوزة</string>
     <string name="try_in_different_date">حاول بتاريخ مختلف</string>
     <string name="driver">سائق</string>
+    <string name="seat_no">رقم المقاعد</string>
 
 
     <!--    <string-array name="passengers_adult">-->
