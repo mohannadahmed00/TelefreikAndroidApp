@@ -428,11 +428,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             showTopToast(getString(R.string.select_category))
             return false
         }
-        if (!::mStartDestinationPlace.isInitialized) {
+        if (!::mStartDestinationPlace.isInitialized || !::mStartDestinationCity.isInitialized) {
             showTopToast(getString(R.string.select_start_station))
             return false
         }
-        if (!::mEndDestinationPlace.isInitialized) {
+        if (!::mEndDestinationPlace.isInitialized || !::mEndDestinationCity.isInitialized) {
             showTopToast(getString(R.string.select_arrival_station))
             return false
         }
