@@ -186,4 +186,6 @@ Account created successfully ! \n You will be taken to the home page
     <string name="your_choice">Your Choice</string>
     <string name="available">Available</string>
     <string name="reserved">Reserved</string>
+    <string name="try_in_different_date">try in different date</string>
+    <string name="driver">Driver</string>
 </resources>

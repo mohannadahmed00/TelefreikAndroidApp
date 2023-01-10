@@ -67,7 +67,7 @@
                 android:paddingHorizontal="@dimen/_30dp"
                 android:paddingTop="@dimen/_7dp"
                 android:paddingBottom="@dimen/_7dp"
-                android:text="try in different date"
+                android:text="@string/try_in_different_date"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sp"
                 app:backgroundTint="@color/base_app_color"

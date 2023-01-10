@@ -144,6 +144,8 @@
     <string name="your_choice">أختيارتك</string>
     <string name="available">متاحة</string>
     <string name="reserved">محجوزة</string>
+    <string name="try_in_different_date">حاول بتاريخ مختلف</string>
+    <string name="driver">سائق</string>
 
 
     <!--    <string-array name="passengers_adult">-->

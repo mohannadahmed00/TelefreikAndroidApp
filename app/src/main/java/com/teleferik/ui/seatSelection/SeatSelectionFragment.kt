@@ -26,9 +26,9 @@ class SeatSelectionFragment :
         val seats = mutableListOf<Seat>()
         for (i in 1..28) {
             if (i in arrayOf(2, 5, 9, 12)) {
-                seats.add(Seat(num = i, isSelected = true))
+                seats.add(Seat(num = i, isSelected = true, status = "reserved"))
             } else {
-                seats.add(Seat(num = i, isSelected = false))
+                seats.add(Seat(num = i, isSelected = false,status = "available"))
             }
         }
         return seats

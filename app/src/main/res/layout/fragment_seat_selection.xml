@@ -304,7 +304,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/medium"
                     android:textColor="@color/base_app_color"
-                    android:text="Driver"
+                    android:text="@string/driver"
                     android:textAlignment="center" />
             </LinearLayout>
 

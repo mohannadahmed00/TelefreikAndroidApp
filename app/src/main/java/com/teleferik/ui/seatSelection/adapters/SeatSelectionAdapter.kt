@@ -37,14 +37,14 @@ class SeatSelectionAdapter(
         super.onViewAttachedToWindow(holder)
         if (holder.layoutPosition in thirdColPos){
             val layoutParams =  holder.viewBinding.myFrame.layoutParams as ViewGroup.MarginLayoutParams
-            layoutParams.leftMargin = 120F.toInt()
-            layoutParams.rightMargin = (-200F).toInt()
+            /*layoutParams.leftMargin = 120F.toInt()
+            layoutParams.rightMargin = (-200F).toInt()*/
             holder.viewBinding.myFrame.layoutParams = layoutParams
 
         }else if (holder.layoutPosition in secondColPos){
             val layoutParams =  holder.viewBinding.myFrame.layoutParams as ViewGroup.MarginLayoutParams
-            layoutParams.leftMargin = 120F.toInt()
-            layoutParams.rightMargin = (-200F).toInt()
+            /*layoutParams.leftMargin = 120F.toInt()
+            layoutParams.rightMargin = (-200F).toInt()*/
             holder.viewBinding.myFrame.layoutParams = layoutParams
 
         }
@@ -55,15 +55,18 @@ class SeatSelectionAdapter(
         @SuppressLint("ResourceAsColor")
         fun bind(seat: Seat) {
             viewBinding.tvSeatNum.text = seat.num.toString()
-            if (seat.isSelected){
+            if (seat.isSelected && seat.status=="reserved"){
                 viewBinding.imageSeat.setColorFilter(ContextCompat.getColor(itemView.context, R.color.gray4), android.graphics.PorterDuff.Mode.SRC_IN)
-            }else {
+            }else if (seat.status == "available") {
                 viewBinding.imageSeat.setColorFilter(ContextCompat.getColor(itemView.context, R.color.green), android.graphics.PorterDuff.Mode.SRC_IN)
+            }else{
+                viewBinding.imageSeat.setColorFilter(ContextCompat.getColor(itemView.context, R.color.yellow), android.graphics.PorterDuff.Mode.SRC_IN)
             }
             viewBinding.root.setOnClickListener {
                 if (!seat.isSelected){
+                    seat.status = "selected"
                     viewBinding.imageSeat.setColorFilter(ContextCompat.getColor(itemView.context, R.color.yellow), android.graphics.PorterDuff.Mode.SRC_IN)
-                }else{
+                }else if (seat.status =="selected"){
                     viewBinding.imageSeat.setColorFilter(ContextCompat.getColor(itemView.context, R.color.green), android.graphics.PorterDuff.Mode.SRC_IN)
                 }
                 iClick.onSeatClicked(seat = seat,bindingAdapterPosition)
