@@ -79,6 +79,7 @@ object Constants {
         const val EDIT_USER_MOBILE = "customer/updateCustomerMobForMobile"
         const val SKY_SCANNER_AIR_PORTS_SEARCH =
             "https://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/EG/EGP/"
+        const val CITIES_SEARCH = "https://demo.webusegypt.com/api/cities"
         const val CREATE_TICKET = "ticket/create"
         const val GET_TICKETS_FOR_CUSTOMER = "ticket/getAllForCustomer"
         const val GET_SINGLE_TICKET = "ticket/{ticketId}"

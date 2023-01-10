@@ -2,6 +2,7 @@ package com.teleferik.ui.home
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -58,6 +59,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     var hasClass: Boolean = false
     var displayChildCount: Boolean = false
     private var runnable: Runnable? = null
+    lateinit var category: String
 
 
     object Classes {
@@ -299,10 +301,17 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.include.edtStart.setOnTouchListener(OnTouchListener { v, event ->
             if (MotionEvent.ACTION_UP == event.action) {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment().apply {
-                        searchKey = binding.include.edtStart.captureText().ifEmpty { "-" }
-                    })
+                if (category == "Flight") {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment()
+                            .apply {
+                                searchKey = binding.include.edtStart.captureText().ifEmpty { "-" }
+                            })
+                } else if (category == "Bus") {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionNavigationHomeToSearchCitiesFragment()//pass cities list
+                    )
+                }
             }
             binding.include.edtStart.performClick()
             true // return is important...
@@ -310,11 +319,21 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.include.edtEnd.setOnTouchListener(OnTouchListener { v, event ->
             if (MotionEvent.ACTION_UP == event.action) {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment().apply {
-                        isSearchFromStart = false
-                        searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
-                    })
+                if (category == "Flight") {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment()
+                            .apply {
+                                isSearchFromStart = false
+                                searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
+                            })
+                } else if (category == "Bus") {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionNavigationHomeToSearchCitiesFragment()
+                            .apply {
+                                isSearchFromStart = false
+                            }
+                    )
+                }
             }
             true // return is important...
         })
@@ -437,22 +456,23 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
     override fun onCategoryClicked(item: Transport, pos: Int, list: MutableList<Transport>) {
         item.isSelected = !item.isSelected
+        category = item.type
 
-            for (i in list.indices){
-                if (i!=pos){
-                    list[i].isSelected = false
-                }
-                if (list[i].type=="Flight"){
-                    if (list[i].isSelected) {
-                        binding.includeClasses.root.visibility = View.VISIBLE
-                        true
-                    } else {
-                        binding.includeClasses.root.visibility = View.GONE
-                        false
-                    }
-                }
-
+        for (i in list.indices) {
+            if (i != pos) {
+                list[i].isSelected = false
             }
+            if (list[i].type == "Flight") {
+                if (list[i].isSelected) {
+                    binding.includeClasses.root.visibility = View.VISIBLE
+                    true
+                } else {
+                    binding.includeClasses.root.visibility = View.GONE
+                    false
+                }
+            }
+
+        }
 
 
         /*hasClass = when (list[0].type) {
@@ -523,6 +543,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         } else {
             val headerList = response.headers()
             for (header in headerList) {
+                Log.v("header", "${header.first} ------> ${header.second}")
                 if (header.first == "Location") {
                     findNavController().navigate(
                         HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(

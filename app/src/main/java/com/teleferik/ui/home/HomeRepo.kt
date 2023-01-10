@@ -11,6 +11,10 @@ class HomeRepo(private val api: ApisService) : BaseRepo() {
         api.searchAirPorts(url)
     }
 
+    suspend fun searchCities(url: String) = safeApiCalls {
+        api.searchCities(url)
+    }
+
     suspend fun getTripsSearchResults(url: String) = safeApiCalls {
         api.getTripsSearchResults(url)
     }

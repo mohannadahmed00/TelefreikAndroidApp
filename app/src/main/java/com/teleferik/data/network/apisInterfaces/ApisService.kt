@@ -15,6 +15,7 @@ import com.teleferik.models.tickets.CreateTicketBodyRequest
 import com.teleferik.models.tickets.SingleTicketResponse
 import com.teleferik.models.tickets.Ticket
 import com.teleferik.models.tickets.TicketsForCustomerResponse
+import com.teleferik.models.webus.cities.CitiesResponse
 import com.teleferik.utils.Constants
 import com.teleferik.utils.Constants.PARAMS.TICKET_ID
 import okhttp3.MultipartBody
@@ -105,6 +106,29 @@ interface ApisService {
     suspend fun getTripsSearchResults(
         @Url url:String
     ):SearchResultsResponse
+    // ================= WE BUS ==================
+    fun createBusSession(
+        @Url url: String,
+        @Field("cabinclass") cabinclass: String,
+        @Field("country") country: String,
+        @Field("currency") currency: String,
+        @Field("locale") locale: String,
+        @Field("locationSchema") locationSchema: String,
+        @Field("originplace") originplace: String,
+        @Field("destinationplace") destinationplace: String,
+        @Field("outbounddate") outbounddate: String,
+        @Field("inbounddate") inbounddate: String,
+        @Field("adults") adults: Int,
+        @Field("children") children: Int,
+        @Field("infants") infants: Int,
+        @Field("apikey") apikey: String
+    ): Call<Any>
+    @GET
+    suspend fun searchCities(
+        @Url url:String
+    ): CitiesResponse
+
+
 
     // ================= TICKETS ==================
     @POST(Constants.END_POTINS.CREATE_TICKET)
