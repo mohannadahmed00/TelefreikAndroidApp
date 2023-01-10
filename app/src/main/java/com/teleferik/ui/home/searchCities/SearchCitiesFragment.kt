@@ -38,6 +38,7 @@ class SearchCitiesFragment :
     private val args: SearchCitiesFragmentArgs by navArgs()
     lateinit var mCitySearchResultsAdapter: CitiesSearchResultsAdapter
     private var typingJob: Job? = null
+    lateinit var text:String
 
     override fun getViewModel(): Class<HomeViewModel> {
         return HomeViewModel::class.java
@@ -74,7 +75,6 @@ class SearchCitiesFragment :
         binding.edtSearch.afterTextChanged {
             if (it.isNotEmpty()) {
                 typingJob?.cancel()
-                Log.v("adel","text changed")
                 typingJob = lifecycleScope.launch {
                     delay(900)
                     val lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
@@ -110,21 +110,18 @@ class SearchCitiesFragment :
         mViewModel.citiesResponse.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
-                    Log.v("adel","success"+it.value.toString())
                     binding.progress.showHideView(false)
                     initStartRv(it.value)
                     mViewModel._citiesResponse.value = null
 
                 }
                 is Resource.Failure -> {
-                    Log.v("adel","fail")
                     binding.progress.showHideView(false)
                     loading.cancel()
                     handleApiErrors(it)
                     mViewModel._citiesResponse.value = null
                 }
                 is Resource.Loading -> {
-                    Log.v("adel","loading")
                     binding.progress.showHideView(true)
                 }
             }
@@ -132,7 +129,7 @@ class SearchCitiesFragment :
     }
 
     private fun initStartRv(value: CitiesResponse) {
-        Log.v("adel",value.cities.toString())
+        val cities = value.cities?.filter { it.name.contains(binding.edtSearch) }
         mCitySearchResultsAdapter = CitiesSearchResultsAdapter(value.cities!!, this)
         binding.rvPlaces.adapter = mCitySearchResultsAdapter
         binding.rvPlaces.showHideView(true)
