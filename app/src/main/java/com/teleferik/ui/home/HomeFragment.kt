@@ -42,6 +42,7 @@ import com.teleferik.utils.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -62,7 +63,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     var hasClass: Boolean = false
     var displayChildCount: Boolean = false
     private var runnable: Runnable? = null
-    lateinit var category: String
+    var category: String =""
 
 
     object Classes {
@@ -95,6 +96,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         } else {
             requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         }
+        val lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
         setFragmentResultListener(Constants.START_DESTINATION) { _, bundle ->
             val resultPlace: Place?
             val resultCity: City?
@@ -110,7 +112,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                 binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                 if (resultCity != null) {
                     mStartDestinationCity = resultCity
-                    binding.include.edtStart.setText(resultCity.name)
+                    if (lang == "en-UK"){
+                        binding.include.edtStart.setText(resultCity.name)
+                    }else{
+                        binding.include.edtStart.setText(String(resultCity.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8))
+
+                    }
                 }
             }
 
@@ -126,12 +133,20 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                     binding.include.edtEnd.setText(resultPlace.placeName)
                 }
             } else {
+
                 resultCity = bundle.getParcelable(Constants.ARRIVAL_DESTINATION)
                 binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                 if (resultCity != null) {
                     mEndDestinationCity = resultCity
-                    binding.include.edtEnd.setText(resultCity.name)
+                    if (lang == "en-UK"){
+                        binding.include.edtEnd.setText(resultCity.name)
+                    }else{
+                        binding.include.edtEnd.setText(String(resultCity.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8))
+
+                    }
+
                 }
+
             }
         }
     }
@@ -299,7 +314,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.btnSearch.setOnClickListener {
             if (isSearchFormValid()) {
-                callSearch()
+                if (category == "Flight") callSearch() else findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment())
             }
         }
 

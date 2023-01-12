@@ -1,11 +1,17 @@
 package com.teleferik.ui.home.searchCities
 
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.compose.ui.input.pointer.PointerIconDefaults.Text
+import androidx.compose.ui.semantics.SemanticsProperties.Text
+import androidx.compose.ui.text.input.KeyboardType.Companion.Text
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +36,7 @@ import com.teleferik.utils.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.nio.charset.StandardCharsets
 
 
 class SearchCitiesFragment :
@@ -39,6 +46,7 @@ class SearchCitiesFragment :
     lateinit var mCitySearchResultsAdapter: CitiesSearchResultsAdapter
     private var typingJob: Job? = null
     lateinit var text:String
+    var lang:String?=null
 
     override fun getViewModel(): Class<HomeViewModel> {
         return HomeViewModel::class.java
@@ -77,7 +85,7 @@ class SearchCitiesFragment :
                 typingJob?.cancel()
                 typingJob = lifecycleScope.launch {
                     delay(900)
-                    val lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
+                    lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
                     mViewModel.searchCities(Constants.END_POTINS.CITIES_SEARCH)
                     observeCities()
                 }
@@ -94,7 +102,7 @@ class SearchCitiesFragment :
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 typingJob?.cancel()
-                val lang =
+                lang =
                     if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
 
                 mViewModel.searchCities(Constants.END_POTINS.CITIES_SEARCH)
@@ -129,8 +137,19 @@ class SearchCitiesFragment :
     }
 
     private fun initStartRv(value: CitiesResponse) {
-        val cities = value.cities?.filter { it.name.contains(binding.edtSearch.text, ignoreCase = true) } as MutableList
-        mCitySearchResultsAdapter = CitiesSearchResultsAdapter(cities, this)
+        /*val imm =  context?.getSystemService(INPUT_METHOD_SERVICE)
+        Toast.makeText(context,imm.toString(),Toast.LENGTH_SHORT).show()*/
+
+
+
+
+        val cities = if (lang == "en-UK"){
+            value.cities?.filter { it.name.contains(binding.edtSearch.text, ignoreCase = true) } as MutableList
+        }else{
+            value.cities?.filter { String(it.translations[0].name.toByteArray(),StandardCharsets.UTF_8).contains(binding.edtSearch.text)} as MutableList
+        }
+
+        mCitySearchResultsAdapter = CitiesSearchResultsAdapter(cities, this,lang)
         binding.rvPlaces.adapter = mCitySearchResultsAdapter
         binding.rvPlaces.showHideView(true)
 
@@ -147,4 +166,6 @@ class SearchCitiesFragment :
             findNavController().navigateUp()
         }, 200)
     }
+
+
 }

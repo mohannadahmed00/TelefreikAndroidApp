@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.seatSelection.SeatSelectionFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80dp"
@@ -47,19 +48,21 @@
             android:layout_marginHorizontal="@dimen/_20dp"
             android:layout_marginVertical="@dimen/_10dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:gravity="start"
                 android:id="@+id/tvDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
+                android:text="08 Jan 2022"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_14sp"
-                android:text="08 Jan 2022" />
+                android:textSize="@dimen/_16sp" />
 
             <LinearLayout
+                android:gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5dp">
@@ -67,8 +70,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_green_circle"
-                     />
+                    android:src="@drawable/ic_green_circle" />
 
                 <TextView
 
@@ -77,27 +79,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:fontFamily="@font/regular"
+                    android:text="@string/start_station"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp"
-                    android:text="Station Sidi gaber , Alex" />
+                    android:textSize="@dimen/_12sp" />
 
             </LinearLayout>
 
             <ImageView
+                android:gravity="start"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20dp"
                 android:src="@drawable/ic_overflow"
                 app:tint="@color/white" />
 
             <LinearLayout
+                android:gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_white_circle"
-                     />
+                    android:src="@drawable/ic_white_circle" />
 
                 <TextView
 
@@ -106,9 +109,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:fontFamily="@font/regular"
+                    android:text="@string/arrival_station"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp"
-                    android:text=" Destination Sidi gaber , Alex" />
+                    android:textSize="@dimen/_12sp" />
 
             </LinearLayout>
 
@@ -129,9 +132,9 @@
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/yellow_dark"
                 android:backgroundTint="@color/yellow_light"
-                android:text="@string/business_men_premium" />
+                android:text="@string/business_men_premium"
+                android:textColor="@color/yellow_dark" />
 
             <TextView
                 android:id="@+id/tv_busCode"
@@ -149,10 +152,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginHorizontal="@dimen/_20dp"
         android:weightSum="3">
 
         <LinearLayout
+            android:gravity="start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -160,9 +164,11 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_rectangle" />
+                android:src="@drawable/ic_rectangle"
+                app:tint="@color/gray_light"/>
 
             <TextView
+                android:textColor="@color/gray_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5dp"
@@ -172,6 +178,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -183,15 +190,17 @@
                 app:tint="@color/yellow" />
 
             <TextView
+                android:textColor="@color/yellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5dp"
                 android:fontFamily="@font/medium"
-                android:text="@string/available" />
+                android:text="@string/your_choice" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="end"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -203,31 +212,33 @@
                 app:tint="@color/green" />
 
             <TextView
+                android:textColor="@color/green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5dp"
                 android:fontFamily="@font/medium"
-                android:text="@string/your_choice" />
+                android:text="@string/available" />
 
         </LinearLayout>
 
     </LinearLayout>
 
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_10dp"
+        android:orientation="vertical"
+        android:background="@color/white_light"
         android:layout_marginTop="@dimen/_10dp">
 
         <LinearLayout
             android:id="@+id/row1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginVertical="@dimen/_10dp"
+            android:layout_marginHorizontal="@dimen/_20dp">
 
             <ImageView
                 android:layout_width="@dimen/_50dp"
@@ -236,25 +247,50 @@
                 app:tint="@color/purple_200" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
                 android:text="@string/driver"
-                android:textColor="@color/base_app_color"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/base_app_color" />
         </LinearLayout>
 
+
+        <!--<View
+            android:id="@+id/compose_seats_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />-->
 
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/compose_seats_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/row1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_card">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16dp"
+                android:fontFamily="@font/medium"
+                android:padding="@dimen/_13dp"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sp"
+                app:backgroundTint="@color/base_app_color"
+                app:cornerRadius="@dimen/_13dp"
+                app:rippleColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 
 

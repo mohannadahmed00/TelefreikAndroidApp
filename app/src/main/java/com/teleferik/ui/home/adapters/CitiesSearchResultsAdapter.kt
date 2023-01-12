@@ -7,11 +7,9 @@ import com.teleferik.databinding.RowAirPortsSearchResultsBinding
 import com.teleferik.databinding.RowNotificationsBinding
 import com.teleferik.models.skyscanner.airPorts.Place
 import com.teleferik.models.webus.cities.City
+import java.nio.charset.StandardCharsets
 
-class CitiesSearchResultsAdapter(
-    var list: MutableList<City>,
-    private val iClick: OnItemClickListener
-) : RecyclerView.Adapter<CitiesSearchResultsAdapter.ViewHolder>() {
+class CitiesSearchResultsAdapter(var list: MutableList<City>, private val iClick: OnItemClickListener,val lang:String?) : RecyclerView.Adapter<CitiesSearchResultsAdapter.ViewHolder>() {
 
 
     override fun getItemCount() = list.size
@@ -30,11 +28,18 @@ class CitiesSearchResultsAdapter(
         holder.bind(list[position])
     }
 
+    /*val x = String(value.cities?.get(0)?.translations?.get(0)?.name!!.encodeToByteArray(),StandardCharsets.UTF_8)
+        Toast.makeText(context,x,Toast.LENGTH_LONG).show()*/
     inner class ViewHolder(var viewBinding: RowAirPortsSearchResultsBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(data: City) {
             viewBinding.apply {
-                tvName.text = data.name
+                if (lang == "en-UK"){
+                    tvName.text = data.name
+                }else{
+                    tvName.text = String(data.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8)
+                }
+
                 root.setOnClickListener {
                     iClick.onItemClicked(data)
                 }

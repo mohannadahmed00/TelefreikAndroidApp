@@ -8,7 +8,6 @@ import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.databinding.FragmentSearchResultsBinding
-import com.teleferik.models.skyscanner.searchResults.BookingDetailsLink
 import com.teleferik.models.skyscanner.searchResults.Itinerary
 import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
 import com.teleferik.ui.home.HomeRepo
@@ -32,9 +31,7 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
 
     override fun handleView() {
         initClicks()
-        binding.btnNoSearchResults.setOnClickListener {
-            findNavController().navigate(SearchResultsFragmentDirections.actionSearchResultsFragmentToSeatSelectionFragment())
-        }
+        binding.btnNoSearchResults.setOnClickListener { findNavController().navigateUp() }
         callSearchResultsRequest()
     }
 

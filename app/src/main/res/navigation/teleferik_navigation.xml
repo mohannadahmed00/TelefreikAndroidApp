@@ -12,6 +12,9 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
+            android:id="@+id/action_navigation_home_to_seatSelectionFragment"
+            app:destination="@id/seatSelectionFragment" />
+        <action
             android:id="@+id/action_navigation_home_to_notificationFragment"
             app:destination="@id/notificationFragment" />
         <action
@@ -88,9 +91,7 @@
             android:name="searchUrl"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_searchResultsFragment_to_seatSelectionFragment"
-            app:destination="@id/seatSelectionFragment" />
+
         <action
             android:id="@+id/action_searchResultsFragment_to_skyScannerTripDetailsFragment"
             app:destination="@id/skyScannerTripDetailsFragment" />
@@ -143,18 +144,6 @@
         android:id="@+id/seatConfirmationFragment"
         android:name="com.teleferik.ui.seatConfirmation.SeatConfirmationFragment"
         tools:layout="@layout/fragment_seat_confirmation">
-        <!--<argument
-            android:name="searchData"
-            app:argType="com.teleferik.models.skyscanner.searchResults.SearchResultsResponse"
-            app:nullable="true" />
-        <argument
-            android:name="tripData"
-            app:argType="com.teleferik.models.skyscanner.searchResults.Itinerary"
-            app:nullable="true" />
-        <argument
-            android:name="priceOption"
-            app:argType="com.teleferik.models.skyscanner.searchResults.PricingOption"
-            app:nullable="true" />-->
 
     </fragment>
     <fragment

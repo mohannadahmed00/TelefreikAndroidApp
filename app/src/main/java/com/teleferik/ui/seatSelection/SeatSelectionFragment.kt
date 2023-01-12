@@ -45,17 +45,19 @@ class SeatSelectionFragment :
     ) = FragmentSeatSelectionBinding.inflate(layoutInflater)
 
     override fun handleView() {
+        initClicks()
+
+    }
+    private fun initClicks() {
+        binding.imgBack.setOnClickListener { findNavController().navigateUp() }
+        binding.btnConfirm.setOnClickListener { findNavController().navigate(SeatSelectionFragmentDirections.actionSeatSelectionFragmentToSeatConfirmationFragment()) }
         binding.composeSeatsView.apply {
             setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner)
             )
             setContent {
                 MaterialTheme {
-                    SeatsUi(
-                        onConfirmClick = {
-                            findNavController().navigate(SeatSelectionFragmentDirections.actionSeatSelectionFragmentToSeatConfirmationFragment())
-                        }
-                    )
+                    SeatsUi()
                 }
             }
         }
