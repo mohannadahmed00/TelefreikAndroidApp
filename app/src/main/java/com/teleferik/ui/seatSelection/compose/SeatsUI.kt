@@ -7,27 +7,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import com.teleferik.R
+import com.teleferik.models.seats.Status
 
 @ExperimentalFoundationApi
 @Composable
@@ -42,6 +28,8 @@ fun SeatsUi(){
 
 
     val selectedSeats = remember { mutableStateListOf<Int>() }
+
+    val c = remember { mutableStateOf(true) }
 
     for (i in 0..44){
         if (i+1 in leftList){
@@ -70,54 +58,72 @@ fun SeatsUi(){
     val columWidth = screenWidth.value.times(0.3)
     val spaceWidth= screenWidth.value.times(0.4)
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 5.dp)
+
+    Column(
+        modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.Red)
         ) {
-            Column(
+            Row(
                 modifier = Modifier
-                    .width(columWidth.dp)
-
+                    .fillMaxWidth()
+                    .padding(bottom = 5.dp)
             ) {
-                LazyVerticalGrid(
-                    cells = GridCells.Fixed(2)
-                ) {
-                    itemsIndexed(leftSeats) { _, seat ->
-                        SeatItem(
-                            seat = seat,
-                            onClick = {
-                                if (selectedSeats.contains(seat.number)) selectedSeats.remove(seat.number) else selectedSeats.add(seat.number)
-                                Toast.makeText(context,selectedSeats.toList().toString(), Toast.LENGTH_SHORT).show()
-                            }
-                        )
+                Column(
+                    modifier = Modifier
+                        .width(columWidth.dp)
 
+                ) {
+                    LazyVerticalGrid(
+                        cells = GridCells.Fixed(2)
+                    ) {
+                        itemsIndexed(leftSeats) { _, seat ->
+                            SeatItem(
+                                seat = seat,
+                                onClick = {
+                                    if (selectedSeats.contains(seat.number)) selectedSeats.remove(
+                                        seat.number
+                                    ) else selectedSeats.add(seat.number)
+                                    Toast.makeText(
+                                        context,
+                                        selectedSeats.toList().toString(),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            )
+
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.width(spaceWidth.dp))
+                Column(
+                    modifier = Modifier
+                        .width(columWidth.dp)
+                )
+                {
+                    LazyVerticalGrid(
+                        cells = GridCells.Fixed(2)
+                    ) {
+                        itemsIndexed(rightSeats) { _, seat ->
+                            SeatItem(
+                                seat = seat,
+                                onClick = {
+                                    if (selectedSeats.contains(seat.number)) selectedSeats.remove(
+                                        seat.number
+                                    ) else selectedSeats.add(seat.number)
+                                    Toast.makeText(
+                                        context,
+                                        selectedSeats.toList().toString(),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            )
+
+                        }
                     }
                 }
             }
-            Spacer(modifier = Modifier.width(spaceWidth.dp))
-            Column(
-                modifier = Modifier
-                    .width(columWidth.dp)
-            )
-            {
-                LazyVerticalGrid(
-                    cells = GridCells.Fixed(2)
-                ) {
-                    itemsIndexed(rightSeats) { _, seat ->
-                        SeatItem(
-                            seat = seat,
-                            onClick = {
-                                if (selectedSeats.contains(seat.number)) selectedSeats.remove(seat.number) else selectedSeats.add(seat.number)
-                                Toast.makeText(context,selectedSeats.toList().toString(), Toast.LENGTH_SHORT).show()
-                            }
-                        )
-
-                    }
-                }
-            }
-        }
-        /*Row(modifier = Modifier
+            /*Row(modifier = Modifier
             .fillMaxWidth()
             .padding(top = 5.dp)
             ) {
@@ -136,7 +142,8 @@ fun SeatsUi(){
                 }
             }
         }*/
-    }
+        }
+
 
 
 }

@@ -9,13 +9,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Green
-import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.teleferik.R
+import com.teleferik.models.seats.Status
 
 @Composable
 fun SeatItem(
@@ -48,11 +47,11 @@ fun SeatItem(
     }
 }
 
-enum class Status{
+/*enum class Status{
     Reserved,
     Available,
     Selected
-}
+}*/
 
 
 data class SeatItem(

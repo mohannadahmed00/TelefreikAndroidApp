@@ -12,7 +12,7 @@ import com.teleferik.models.seats.Seat
 import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
 import com.teleferik.ui.seatSelection.adapter.SeatSelectionAdapter
-import com.teleferik.ui.seatSelection.compose.Status
+import com.teleferik.models.seats.Status
 
 @ExperimentalFoundationApi
 class SeatSelectionFragment :
@@ -97,22 +97,6 @@ class SeatSelectionFragment :
 
     }
 
-    /*override fun handleView() {
-        //binding.btnSeatConfirm.setOnClickListener { findNavController().navigate(SeatSelectionFragmentDirections.actionSearchResultsFragmentToSeatConfirmationFragment())}
-        //binding.tvBusSelected.text = selectedSeats.toString()
-    }*/
-
-    /*override fun onSeatClicked(seat: Seat, pos: Int) {
-        if (!seat.isSelected){
-            if (selectedSeats.contains(seat.num)){
-                selectedSeats.remove(seat.num)
-                Toast.makeText(this.context,"Seats $selectedSeats",Toast.LENGTH_SHORT).show()
-            }else{
-                selectedSeats.add(seat.num)
-                Toast.makeText(this.context,"Seats $selectedSeats",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 
 
 }
