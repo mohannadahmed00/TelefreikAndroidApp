@@ -256,21 +256,64 @@
         </LinearLayout>
 
 
-        <!--<View
-            android:id="@+id/compose_seats_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            />-->
 
-        <androidx.compose.ui.platform.ComposeView
+        <!--<androidx.compose.ui.platform.ComposeView
             android:id="@+id/compose_seats_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="left"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/_5dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_liftSide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/row_seat_item"
+                app:layout_constraintEnd_toStartOf="@id/guideline1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_rightSide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/row_seat_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/ll_btn"
+            android:id="@+id/btn_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bottom_card">
@@ -289,6 +332,7 @@
                 app:cornerRadius="@dimen/_13dp"
                 app:rippleColor="@color/white" />
         </LinearLayout>
+
     </LinearLayout>
 
 

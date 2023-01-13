@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_50dp"
-    android:layout_height="@dimen/_50dp"
+    android:layout_width="@dimen/_40dp"
+    android:layout_height="@dimen/_40dp"
     android:id="@+id/my_frame"
-    android:layout_marginVertical="@dimen/_10dp">
+    android:layout_marginVertical="@dimen/_5dp">
 
         <ImageView
-            android:layout_width="@dimen/_50dp"
-            android:layout_height="@dimen/_50dp"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
             android:id="@+id/image_seat"
             android:src="@drawable/ic_seat"
             />

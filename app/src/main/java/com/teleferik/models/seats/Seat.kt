@@ -1,10 +1,14 @@
 package com.teleferik.models.seats
 
-import com.teleferik.R
+import com.teleferik.ui.seatSelection.compose.Status
+
+enum class Status{
+    Reserved,
+    Available,
+    Selected
+}
 
 data class Seat(
     var num : Int,
-    var isSelected:Boolean,
-    var status:String,
-    var color : Int = R.color.green
+    var status: Status = Status.Available
 )

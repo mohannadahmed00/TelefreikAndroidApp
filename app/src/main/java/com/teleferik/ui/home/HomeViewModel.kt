@@ -1,7 +1,9 @@
 package com.teleferik.ui.home
 
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,14 +20,7 @@ import kotlinx.coroutines.launch
 
 
 class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
-    val list = listOf<Itinerary>(
-        Itinerary(BookingDetailsLink("", "", ""), "", "", emptyList()),
-        Itinerary(BookingDetailsLink("", "", ""), "", "", emptyList()),
-        Itinerary(BookingDetailsLink("", "", ""), "", "", emptyList()),
-        Itinerary(BookingDetailsLink("", "", ""), "", "", emptyList()),
-        Itinerary(BookingDetailsLink("", "", ""), "", "", emptyList()),
-        Itinerary(BookingDetailsLink("", "", ""), "", "", emptyList()),
-    )
+
 
     private var tripType = 1  // 0 go only // 1 go and return
     val _airPortsResponse = MutableLiveData<Resource<AirPortsResponse>>()
