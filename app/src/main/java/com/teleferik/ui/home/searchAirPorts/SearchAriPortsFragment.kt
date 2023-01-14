@@ -76,6 +76,8 @@ class SearchAriPortsFragment :
                     mViewModel.searchAirPorts(Constants.END_POTINS.SKY_SCANNER_AIR_PORTS_SEARCH + "$lang/?apiKey=prtl6749387986743898559646983194&query=$it")
                     observeAirPorts()
                 }
+            }else if (it.isEmpty()){
+                binding.rvPlaces.showHideView(false)
             }
         }
     }

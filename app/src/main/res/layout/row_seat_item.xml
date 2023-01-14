@@ -12,6 +12,7 @@
             android:src="@drawable/ic_seat"
             />
         <TextView
+            android:padding="@dimen/_11dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tv_seat_num"

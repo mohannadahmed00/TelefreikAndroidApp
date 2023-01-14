@@ -34,8 +34,8 @@ class CitiesSearchResultsAdapter(var list: MutableList<City>, private val iClick
         RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(data: City) {
             viewBinding.apply {
-                if (lang == "en-UK"){
-                    tvName.text = data.name
+                if (lang == "en"){
+                    tvName.text = data.translations[1].name
                 }else{
                     tvName.text = String(data.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8)
                 }

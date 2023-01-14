@@ -50,10 +50,10 @@ import kotlin.properties.Delegates
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(),
     TransportationTypeAdapter.OnItemClickListener {
-    lateinit var mStartDestinationPlace: Place
-    lateinit var mEndDestinationPlace: Place
-    lateinit var mStartDestinationCity: City
-    lateinit var mEndDestinationCity: City
+    var mStartDestinationPlace: Place? = null
+    var mEndDestinationPlace: Place? = null
+    var mStartDestinationCity: City? = null
+    var mEndDestinationCity: City? = null
     lateinit var mProfileViewModel: ProfileViewModel
     var currentStartDate by Delegates.notNull<Long>()
     var currentEndDate by Delegates.notNull<Long>()
@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     var hasClass: Boolean = false
     var displayChildCount: Boolean = false
     private var runnable: Runnable? = null
-    var category: String =""
+    var category: String = ""
 
 
     object Classes {
@@ -96,58 +96,42 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         } else {
             requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         }
-        val lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
+        val lang =
+            if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
         setFragmentResultListener(Constants.START_DESTINATION) { _, bundle ->
-            val resultPlace: Place?
-            val resultCity: City?
             if (category == "Flight") {
-                resultPlace = bundle.getParcelable(Constants.START_DESTINATION)
-                binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                if (resultPlace != null) {
-                    mStartDestinationPlace = resultPlace
-                    binding.include.edtStart.setText(resultPlace.placeName)
+                val data = bundle.getParcelable<Place>(Constants.START_DESTINATION)
+                if (data != null) {
+                    binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                    binding.include.edtStart.setText(data.placeName)
+                    mStartDestinationPlace = data
                 }
             } else {
-                resultCity = bundle.getParcelable(Constants.START_DESTINATION)
-                binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                if (resultCity != null) {
-                    mStartDestinationCity = resultCity
-                    if (lang == "en-UK"){
-                        binding.include.edtStart.setText(resultCity.name)
-                    }else{
-                        binding.include.edtStart.setText(String(resultCity.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8))
-
-                    }
+                val data = bundle.get(Constants.START_DESTINATION) as MutableMap<*, *>
+                if (data.isNotEmpty()) {
+                    binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                    binding.include.edtStart.setText(data["nameLang"] as String)
+                    mStartDestinationCity = data["item"] as City
                 }
             }
-
         }
         setFragmentResultListener(Constants.ARRIVAL_DESTINATION) { _, bundle ->
-            val resultPlace: Place?
-            val resultCity: City?
             if (category == "Flight") {
-                resultPlace = bundle.getParcelable<Place>(Constants.ARRIVAL_DESTINATION)
-                binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                if (resultPlace != null) {
-                    mEndDestinationPlace = resultPlace
-                    binding.include.edtEnd.setText(resultPlace.placeName)
+                val data = bundle.getParcelable<Place>(Constants.ARRIVAL_DESTINATION)
+                if (data != null) {
+                    binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                    binding.include.edtEnd.setText(data.placeName)
+                    mEndDestinationPlace = data
                 }
             } else {
-
-                resultCity = bundle.getParcelable(Constants.ARRIVAL_DESTINATION)
-                binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                if (resultCity != null) {
-                    mEndDestinationCity = resultCity
-                    if (lang == "en-UK"){
-                        binding.include.edtEnd.setText(resultCity.name)
-                    }else{
-                        binding.include.edtEnd.setText(String(resultCity.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8))
-
-                    }
-
+                val data = bundle.get(Constants.ARRIVAL_DESTINATION) as MutableMap<*, *>
+                if (data.isNotEmpty()) {
+                    binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                    binding.include.edtEnd.setText(data["nameLang"] as String)
+                    mEndDestinationCity = data["item"] as City
                 }
-
             }
+
         }
     }
 
@@ -314,7 +298,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.btnSearch.setOnClickListener {
             if (isSearchFormValid()) {
-                if (category == "Flight") callSearch() else findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment())
+                if (category == "Flight") callSearch() else findNavController().navigate(
+                    HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment()
+                )
             }
         }
 
@@ -348,7 +334,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                             .apply {
                                 searchKey = binding.include.edtStart.captureText().ifEmpty { "-" }
                             })
-                } else{
+                } else {
                     findNavController().navigate(
                         HomeFragmentDirections.actionNavigationHomeToSearchCitiesFragment()//pass cities list
                             .apply {
@@ -370,7 +356,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                                 isSearchFromStart = false
                                 searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
                             })
-                } else{
+                } else {
                     findNavController().navigate(
                         HomeFragmentDirections.actionNavigationHomeToSearchCitiesFragment()
                             .apply {
@@ -443,11 +429,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             showTopToast(getString(R.string.select_category))
             return false
         }
-        if (!::mStartDestinationPlace.isInitialized && !::mStartDestinationCity.isInitialized) {
+        if (mStartDestinationPlace == null && mStartDestinationCity == null) {
             showTopToast(getString(R.string.select_start_station))
             return false
         }
-        if (!::mEndDestinationPlace.isInitialized && !::mEndDestinationCity.isInitialized) {
+        if (mEndDestinationPlace == null && mEndDestinationCity == null) {
             showTopToast(getString(R.string.select_arrival_station))
             return false
         }
@@ -501,7 +487,25 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
     override fun onCategoryClicked(item: Transport, pos: Int, list: MutableList<Transport>) {
         item.isSelected = !item.isSelected
-        category = item.type
+        if (item.type != category) {
+            category = item.type
+            binding.include.edtStart.setText("")
+            binding.include.edtEnd.setText("")
+            mStartDestinationCity = null
+            mStartDestinationPlace = null
+            mEndDestinationCity = null
+            mEndDestinationPlace = null
+        } else {
+            if (!item.isSelected) {
+                category = ""
+                binding.include.edtStart.setText("")
+                binding.include.edtEnd.setText("")
+                mStartDestinationCity = null
+                mStartDestinationPlace = null
+                mEndDestinationCity = null
+                mEndDestinationPlace = null
+            }
+        }
 
         for (i in list.indices) {
             if (i != pos) {
@@ -559,8 +563,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             "EGP",
             lang,
             "iata",
-            getIataCode(mStartDestinationPlace.placeId!!),
-            getIataCode(mEndDestinationPlace.placeId!!),
+            getIataCode(mStartDestinationPlace?.placeId!!),
+            getIataCode(mEndDestinationPlace?.placeId!!),
             binding.includeDates.tvStartDate.text.toString(),
             returnDate,
             adultCount.toInt(),

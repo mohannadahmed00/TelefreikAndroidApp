@@ -40,82 +40,67 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_16dp"
         android:background="@drawable/bg_top_card">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_20dp"
-            android:layout_marginVertical="@dimen/_10dp"
-            android:orientation="vertical"
+            android:fontFamily="@font/medium"
+            android:paddingBottom="@dimen/_8dp"
+            android:gravity="start"
+            android:text="08 Jan 2022"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivStartEnd"
+            android:layout_width="8dp"
+            android:layout_height="67dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/start_end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="@+id/tvDuration"
+            app:layout_constraintTop_toBottomOf="@+id/tvDuration"
+            app:layout_constraintVertical_bias="0.84000003" />
 
-            <TextView
-                android:gravity="start"
-                android:id="@+id/tvDuration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/medium"
-                android:text="08 Jan 2022"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_16sp" />
+        <TextView
+            android:id="@+id/tv_station"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:fontFamily="@font/regular"
+            android:text="@string/start_station"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivStartEnd"
+            app:layout_constraintTop_toTopOf="@+id/ivStartEnd" />
 
-            <LinearLayout
-                android:gravity="start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5dp">
+        <TextView
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_green_circle" />
-
-                <TextView
-
-                    android:id="@+id/tv_station"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10dp"
-                    android:fontFamily="@font/regular"
-                    android:text="@string/start_station"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:gravity="start"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_20dp"
-                android:src="@drawable/ic_overflow"
-                app:tint="@color/white" />
-
-            <LinearLayout
-                android:gravity="start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_white_circle" />
-
-                <TextView
-
-                    android:id="@+id/tv_destination"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10dp"
-                    android:fontFamily="@font/regular"
-                    android:text="@string/arrival_station"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:id="@+id/tv_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:fontFamily="@font/regular"
+            android:text="@string/arrival_station"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivStartEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivStartEnd"
+            app:layout_constraintTop_toBottomOf="@+id/tv_station"
+            app:layout_constraintVertical_bias="0.89" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
