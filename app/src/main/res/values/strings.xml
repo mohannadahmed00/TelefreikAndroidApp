@@ -177,7 +177,6 @@ Account created successfully ! \n You will be taken to the home page
         <item>3</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="seat_confirmation">Seat Confirmation</string>
     <string name="first">First</string>
     <string name="first_premium">First Premium</string>
@@ -190,4 +189,10 @@ Account created successfully ! \n You will be taken to the home page
     <string name="driver">Driver</string>
     <string name="seat_no">Seat No.</string>
     <string name="remaining_time">You have 4 days left before the trip</string>
+    <string name="private_bus">Bus</string>
+    <string name="private_mini_bus">Mini Bus</string>
+    <string name="private_limousine">Limousine</string>
+    <string name="departure_time">Departure Time</string>
+    <string name="choose_time">Choose Time</string>
+    <string name="return_time">Return Time</string>
 </resources>

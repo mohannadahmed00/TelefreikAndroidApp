@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/private_graph"
+    app:startDestination="@id/privateFragmentTrip">
+    <fragment
+        android:id="@+id/privateFragmentTrip"
+        android:name="com.teleferik.ui.privateTrip.PrivateTripFragment"
+        android:label="fragment_private_trips"
+        tools:layout="@layout/fragment_private_trip" >
+        <action
+            android:id="@+id/action_privateFragmentTrip_to_messagesFragment"
+            app:destination="@id/privateConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privateConfirmationFragment"
+        android:name="com.teleferik.ui.privateTrip.privateConfirmation.PrivateConfirmationFragment"
+        android:label="fragment_private_confirmation_fragment"
+        tools:layout="@layout/fragment_private_confirmation" >
+
+    </fragment>
+</navigation>

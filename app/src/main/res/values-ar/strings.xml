@@ -148,6 +148,12 @@
     <string name="driver">سائق</string>
     <string name="seat_no">رقم المقاعد</string>
     <string name="remaining_time">You have 4 days left before the trip</string>
+    <string name="private_bus">أتوبيس</string>
+    <string name="private_mini_bus">ميني باص</string>
+    <string name="private_limousine">سيارة</string>
+    <string name="departure_time">توقيت القيام</string>
+    <string name="choose_time">أختر التوقيت</string>
+    <string name="return_time">توقيت العودة</string>
 
 
     <!--    <string-array name="passengers_adult">-->

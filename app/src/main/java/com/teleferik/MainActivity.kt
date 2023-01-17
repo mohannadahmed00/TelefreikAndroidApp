@@ -7,6 +7,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.teleferik.base.BaseActivity
 import com.teleferik.databinding.ActivityMainBinding
+import com.teleferik.ui.privateTrip.adapters.TabsAdapter
 
 class MainActivity : BaseActivity() {
 
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
          navView = binding.navView
 
