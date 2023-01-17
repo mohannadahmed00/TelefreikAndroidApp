@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_navigation_home_to_support_graph"
             app:destination="@id/support_graph" />
+        <action
+            android:id="@+id/action_navigation_home_to_private_graph"
+            app:destination="@id/private_graph" />
     </fragment>
 
     <fragment
@@ -83,6 +86,7 @@
     <include app:graph="@navigation/support_graph" />
     <include app:graph="@navigation/profile_graph" />
     <include app:graph="@navigation/auth_graph" />
+    <include app:graph="@navigation/private_graph"/>
     <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.teleferik.ui.searchResults.SearchResultsFragment"

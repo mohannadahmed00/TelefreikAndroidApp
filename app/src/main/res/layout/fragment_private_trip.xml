@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.privateTrip.PrivateTripFragment">
+
+    <include
+        android:id="@+id/includeTopBar"
+        layout="@layout/view_seats_confirmation_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80dp" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlPrivateTrips"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80dp"
+        app:tabSelectedTextColor="@color/base_app_color"
+        app:tabTextColor="@color/grey" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/view_from_to_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_20dp"
+                app:layout_constraintTop_toBottomOf="@+id/rvTransportationType"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <include
+                android:id="@+id/includeDates"
+                layout="@layout/view_private_dates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_24dp"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <include
+                android:id="@+id/includePassengersNumber"
+                layout="@layout/view_private_passenger_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_24dp"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/_24dp"
+                android:paddingHorizontal="@dimen/_30dp"
+                android:paddingTop="@dimen/_7dp"
+                android:paddingBottom="@dimen/_7dp"
+                android:text="@string/search_and_compare"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sp"
+                app:backgroundTint="@color/base_app_color"
+                app:cornerRadius="@dimen/_13dp"
+                app:icon="@drawable/ic_search_black_24_dp_1"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/_4dp"
+                app:iconTint="@color/white"
+                app:rippleColor="@color/white" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <!--<androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpPrivateTrips"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>-->
+
+</LinearLayout>

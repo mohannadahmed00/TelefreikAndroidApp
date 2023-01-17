@@ -147,13 +147,7 @@
     <string name="try_in_different_date">حاول بتاريخ مختلف</string>
     <string name="driver">سائق</string>
     <string name="seat_no">رقم المقاعد</string>
-    <string name="remaining_time">متبقي 4 أيام قبل موعد الرحلة</string>
-    <string name="remaining_time_title">الوقت المتبقي لتأكيد الحجز</string>
-    <string name="tickets_no">أرقام التذاكر</string>
-    <string name="to_reservations">الذهاب إلى الحجوزات</string>
-    <string name="reserved_success">تم حجز التذاكر بنجاح</string>
-    <string name="ticket_note">ملحوظة : هذا المبلغ المقترح قد يزيد أو يقل طبقاً للحالة المرورية..إنتظر مكالمة لتأكيد الحجز والسعر.</string>
-    <string name="ticket">التذكرة</string>
+    <string name="remaining_time">You have 4 days left before the trip</string>
 
 
     <!--    <string-array name="passengers_adult">-->

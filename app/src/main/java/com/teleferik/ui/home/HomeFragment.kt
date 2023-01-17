@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
@@ -486,41 +487,52 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     }
 
     override fun onCategoryClicked(item: Transport, pos: Int, list: MutableList<Transport>) {
-        item.isSelected = !item.isSelected
-        if (item.type != category) {
-            category = item.type
-            binding.include.edtStart.setText("")
-            binding.include.edtEnd.setText("")
-            mStartDestinationCity = null
-            mStartDestinationPlace = null
-            mEndDestinationCity = null
-            mEndDestinationPlace = null
-        } else {
-            if (!item.isSelected) {
-                category = ""
-                binding.include.edtStart.setText("")
-                binding.include.edtEnd.setText("")
-                mStartDestinationCity = null
-                mStartDestinationPlace = null
-                mEndDestinationCity = null
-                mEndDestinationPlace = null
+        when (item.type) {
+            "Trains" -> {
+                Toast.makeText(context,"soon",Toast.LENGTH_LONG).show()
             }
-        }
-
-        for (i in list.indices) {
-            if (i != pos) {
-                list[i].isSelected = false
+            "Private" -> {
+                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToPrivateGraph())
             }
-            if (list[i].type == "Flight") {
-                if (list[i].isSelected) {
-                    binding.includeClasses.root.visibility = View.VISIBLE
-                    true
+            else -> {
+                item.isSelected = !item.isSelected
+                if (item.type != category) {
+                    category = item.type
+                    binding.include.edtStart.setText("")
+                    binding.include.edtEnd.setText("")
+                    mStartDestinationCity = null
+                    mStartDestinationPlace = null
+                    mEndDestinationCity = null
+                    mEndDestinationPlace = null
                 } else {
-                    binding.includeClasses.root.visibility = View.GONE
-                    false
+                    if (!item.isSelected) {
+                        category = ""
+                        binding.include.edtStart.setText("")
+                        binding.include.edtEnd.setText("")
+                        mStartDestinationCity = null
+                        mStartDestinationPlace = null
+                        mEndDestinationCity = null
+                        mEndDestinationPlace = null
+                    }
                 }
-            }
 
+                for (i in list.indices) {
+                    if (i != pos) {
+                        list[i].isSelected = false
+                    }
+                    if (list[i].type == "Flight") {
+                        if (list[i].isSelected) {
+                            binding.includeClasses.root.visibility = View.VISIBLE
+                            true
+                        } else {
+                            binding.includeClasses.root.visibility = View.GONE
+                            false
+                        }
+                    }
+
+                }
+                mTransportationTypeAdapter.notifyDataSetChanged()
+            }
         }
 
 
@@ -533,7 +545,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                 false
             }
         }*/
-        mTransportationTypeAdapter.notifyDataSetChanged()
 
     }
 
