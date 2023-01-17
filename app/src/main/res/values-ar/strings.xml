@@ -147,6 +147,7 @@
     <string name="try_in_different_date">حاول بتاريخ مختلف</string>
     <string name="driver">سائق</string>
     <string name="seat_no">رقم المقاعد</string>
+    <string name="remaining_time">You have 4 days left before the trip</string>
 
 
     <!--    <string-array name="passengers_adult">-->

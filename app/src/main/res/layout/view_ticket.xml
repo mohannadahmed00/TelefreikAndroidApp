@@ -152,6 +152,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/tvRemainingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="@string/remaining_time"
+        android:textColor="@color/green"
+        android:textSize="@dimen/_15sp"
+        app:layout_constraintBottom_toTopOf="@id/tvSummary"
+        app:layout_constraintStart_toStartOf="@+id/tvEnd"
+        app:layout_constraintTop_toBottomOf="@+id/tvEndDetails"
+        app:layout_constraintVertical_bias="0.4" />
+
+
+    <TextView
         android:id="@+id/tvSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

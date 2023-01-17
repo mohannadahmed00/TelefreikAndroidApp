@@ -11,6 +11,8 @@ import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
 import com.teleferik.ui.more.ProfileRepo
 import com.teleferik.ui.more.ProfileViewModel
+import com.teleferik.ui.privateTrip.PrivateRepo
+import com.teleferik.ui.privateTrip.PrivateTripViewModel
 
 class ViewModelFactory(private val baseRepo: BaseRepo) : ViewModelProvider.Factory {
 
@@ -21,7 +23,7 @@ class ViewModelFactory(private val baseRepo: BaseRepo) : ViewModelProvider.Facto
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> ProfileViewModel(baseRepo as ProfileRepo) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(baseRepo as HomeRepo) as T
             modelClass.isAssignableFrom(DashboardViewModel::class.java) -> DashboardViewModel(baseRepo as DashboardRepo) as T
-//            modelClass.isAssignableFrom(CategoriesViewModel::class.java) -> CategoriesViewModel(baseRepo as CategoriesRepo) as T
+            modelClass.isAssignableFrom(PrivateTripViewModel::class.java) -> PrivateTripViewModel(baseRepo as PrivateRepo) as T
 //            modelClass.isAssignableFrom(CartViewModel::class.java) -> CartViewModel(baseRepo as CartRepo) as T
 //            modelClass.isAssignableFrom(CategoriesViewModel::class.java) -> CategoriesViewModel(baseRepo as CategoriesRepo) as T
 //            modelClass.isAssignableFrom(MoreViewModel::class.java) -> MoreViewModel(baseRepo as MoreRepo) as T

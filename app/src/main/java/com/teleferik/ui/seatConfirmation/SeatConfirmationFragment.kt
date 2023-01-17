@@ -1,6 +1,7 @@
 package com.teleferik.ui.seatConfirmation
 
 import android.view.LayoutInflater
+import android.view.View
 
 import android.view.ViewGroup
 import android.widget.TextView
@@ -48,7 +49,10 @@ class SeatConfirmationFragment :
         initClicks()
     }
     private fun initClicks() {
-        binding.imgBack.setOnClickListener { findNavController().navigateUp() }
+        binding.includeTicket.tvRemainingTime.visibility = View.GONE
+        binding.includeTopBar.imgBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
 }

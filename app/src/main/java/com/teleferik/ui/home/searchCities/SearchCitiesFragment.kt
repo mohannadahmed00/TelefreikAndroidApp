@@ -99,7 +99,6 @@ class SearchCitiesFragment :
 
     private fun onKeySearchClicked() {
         binding.edtSearch.setOnEditorActionListener { _, actionId, _ ->
-
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 typingJob?.cancel()
                 lang =
@@ -139,9 +138,6 @@ class SearchCitiesFragment :
     private fun initStartRv(value: CitiesResponse) {
         /*val imm =  context?.getSystemService(INPUT_METHOD_SERVICE)
         Toast.makeText(context,imm.toString(),Toast.LENGTH_SHORT).show()*/
-
-
-
 
         val cities = if (lang == "en-UK"){
             value.cities?.filter { it.name.contains(binding.edtSearch.text, ignoreCase = true) } as MutableList
