@@ -190,4 +190,10 @@ Account created successfully ! \n You will be taken to the home page
     <string name="driver">Driver</string>
     <string name="seat_no">Seat No.</string>
     <string name="remaining_time">You have 4 days left before the trip</string>
+    <string name="remaining_time_title">Remaining time to confirm the booking</string>
+    <string name="tickets_no">Tickets Numbers</string>
+    <string name="to_reservations">Go to reservations</string>
+    <string name="reserved_success">Tickets reserved successfully</string>
+    <string name="ticket_note">Note: This proposed amount may increase or decrease depending on the traffic situation..Wait for a call to confirm your booking and price.</string>
+    <string name="ticket">Ticket</string>
 </resources>

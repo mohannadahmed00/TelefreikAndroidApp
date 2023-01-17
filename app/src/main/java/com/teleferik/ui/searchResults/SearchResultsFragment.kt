@@ -57,6 +57,7 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
                 is Resource.Loading -> {
                     loading.show()
                 }
+                else -> {}
             }
         }
     }
