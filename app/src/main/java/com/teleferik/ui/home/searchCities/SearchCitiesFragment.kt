@@ -47,6 +47,7 @@ class SearchCitiesFragment :
     private var typingJob: Job? = null
     lateinit var text:String
     var lang:String?=null
+    var searchLang :String? =null
 
     override fun getViewModel(): Class<HomeViewModel> {
         return HomeViewModel::class.java
@@ -89,6 +90,8 @@ class SearchCitiesFragment :
                     mViewModel.searchCities(Constants.END_POTINS.CITIES_SEARCH)
                     observeCities()
                 }
+            }else if (it.isEmpty()){
+                binding.rvPlaces.showHideView(false)
             }
         }
     }
@@ -99,6 +102,7 @@ class SearchCitiesFragment :
 
     private fun onKeySearchClicked() {
         binding.edtSearch.setOnEditorActionListener { _, actionId, _ ->
+
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 typingJob?.cancel()
                 lang =
@@ -139,23 +143,45 @@ class SearchCitiesFragment :
         /*val imm =  context?.getSystemService(INPUT_METHOD_SERVICE)
         Toast.makeText(context,imm.toString(),Toast.LENGTH_SHORT).show()*/
 
-        val cities = if (lang == "en-UK"){
+        val citiesEn = value.cities?.filter { it.translations[1].name.contains(binding.edtSearch.text,true)} as MutableList
+        val citiesAr = value.cities?.filter { String(it.translations[0].name.toByteArray(),StandardCharsets.UTF_8).contains(binding.edtSearch.text,true)} as MutableList
+        if (citiesEn.size != 0){
+            searchLang = "en"
+            mCitySearchResultsAdapter = CitiesSearchResultsAdapter(citiesEn, this,searchLang)
+        }else if (citiesAr.size != 0){
+            searchLang = "ar"
+            mCitySearchResultsAdapter = CitiesSearchResultsAdapter(citiesAr, this,searchLang)
+        }else{
+            mCitySearchResultsAdapter = CitiesSearchResultsAdapter(citiesAr, this,searchLang)
+        }
+
+
+
+
+        /*val cities = if (lang == "en-UK"){
             value.cities?.filter { it.name.contains(binding.edtSearch.text, ignoreCase = true) } as MutableList
         }else{
             value.cities?.filter { String(it.translations[0].name.toByteArray(),StandardCharsets.UTF_8).contains(binding.edtSearch.text)} as MutableList
-        }
+        }*/
 
-        mCitySearchResultsAdapter = CitiesSearchResultsAdapter(cities, this,lang)
+
         binding.rvPlaces.adapter = mCitySearchResultsAdapter
         binding.rvPlaces.showHideView(true)
 
     }
 
     override fun onItemClicked(item: City) {
+        val data = mutableMapOf<String,Any>()
+        data["item"] = item
+        if (searchLang == "en"){
+            data["nameLang"] = item.translations[1].name
+        }else{
+            data["nameLang"] = String(item.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8)
+        }
         if (args.isSearchFromStart)
-            setFragmentResult(Constants.START_DESTINATION, bundleOf(Constants.START_DESTINATION to item))
+            setFragmentResult(Constants.START_DESTINATION, bundleOf(Constants.START_DESTINATION to data))
         else
-            setFragmentResult(Constants.ARRIVAL_DESTINATION, bundleOf(Constants.ARRIVAL_DESTINATION to item))
+            setFragmentResult(Constants.ARRIVAL_DESTINATION, bundleOf(Constants.ARRIVAL_DESTINATION to data))
         binding.edtSearch.postDelayed(Runnable {
             val keyboard = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             keyboard!!.hideSoftInputFromWindow(binding.edtSearch.windowToken, 0)
