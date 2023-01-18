@@ -5,7 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
-
+    <!-- navigation_home -->
 
     <fragment
         android:id="@+id/navigation_home"
@@ -159,5 +159,6 @@
             android:id="@+id/action_seatSelectionFragment_to_seatConfirmationFragment"
             app:destination="@id/seatConfirmationFragment" />
     </fragment>
+
 
 </navigation>

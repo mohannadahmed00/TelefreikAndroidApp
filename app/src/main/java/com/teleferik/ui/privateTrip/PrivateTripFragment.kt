@@ -65,6 +65,7 @@ class PrivateTripFragment :
         )
         binding.btnSearch.setOnClickListener { findNavController().navigate(PrivateTripFragmentDirections.actionPrivateFragmentTripToPrivateConfirmationFragment()) }
 
+       // binding.btnSearch.setOnClickListener { findNavController().navigate(PrivateTripFragmentDirections.actionPrivateFragmentTripToPrivateConfirmationFragment()) }
     }
 
     override fun onTabSelected(tab: TabLayout.Tab?) {

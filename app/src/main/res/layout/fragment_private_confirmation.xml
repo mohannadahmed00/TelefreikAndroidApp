@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_70dp" />
 
-    <!--why?-->
-    <!--<com.google.android.material.button.MaterialButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/ticket_confirmed_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,16 +23,16 @@
         android:fontFamily="@font/medium"
         android:paddingHorizontal="@dimen/_30dp"
         android:paddingVertical="@dimen/_15dp"
-        android:text="Ticket"
+        android:text="@string/ticket"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sp"
         android:visibility="gone"
-        app:cornerRadius="@dimen/_13dp" />-->
+        app:cornerRadius="@dimen/_13dp" />
 
 
     <LinearLayout
         android:id="@+id/timer_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_20dp"
@@ -69,7 +69,7 @@
 
     <LinearLayout
         android:id="@+id/confirmed_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_10dp"
@@ -123,9 +123,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_32dp"
         android:fontFamily="@font/medium"
-        android:paddingHorizontal="@dimen/_30dp"
-        android:paddingTop="@dimen/_7dp"
-        android:paddingBottom="@dimen/_7dp"
         android:text="@string/confirm"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sp"
@@ -133,20 +130,20 @@
         app:cornerRadius="@dimen/_13dp"
         app:rippleColor="@color/white" />
 
-    <!--why?-->
-    <!--<com.google.android.material.button.MaterialButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_to_reservations"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50dp"
-        android:layout_margin="@dimen/_20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_32dp"
+        android:layout_marginVertical="@dimen/_20dp"
         android:fontFamily="@font/medium"
-        android:padding="@dimen/_15dp"
-        android:paddingHorizontal="@dimen/_30dp"
-        android:text="to_reservations"
+        android:padding="@dimen/_13dp"
+        android:text="@string/to_reservations"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sp"
         android:visibility="gone"
         app:backgroundTint="@color/base_app_color"
         app:cornerRadius="@dimen/_13dp"
-        app:rippleColor="@color/white" />-->
+        app:rippleColor="@color/white" />
 </LinearLayout>

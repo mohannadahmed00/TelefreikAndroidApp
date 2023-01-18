@@ -20,4 +20,5 @@
         tools:layout="@layout/fragment_private_confirmation" >
 
     </fragment>
+
 </navigation>

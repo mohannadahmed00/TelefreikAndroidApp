@@ -40,7 +40,6 @@ object TimerUtils {
 
 
     fun TextView.startCountDownTimer(onFinished:() -> Unit) {
-        val context = this.context
         val timer = object : CountDownTimer(duration, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -53,6 +52,7 @@ object TimerUtils {
 
                 val elapsedSeconds = diff / secondsInMilli
 
+                val time = String.format("%02d:%02d",elapsedMinutes,elapsedSeconds)
                 text = "$elapsedMinutes : $elapsedSeconds "
             }
 
@@ -63,6 +63,59 @@ object TimerUtils {
         timer.start()
     }
 
+
+    /**
+     * val materialTimePicker: MaterialTimePicker = MaterialTimePicker.Builder()
+    .setTitleText("SELECT YOUR TIMING")
+    .setHour(12)
+    .setMinute(10)
+    .setTimeFormat(TimeFormat.CLOCK_12H)
+    .build()
+
+    materialTimePicker.show(childFragmentManager, "")
+
+    materialTimePicker.addOnPositiveButtonClickListener {
+
+    val pickedHour: Int = materialTimePicker.hour
+    val pickedMinute: Int = materialTimePicker.minute
+
+    val formattedTime: String = when {
+    pickedHour > 12 -> {
+    if (pickedMinute < 10) {
+    "${materialTimePicker.hour - 12}:0${materialTimePicker.minute} pm"
+    } else {
+    "${materialTimePicker.hour - 12}:${materialTimePicker.minute} pm"
+    }
+    }
+
+    pickedHour == 12 -> {
+    if (pickedMinute < 10) {
+    "${materialTimePicker.hour}:0${materialTimePicker.minute} pm"
+    } else {
+    "${materialTimePicker.hour}:${materialTimePicker.minute} pm"
+    }
+    }
+
+    pickedHour == 0 -> {
+    if (pickedMinute < 10) {
+    "${materialTimePicker.hour + 12}:0${materialTimePicker.minute} am"
+    } else {
+    "${materialTimePicker.hour + 12}:${materialTimePicker.minute} am"
+    }
+    }
+
+    else -> {
+    if (pickedMinute < 10) {
+    "${materialTimePicker.hour}:0${materialTimePicker.minute} am"
+    } else {
+    "${materialTimePicker.hour}:${materialTimePicker.minute} am"
+    }
+    }
+
+     }
+     tv.text = formattedTime
+     *
+     */
 
 
 }
