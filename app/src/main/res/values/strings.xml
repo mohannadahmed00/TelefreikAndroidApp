@@ -190,4 +190,15 @@ Account created successfully ! \n You will be taken to the home page
     <string name="driver">Driver</string>
     <string name="seat_no">Seat No.</string>
     <string name="remaining_time">You have 4 days left before the trip</string>
+    <string name="choose_time">Choose Time</string>
+    <string name="return_time">Return Time</string>
+    <string name="departure_time">Departure Time</string>
+    <string name="private_bus">Bus</string>
+    <string name="private_mini_bus">Mini Bus</string>
+    <string name="private_limousine">Limousine</string>
+    <string name="remaining_time_to_confirm_your_reservation">remaining time to confirm your reservation</string>
+    <string name="tickets_no">Tickets No.</string>
+    <string name="the_ticket_has_been_booked_successfully">The ticket has been booked successfully</string>
+    <string name="reservation_confirmation">Reservation Confirmation</string>
+    <string name="ticket_note">Note: This suggested amount may increase or decrease according to the traffic situation. Wait for a call to confirm your reservation</string>
 </resources>

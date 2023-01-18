@@ -10,7 +10,7 @@
         android:label="fragment_private_trips"
         tools:layout="@layout/fragment_private_trip" >
         <action
-            android:id="@+id/action_privateFragmentTrip_to_messagesFragment"
+            android:id="@+id/action_privateFragmentTrip_to_privateConfirmationFragment"
             app:destination="@id/privateConfirmationFragment" />
     </fragment>
     <fragment

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
@@ -57,11 +59,22 @@ class PrivateTripFragment :
         /*binding.vpPrivateTrips.adapter = adapter
         binding.vpPrivateTrips.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tlPrivateTrips))*/
         binding.tlPrivateTrips.addOnTabSelectedListener(this)
+        DrawableCompat.setTint(
+            DrawableCompat.wrap(binding.includeInfo.ivIcon.drawable),
+            ContextCompat.getColor(binding.includeInfo.ivIcon.context, R.color.gray_3)
+        )
+        binding.btnSearch.setOnClickListener { findNavController().navigate(PrivateTripFragmentDirections.actionPrivateFragmentTripToPrivateConfirmationFragment()) }
 
     }
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
-        Toast.makeText(context,tab!!.text,Toast.LENGTH_LONG).show()
+        binding.includeInfo.tvTripType.text = tab!!.text
+        when(tab.position){
+            0 -> binding.includeInfo.ivIcon.setImageResource(R.drawable.ic_bus)
+            1 -> binding.includeInfo.ivIcon.setImageResource(R.drawable.ic_minibus)
+            else -> binding.includeInfo.ivIcon.setImageResource(R.drawable.ic_car)
+        }
+        //Toast.makeText(context,tab!!.text,Toast.LENGTH_LONG).show()
 
     }
 

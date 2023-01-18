@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.privateTrip.privateConfirmation.PrivateConfirmationFragment">
 
@@ -11,122 +11,121 @@
         android:id="@+id/includeTopBar"
         layout="@layout/view_seats_confirmation_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70dp"
-        />
+        android:layout_height="@dimen/_70dp" />
 
-    <com.google.android.material.button.MaterialButton
+    <!--why?-->
+    <!--<com.google.android.material.button.MaterialButton
         android:id="@+id/ticket_confirmed_top"
-        android:paddingVertical="@dimen/_15dp"
-        android:paddingHorizontal="@dimen/_30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10dp"
+        android:enabled="false"
         android:fontFamily="@font/medium"
-        android:text="@string/ticket"
+        android:paddingHorizontal="@dimen/_30dp"
+        android:paddingVertical="@dimen/_15dp"
+        android:text="Ticket"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sp"
-        app:cornerRadius="@dimen/_13dp"
-        android:enabled="false"
         android:visibility="gone"
-        />
+        app:cornerRadius="@dimen/_13dp" />-->
 
 
     <LinearLayout
+        android:id="@+id/timer_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/timer_layout"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_20dp">
+        android:layout_marginTop="@dimen/_20dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/timer"/>
+            android:src="@drawable/timer" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center"
             android:id="@+id/tv_timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10dp"
             android:fontFamily="@font/bold"
             android:text="14:50"
-            android:textSize="@dimen/_20sp"
             android:textColor="@color/black"
-            android:layout_marginVertical="@dimen/_10dp"
             android:textDirection="ltr"
-            />
+            android:textSize="@dimen/_20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:fontFamily="@font/medium"
-            android:text="@string/remaining_time_title"
-            android:textSize="@dimen/_15sp"
+            android:text="@string/remaining_time_to_confirm_your_reservation"
             android:textColor="@color/black"
-            />
+            android:textSize="@dimen/_15sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/confirmed_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/confirmed_layout"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_confirm"/>
+            android:src="@drawable/ic_confirm" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_5dp"
             android:fontFamily="@font/medium"
             android:text="@string/tickets_no"
-            android:textSize="@dimen/_15sp"
             android:textColor="@color/black"
-            android:layout_marginVertical="@dimen/_5dp"
-            />
+            android:textSize="@dimen/_15sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
-            android:text="#12345\n#34567"
-            android:textSize="@dimen/_15sp"
-            />
+            android:text="#12344654654665\n#34541561551567"
+            android:textSize="@dimen/_15sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
-            android:text="@string/reserved_success"
-            android:textSize="@dimen/_12sp"
-            />
+            android:text="@string/the_ticket_has_been_booked_successfully"
+            android:textSize="@dimen/_12sp" />
 
     </LinearLayout>
 
 
     <include
         android:id="@+id/includeTicket"
-        android:layout_marginTop="@dimen/_20dp"
-        android:layout_gravity="center"
         layout="@layout/view_ticket"
         android:layout_width="335dp"
-        android:layout_height="367dp" />
+        android:layout_height="367dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnConfirm"
-        android:padding="@dimen/_15dp"
+        android:padding="@dimen/_13dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_20dp"
+        android:layout_margin="@dimen/_32dp"
         android:fontFamily="@font/medium"
         android:paddingHorizontal="@dimen/_30dp"
+        android:paddingTop="@dimen/_7dp"
+        android:paddingBottom="@dimen/_7dp"
         android:text="@string/confirm"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sp"
@@ -134,19 +133,20 @@
         app:cornerRadius="@dimen/_13dp"
         app:rippleColor="@color/white" />
 
-    <com.google.android.material.button.MaterialButton
+    <!--why?-->
+    <!--<com.google.android.material.button.MaterialButton
         android:id="@+id/btn_to_reservations"
-        android:padding="@dimen/_15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_50dp"
         android:layout_margin="@dimen/_20dp"
         android:fontFamily="@font/medium"
+        android:padding="@dimen/_15dp"
         android:paddingHorizontal="@dimen/_30dp"
-        android:text="@string/to_reservations"
+        android:text="to_reservations"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sp"
+        android:visibility="gone"
         app:backgroundTint="@color/base_app_color"
         app:cornerRadius="@dimen/_13dp"
-        app:rippleColor="@color/white"
-        android:visibility="gone"/>
+        app:rippleColor="@color/white" />-->
 </LinearLayout>

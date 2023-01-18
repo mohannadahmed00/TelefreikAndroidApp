@@ -49,7 +49,8 @@ class SeatConfirmationFragment :
         initClicks()
     }
     private fun initClicks() {
-        binding.includeTicket.tvRemainingTime.visibility = View.GONE
+        //why?
+        //binding.includeTicket.tvRemainingTime.visibility = View.GONE
         binding.includeTopBar.imgBack.setOnClickListener {
             findNavController().navigateUp()
         }

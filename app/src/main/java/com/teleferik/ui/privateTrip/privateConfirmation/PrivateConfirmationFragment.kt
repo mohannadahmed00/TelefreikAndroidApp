@@ -40,6 +40,7 @@ class PrivateConfirmationFragment : BaseFragment<PrivateTripViewModel, FragmentP
     }
 
     private fun initClicks() {
+        binding.includeTopBar.topTitle.text = getString(R.string.reservation_confirmation)
         binding.includeTopBar.imgBack.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -52,10 +53,10 @@ class PrivateConfirmationFragment : BaseFragment<PrivateTripViewModel, FragmentP
         binding.tvTimer.startCountDownTimer(onFinished = {
             binding.timerLayout.showHideView(false)
             binding.confirmedLayout.showHideView(true)
-            binding.includeTopBar.root.showHideView(false)
-            binding.ticketConfirmedTop.showHideView(true)
-            binding.btnConfirm.showHideView(false)
-            binding.btnToReservations.showHideView(true)
+            //binding.includeTopBar.root.showHideView(false)
+            //binding.ticketConfirmedTop.showHideView(true)
+            //binding.btnConfirm.showHideView(false)
+            //binding.btnToReservations.showHideView(true)
         })
     }
 
