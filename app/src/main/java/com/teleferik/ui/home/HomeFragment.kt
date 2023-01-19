@@ -327,7 +327,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             binding.includeDates.tvReturnTitle.showHideView(mViewModel.getTripType() != 0)
         }
 
-        binding.include.edtStart.setOnTouchListener(OnTouchListener { v, event ->
+        binding.include.edtStart.setOnTouchListener { _, event ->
             if (MotionEvent.ACTION_UP == event.action) {
                 if (category == "Flight") {
                     findNavController().navigate(
@@ -346,7 +346,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             }
             binding.include.edtStart.performClick()
             true // return is important...
-        })
+        }
 
         binding.include.edtEnd.setOnTouchListener(OnTouchListener { v, event ->
             if (MotionEvent.ACTION_UP == event.action) {

@@ -41,7 +41,7 @@
         android:textAlignment="center"
         android:textColor="@color/gray5"
         android:textSize="@dimen/_14sp"
-        android:text="@string/passenger_number" />
+        android:text="@string/choose_passenger_number" />
 
         <Spinner
             android:id="@+id/spinAdults"

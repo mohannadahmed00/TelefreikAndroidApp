@@ -16,7 +16,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tlPrivateTrips"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80dp"
+        android:layout_height="@dimen/_50dp"
         app:tabSelectedTextColor="@color/base_app_color"
         app:tabTextColor="@color/grey" />
 
@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +74,7 @@
                 android:paddingHorizontal="@dimen/_30dp"
                 android:paddingTop="@dimen/_7dp"
                 android:paddingBottom="@dimen/_7dp"
-                android:text="@string/search_and_compare"
+                android:text="@string/search_here"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sp"
                 app:backgroundTint="@color/base_app_color"
