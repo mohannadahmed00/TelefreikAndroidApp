@@ -32,7 +32,7 @@
             android:id="@+id/iv_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_bus" />
+            android:src="@drawable/ic_bus"/>
 
         <TextView
             android:id="@+id/tv_trip_type"

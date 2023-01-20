@@ -4,24 +4,16 @@ import android.app.AlertDialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.findFragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -30,19 +22,13 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.teleferik.R
 import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.apisInterfaces.ApisService
-import com.teleferik.databinding.FragmentHomeBinding
 import com.teleferik.databinding.FragmentPrivateTripBinding
-import com.teleferik.ui.home.HomeFragment
-import com.teleferik.ui.home.HomeRepo
-import com.teleferik.ui.home.HomeViewModel
-import com.teleferik.ui.home.adapters.ViewPagerAdapter
-import com.teleferik.ui.privateTrip.adapters.StationsAdapter
-import com.teleferik.ui.privateTrip.adapters.TabsAdapter
 import com.teleferik.utils.Constants
-import com.teleferik.utils.showTopToast
+import com.teleferik.utils.captureText
+import com.teleferik.utils.hide
+import com.teleferik.utils.showHideView
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.exp
 
 class PrivateTripFragment :
     BaseFragment<PrivateTripViewModel, FragmentPrivateTripBinding, PrivateRepo>() {
@@ -52,7 +38,29 @@ class PrivateTripFragment :
     private var selectedHour: Int = -1
     private var selectedMin: Int = -1
     private var selectedAmPm: String? = null
+    private var startStation:String? = null
+    private var endStation:String? = null
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setFragmentResultListener("start"){_,bundle ->
+            val data = bundle.getString("station")
+            if (data != null) {
+                binding.includeStations.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                binding.includeStations.edtStart.setText(data)
+                startStation = data
+            }
+        }
+        setFragmentResultListener("end"){_,bundle ->
+            val data = bundle.getString("station")
+            if (data != null) {
+                binding.includeStations.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                binding.includeStations.edtEnd.setText(data)
+                endStation = data
+            }
+        }
+    }
 
     override fun getViewModel(): Class<PrivateTripViewModel> {
         return PrivateTripViewModel::class.java
@@ -71,12 +79,18 @@ class PrivateTripFragment :
     @RequiresApi(Build.VERSION_CODES.M)
     override fun handleView() {
         //binding.includeStations.edtStart.requestFocus()
+        /*val numbers = context?.resources?.getStringArray(R.array.private_passengers)
+        binding.includePassengersNumber.numberPicker.minValue = 1
+        binding.includePassengersNumber.numberPicker.minValue = 28
+        binding.includePassengersNumber.numberPicker.displayedValues = numbers
+        binding.includePassengersNumber.numberPicker.wrapSelectorWheel = false
+        binding.includePassengersNumber.numberPicker.setOnValueChangedListener{picker,oldVal,newVal ->
+            binding.includePassengersNumber.textView13.text = newVal.toString()
+        }*/
         initClicks()
         initTabs()
         preparePassengersSpinner()
         handleTripDates()
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -101,56 +115,28 @@ class PrivateTripFragment :
         }
         binding.includeDates.tvStartTime.setOnClickListener { handleTripTimes(binding.includeDates.tvStartTime) }
         binding.includeDates.tvEndTime.setOnClickListener { handleTripTimes(binding.includeDates.tvEndTime) }
+        /*binding.includePassengersNumber.spinAdults.setOnTouchListener {_,event ->
+            if (MotionEvent.ACTION_UP == event.action)
+                preparePassengersSpinner()
+            binding.includePassengersNumber.spinAdults.performClick()
+            true
+        }*/
 
     }
 
     private fun handleStartStation() {
-        val builder = AlertDialog.Builder(context).create()
-        val view = layoutInflater.inflate(R.layout.view_private_search, null)
-        val exLVStation = view.findViewById<ExpandableListView>(R.id.exLvStations)
-        val expandableListDetail = ExpandableListDataPump.getData()
-        val expandableListTitle = expandableListDetail.keys.toList()
-        val adapter = StationsAdapter(context,expandableListTitle,expandableListDetail)
-        exLVStation.setAdapter(adapter)
-        exLVStation.setOnGroupExpandListener {
-            Toast.makeText(context, expandableListTitle[it] + "List Expanded", Toast.LENGTH_SHORT).show()
-        }
-        exLVStation.setOnGroupCollapseListener {
-            Toast.makeText(context, expandableListTitle[it] + "List Collapsed", Toast.LENGTH_SHORT).show()
-        }
-        exLVStation.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-            Toast.makeText(context, expandableListTitle[groupPosition] + " -> " + expandableListDetail[expandableListTitle[groupPosition]]?.get(childPosition), Toast.LENGTH_SHORT).show()
-            false
-        }
-        builder.setView(view)
-        builder.setCanceledOnTouchOutside(false)
-        builder.window?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.trans)))
-        builder.show()
-
+        findNavController().navigate(PrivateTripFragmentDirections.actionPrivateFragmentTripToPrivateSearchFragment()
+            .apply {
+                stringStation = binding.includeStations.edtStart.captureText().ifEmpty { "-" }
+            })
     }
-    private fun handleEndStation() {
-        val builder = AlertDialog.Builder(context).create()
-        val view = layoutInflater.inflate(R.layout.view_private_search, null)
-        val exLVStation = view.findViewById<ExpandableListView>(R.id.exLvStations)
-        val expandableListDetail = ExpandableListDataPump.getData()
-        val expandableListTitle = expandableListDetail.keys.toList()
-        val adapter = StationsAdapter(context,expandableListTitle,expandableListDetail)
-        exLVStation.setAdapter(adapter)
-        exLVStation.setOnGroupExpandListener {
-            Toast.makeText(context, expandableListTitle[it] + "List Expanded", Toast.LENGTH_SHORT).show()
-        }
-        exLVStation.setOnGroupCollapseListener {
-            Toast.makeText(context, expandableListTitle[it] + "List Collapsed", Toast.LENGTH_SHORT).show()
-        }
-        exLVStation.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-            Toast.makeText(context, expandableListTitle[groupPosition] + " -> " + expandableListDetail[expandableListTitle[groupPosition]]?.get(childPosition), Toast.LENGTH_SHORT).show()
-            false
-        }
-        builder.setView(view)
-        builder.setCanceledOnTouchOutside(false)
-        builder.window?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.trans)))
-        builder.show()
 
+    private fun handleEndStation() {
+        findNavController().navigate(PrivateTripFragmentDirections.actionPrivateFragmentTripToPrivateSearchFragment()
+            .apply {
+                isSearchFromStart = false
+                stringStation = binding.includeStations.edtEnd.captureText().ifEmpty { "-" }
+            })
     }
 
     private fun initTabs() {
@@ -165,6 +151,10 @@ class PrivateTripFragment :
         binding.tlPrivateTrips.tabGravity = TabLayout.GRAVITY_FILL
         binding.tlPrivateTrips.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.includeInfo.ivIcon.drawable),
+                    ContextCompat.getColor(binding.includeInfo.ivIcon.context, R.color.gray_3)
+                )
                 binding.includeInfo.tvTripType.text = tab!!.text
                 when (tab.position) {
                     0 -> binding.includeInfo.ivIcon.setImageResource(R.drawable.ic_bus)
@@ -192,29 +182,36 @@ class PrivateTripFragment :
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
-        DrawableCompat.setTint(
-            DrawableCompat.wrap(binding.includeInfo.ivIcon.drawable),
-            ContextCompat.getColor(binding.includeInfo.ivIcon.context, R.color.gray_3)
-        )
+
     }
 
     private fun preparePassengersSpinner() {
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.private_passengers,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
+        /*ArrayAdapter.createFromResource(requireContext(), R.array.private_passengers, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.includePassengersNumber.spinAdults.adapter = adapter
+        }*/
+        //binding.includePassengersNumber.numberPicker.showHideView(true)
+        ArrayAdapter.createFromResource(requireContext(), R.array.private_passengers, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.includePassengersNumber.spinAdults.adapter = adapter
         }
+        /*try {
+            val popUp = Spinner::class.java.getDeclaredField("mPopup")
+            popUp.isAccessible = true
+            val popupWindow = popUp.get(binding.includePassengersNumber.spinAdults) as ListPopupWindow
+            popupWindow.height = 10
+        }catch (e:NoClassDefFoundError) {//NoClassDefFoundError|ClassCastException | NoSuchFieldException | IllegalAccessException
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+        } catch(e:ClassCastException){
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+        }catch (e:NoSuchFieldException){
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+        }catch (e:IllegalAccessException){
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+        }*/
         binding.includePassengersNumber.spinAdults.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    pos: Int,
-                    id: Long
-                ) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                     when {
                         pos + 1 in 19..28 -> binding.tlPrivateTrips.selectTab(binding.tlPrivateTrips.getTabAt(0))//must bus
 
@@ -349,3 +346,28 @@ class PrivateTripFragment :
 
 
 }
+
+
+
+
+/*val builder = AlertDialog.Builder(context).create()
+val view = layoutInflater.inflate(R.layout.view_private_search, null)
+val exLVStation = view.findViewById<ExpandableListView>(R.id.exLvStations)
+val expandableListDetail = ExpandableListDataPump.getData()
+val expandableListTitle = expandableListDetail.keys.toList()
+val adapter = StationsAdapter(context,expandableListTitle,expandableListDetail)
+exLVStation.setAdapter(adapter)
+exLVStation.setOnGroupExpandListener {
+    Toast.makeText(context, expandableListTitle[it] + "List Expanded", Toast.LENGTH_SHORT).show()
+}
+exLVStation.setOnGroupCollapseListener {
+    Toast.makeText(context, expandableListTitle[it] + "List Collapsed", Toast.LENGTH_SHORT).show()
+}
+exLVStation.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+    Toast.makeText(context, expandableListTitle[groupPosition] + " -> " + expandableListDetail[expandableListTitle[groupPosition]]?.get(childPosition), Toast.LENGTH_SHORT).show()
+    false
+}
+builder.setView(view)
+builder.setCanceledOnTouchOutside(false)
+builder.window?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.trans)))
+builder.show()*/

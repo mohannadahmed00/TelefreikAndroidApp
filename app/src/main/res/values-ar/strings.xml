@@ -162,6 +162,7 @@
     <string name="choose_passenger_number">أختر عدد الركاب</string>
     <string name="to_reservations">أذهب إلى الحجوزات</string>
     <string name="ticket">تذكرة</string>
+    <string name="find_station">ابحث عن المحطة</string>
 
 
     <!--    <string-array name="passengers_adult">-->

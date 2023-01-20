@@ -489,7 +489,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     override fun onCategoryClicked(item: Transport, pos: Int, list: MutableList<Transport>) {
         when (item.type) {
             "Trains" -> {
-                Toast.makeText(context,"soon",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,getString(R.string.soon),Toast.LENGTH_LONG).show()
             }
             "Private" -> {
                 findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToPrivateGraph())

@@ -193,7 +193,6 @@ Account created successfully ! \n You will be taken to the home page
         <item>28</item>
 
 
-
     </string-array>
 
     <!--    <string-array name="passengers_child">-->
@@ -236,4 +235,7 @@ Account created successfully ! \n You will be taken to the home page
     <string name="ticket">Ticket</string>
     <string name="to_reservations">Go to reservations</string>
     <string name="choose_passenger_number">Choose Passenger Number</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_station">Find Station</string>
 </resources>

@@ -12,6 +12,24 @@
         <action
             android:id="@+id/action_privateFragmentTrip_to_privateConfirmationFragment"
             app:destination="@id/privateConfirmationFragment" />
+        <action
+            android:id="@+id/action_privateFragmentTrip_to_privateSearchFragment"
+            app:destination="@id/privateSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privateSearchFragment"
+        android:name="com.teleferik.ui.privateTrip.privateSearch.PrivateSearchFragment"
+        android:label="fragment_private_search_fragment"
+        tools:layout="@layout/fragment_private_search" >
+        <argument
+            android:name="isSearchFromStart"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <argument
+            android:name="stringStation"
+            app:argType="string"
+            android:defaultValue="-"/>
+
     </fragment>
     <fragment
         android:id="@+id/privateConfirmationFragment"

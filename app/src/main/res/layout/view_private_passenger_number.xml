@@ -30,18 +30,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13">
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|center"
-        android:fontFamily="@font/medium"
-        android:textAlignment="center"
-        android:textColor="@color/gray5"
-        android:textSize="@dimen/_14sp"
-        android:text="@string/choose_passenger_number" />
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:fontFamily="@font/medium"
+            android:text="@string/choose_passenger_number"
+            android:textAlignment="center"
+            android:textColor="@color/gray5"
+            android:textSize="@dimen/_14sp" />
 
         <Spinner
             android:id="@+id/spinAdults"
@@ -58,6 +59,17 @@
             android:textSize="@dimen/_12sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/holderSpinAdults"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/holderSpinAdults" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
