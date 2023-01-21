@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -89,8 +90,19 @@ class PrivateTripFragment :
         }*/
         initClicks()
         initTabs()
+        makeTripTypeSelected(
+            binding.includeTripType.btnGoAndBack,
+            binding.includeTripType.btnGo
+        )
         preparePassengersSpinner()
         handleTripDates()
+    }
+
+    private fun makeTripTypeSelected(btnGoAndBack: TextView, btnGo: TextView) {
+        btnGoAndBack.setBackgroundResource(R.drawable.bg_white_selector)
+        btnGoAndBack.setTextColor(ContextCompat.getColor(requireActivity(), R.color.base_app_color))
+        btnGo.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.base_app_color))
+        btnGo.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white))
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -100,6 +112,32 @@ class PrivateTripFragment :
             findNavController().navigate(
                 PrivateTripFragmentDirections.actionPrivateFragmentTripToPrivateConfirmationFragment()
             )
+        }
+        binding.includeTripType.btnGo.setOnClickListener {
+            makeTripTypeSelected(
+                binding.includeTripType.btnGo,
+                binding.includeTripType.btnGoAndBack
+            )
+            mViewModel.setTripType(0)
+            //binding.includeDates.datesguidelineStart.setGuidelinePercent(1F)
+            binding.includeDates.datesguidelineEnd.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndDate.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndDateTitle.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndTime.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndTimeTitle.showHideView(mViewModel.getTripType() != 0)
+        }
+        binding.includeTripType.btnGoAndBack.setOnClickListener {
+            makeTripTypeSelected(
+                binding.includeTripType.btnGoAndBack,
+                binding.includeTripType.btnGo
+            )
+            mViewModel.setTripType(1)
+            //binding.includeDates.datesguidelineStart.setGuidelinePercent(0.5F)
+            binding.includeDates.datesguidelineEnd.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndDate.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndDateTitle.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndTime.showHideView(mViewModel.getTripType() != 0)
+            binding.includeDates.tvEndTimeTitle.showHideView(mViewModel.getTripType() != 0)
         }
         binding.includeStations.edtStart.setOnTouchListener{_,event ->
             if (MotionEvent.ACTION_UP == event.action)
@@ -115,12 +153,38 @@ class PrivateTripFragment :
         }
         binding.includeDates.tvStartTime.setOnClickListener { handleTripTimes(binding.includeDates.tvStartTime) }
         binding.includeDates.tvEndTime.setOnClickListener { handleTripTimes(binding.includeDates.tvEndTime) }
+        binding.includePassengersNumber.textView8.setOnClickListener{
+            showBottomDialog()
+        }
         /*binding.includePassengersNumber.spinAdults.setOnTouchListener {_,event ->
             if (MotionEvent.ACTION_UP == event.action)
                 preparePassengersSpinner()
             binding.includePassengersNumber.spinAdults.performClick()
             true
         }*/
+
+    }
+
+    private fun showBottomDialog() {
+        val bottomSheet = BottomSheetDialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.view_number_picker, null)
+        bottomSheet.setContentView(view)
+        val button = bottomSheet.findViewById<Button>(R.id.btnOk)
+        button?.setOnClickListener {
+            bottomSheet.dismiss()
+        }
+        val num = bottomSheet.findViewById<NumberPicker>(R.id.numberPicker)
+        //if(binding.includePassengersNumber.textView13.text.toString().toIntOrNull() != null)
+        num?.value = 8
+        num?.minValue = 1
+        num?.maxValue = 10
+        num?.wrapSelectorWheel = true
+        num?.setOnValueChangedListener {picker,oldVal,newVal->
+            binding.includePassengersNumber.textView13.text = newVal.toString()
+        }
+        bottomSheet.setCanceledOnTouchOutside(false)
+        bottomSheet.show()
+        bottomSheet.window?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.trans)))
 
     }
 

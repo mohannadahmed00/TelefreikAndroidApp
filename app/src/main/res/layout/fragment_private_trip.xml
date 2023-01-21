@@ -47,6 +47,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_16dp"
                 android:layout_marginTop="@dimen/_20dp" />
+            <include
+                android:id="@+id/includeTripType"
+                layout="@layout/view_trip_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"/>
 
             <include
                 android:id="@+id/includeDates"
@@ -54,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_24dp" />
+                android:layout_marginTop="@dimen/_20dp" />
 
             <include
                 android:id="@+id/includePassengersNumber"
@@ -62,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_24dp" />
+                android:layout_marginTop="@dimen/_20dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSearch"
