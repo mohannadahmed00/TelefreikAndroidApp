@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.databinding.FragmentSeatSelectionBinding
@@ -76,10 +77,21 @@ class SeatSelectionFragment :
         seatSelectionAdapterRight = SeatSelectionAdapter(getFakeData().second,this)
         binding.rvRightSide.adapter = seatSelectionAdapterRight
 
-        /*binding.composeSeatsView.apply { setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner))
-                setContent { MaterialTheme { SeatsUi() }
-                }
-            }*/
+        binding.rvRightSide.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                binding.rvLiftSide.scrollBy(dx,dy)
+                super.onScrolled(recyclerView, dx, dy)
+
+            }
+        })
+
+        binding.rvLiftSide.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                binding.rvRightSide.scrollBy(dx,dy)
+                super.onScrolled(recyclerView, dx, dy)
+
+            }
+        })
     }
 
 
@@ -91,7 +103,7 @@ class SeatSelectionFragment :
         if (seat.status == Status.Selected){
             selectedSeats.add(seat.num)
         }else {
-           selectedSeats.remove(seat.num)
+            selectedSeats.remove(seat.num)
         }
         Toast.makeText(this.context,"Seats No. ${selectedSeats.toList()}",Toast.LENGTH_SHORT).show()
 
