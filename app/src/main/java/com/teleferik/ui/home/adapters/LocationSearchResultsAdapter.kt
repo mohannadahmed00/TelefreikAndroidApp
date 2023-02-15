@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teleferik.databinding.RowAirPortsSearchResultsBinding
-import com.teleferik.databinding.RowNotificationsBinding
-import com.teleferik.models.skyscanner.airPorts.Place
-import com.teleferik.models.webus.cities.City
-import java.nio.charset.StandardCharsets
+import com.teleferik.models.webus.locations.LocationResponseItem
 
-class CitiesSearchResultsAdapter(var list: MutableList<City>, private val iClick: OnItemClickListener,val lang:String?) : RecyclerView.Adapter<CitiesSearchResultsAdapter.ViewHolder>() {
+class LocationSearchResultsAdapter(var list:MutableList<LocationResponseItem>, private val iClick: OnItemClickListener, val lang:String?) : RecyclerView.Adapter<LocationSearchResultsAdapter.ViewHolder>() {
 
 
     override fun getItemCount() = list.size
@@ -32,14 +29,15 @@ class CitiesSearchResultsAdapter(var list: MutableList<City>, private val iClick
         Toast.makeText(context,x,Toast.LENGTH_LONG).show()*/
     inner class ViewHolder(var viewBinding: RowAirPortsSearchResultsBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
-        fun bind(data: City) {
+        fun bind(data: LocationResponseItem) {
             viewBinding.apply {
-                if (lang == "en"){
+                /*if (lang == "en"){
                     tvName.text = data.translations[1].name
                 }else{
                     tvName.text = String(data.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8)
-                }
+                }*/
 
+                tvName.text = data.name
                 root.setOnClickListener {
                     iClick.onItemClicked(data)
                 }
@@ -48,6 +46,6 @@ class CitiesSearchResultsAdapter(var list: MutableList<City>, private val iClick
     }
 
     interface OnItemClickListener {
-        fun onItemClicked(item: City)
+        fun onItemClicked(item: LocationResponseItem)
     }
 }

@@ -19,6 +19,8 @@ object Constants {
     const val EGYPT_PHONE_CODE = "20"
     const val USER_TOKEN = "user_token"
     const val USER_NAME = "user_name"
+    const val USER_PHONE = "user_phone"
+    const val USER_EMAIL = "user_email"
     const val NOTIFICATION_TYPE = "notification_type"
     const val NOTIFICATION_URL = "notification_url"
     const val DATE_YYYY_MM_DD_FORMAT = "yyyy-MM-dd"
@@ -69,10 +71,16 @@ object Constants {
     }
 
     object END_POTINS {
-        const val LOGIN = "customer/login"
-        const val REGISTER = "customer/register"
+        //auth endpoints
+        const val LOGIN = "v1/mobile/customer/login"
+        const val SEND_OTP = "v1/mobile/customer/send-otp"
+        const val REGISTER = "v1/mobile/customer/register"
+        const val VERIFY_OTP = "v1/mobile/customer/verify-otp"
         const val SOCIAL_REGISTER = "customer/social-register"
-        const val VERIFY_OTP = "customer/verifyotp"
+        //const val VERIFY_OTP = "customer/verifyotp"
+
+        //search endpoints
+        const val SEARCH_LOCATIONS = "transports/locations"
         const val RESEND_OTP = "customer/resendotp"
         const val SHOW_PROFILE = "customer/showForMobile"
         const val EDIT_USER_PROFILE = "customer/updateCustomerNonMobForMobile"
@@ -97,8 +105,9 @@ object Constants {
     }
 
     object PARAMS {
-        const val PHONE = "mobile"
-        const val CODE = "phonecode"
+        const val MOBILE = "mobile"
+        const val PHONE_CODE = "phonecode"
+        const val CODE = "code"
         const val SCREEN_TITLE = "screen_title"
         const val SCREEN_URL = "screen_URL"
         const val TICKET_ID = "ticketId"

@@ -34,6 +34,7 @@ import com.teleferik.models.ErrorResponse
 import com.teleferik.models.promotionalOffer.Offer
 import com.teleferik.models.skyscanner.airPorts.Place
 import com.teleferik.models.webus.cities.City
+import com.teleferik.models.webus.locations.LocationResponseItem
 import com.teleferik.ui.home.adapters.TransportationTypeAdapter
 import com.teleferik.ui.home.adapters.ViewPagerAdapter
 import com.teleferik.ui.home.adapters.ViewPagerPageChangeListener
@@ -43,7 +44,6 @@ import com.teleferik.utils.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -53,8 +53,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     TransportationTypeAdapter.OnItemClickListener {
     var mStartDestinationPlace: Place? = null
     var mEndDestinationPlace: Place? = null
-    var mStartDestinationCity: City? = null
-    var mEndDestinationCity: City? = null
+    var mStartDestinationLocation: LocationResponseItem? = null
+    var mEndDestinationLocation: LocationResponseItem? = null
     lateinit var mProfileViewModel: ProfileViewModel
     var currentStartDate by Delegates.notNull<Long>()
     var currentEndDate by Delegates.notNull<Long>()
@@ -107,12 +107,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                     binding.include.edtStart.setText(data.placeName)
                     mStartDestinationPlace = data
                 }
-            } else {
+            }
+            else {
                 val data = bundle.get(Constants.START_DESTINATION) as MutableMap<*, *>
                 if (data.isNotEmpty()) {
+                    mStartDestinationLocation = data["item"] as LocationResponseItem
                     binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                    binding.include.edtStart.setText(data["nameLang"] as String)
-                    mStartDestinationCity = data["item"] as City
+                    binding.include.edtStart.setText(mStartDestinationLocation?.name)
                 }
             }
         }
@@ -127,9 +128,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             } else {
                 val data = bundle.get(Constants.ARRIVAL_DESTINATION) as MutableMap<*, *>
                 if (data.isNotEmpty()) {
+                    mEndDestinationLocation = data["item"] as LocationResponseItem
                     binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                    binding.include.edtEnd.setText(data["nameLang"] as String)
-                    mEndDestinationCity = data["item"] as City
+                    binding.include.edtEnd.setText(mEndDestinationLocation?.name)
                 }
             }
 
@@ -430,11 +431,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             showTopToast(getString(R.string.select_category))
             return false
         }
-        if (mStartDestinationPlace == null && mStartDestinationCity == null) {
+        if (mStartDestinationPlace == null && mStartDestinationLocation == null) {
             showTopToast(getString(R.string.select_start_station))
             return false
         }
-        if (mEndDestinationPlace == null && mEndDestinationCity == null) {
+        if (mEndDestinationPlace == null && mEndDestinationLocation == null) {
             showTopToast(getString(R.string.select_arrival_station))
             return false
         }
@@ -500,18 +501,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                     category = item.type
                     binding.include.edtStart.setText("")
                     binding.include.edtEnd.setText("")
-                    mStartDestinationCity = null
+                    mStartDestinationLocation = null
                     mStartDestinationPlace = null
-                    mEndDestinationCity = null
+                    mEndDestinationLocation = null
                     mEndDestinationPlace = null
                 } else {
                     if (!item.isSelected) {
                         category = ""
                         binding.include.edtStart.setText("")
                         binding.include.edtEnd.setText("")
-                        mStartDestinationCity = null
+                        mStartDestinationLocation = null
                         mStartDestinationPlace = null
-                        mEndDestinationCity = null
+                        mEndDestinationLocation = null
                         mEndDestinationPlace = null
                     }
                 }

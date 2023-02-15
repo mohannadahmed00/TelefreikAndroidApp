@@ -1,17 +1,11 @@
 package com.teleferik.ui.home.searchCities
 
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.compose.ui.input.pointer.PointerIconDefaults.Text
-import androidx.compose.ui.semantics.SemanticsProperties.Text
-import androidx.compose.ui.text.input.KeyboardType.Companion.Text
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
@@ -22,28 +16,22 @@ import com.teleferik.AppController
 import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
-import com.teleferik.databinding.FragmentSearchAriPortsBinding
 import com.teleferik.databinding.FragmentSearchCitiesBinding
-import com.teleferik.models.skyscanner.airPorts.AirPortsResponse
-import com.teleferik.models.skyscanner.airPorts.Place
-import com.teleferik.models.webus.cities.CitiesResponse
-import com.teleferik.models.webus.cities.City
+import com.teleferik.models.webus.locations.LocationResponseItem
 import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
-import com.teleferik.ui.home.adapters.AirPortSearchResultsAdapter
-import com.teleferik.ui.home.adapters.CitiesSearchResultsAdapter
+import com.teleferik.ui.home.adapters.LocationSearchResultsAdapter
 import com.teleferik.utils.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.nio.charset.StandardCharsets
 
 
 class SearchCitiesFragment :
     BaseFragment<HomeViewModel, FragmentSearchCitiesBinding, HomeRepo>(),
-    CitiesSearchResultsAdapter.OnItemClickListener {
+    LocationSearchResultsAdapter.OnItemClickListener {
     private val args: SearchCitiesFragmentArgs by navArgs()
-    lateinit var mCitySearchResultsAdapter: CitiesSearchResultsAdapter
+    lateinit var mLocationSearchResultsAdapter: LocationSearchResultsAdapter
     private var typingJob: Job? = null
     lateinit var text:String
     var lang:String?=null
@@ -87,8 +75,8 @@ class SearchCitiesFragment :
                 typingJob = lifecycleScope.launch {
                     delay(900)
                     lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
-                    mViewModel.searchCities(Constants.END_POTINS.CITIES_SEARCH)
-                    observeCities()
+                    mViewModel.searchLocations()
+                    observeLocations()
                 }
             }else if (it.isEmpty()){
                 binding.rvPlaces.showHideView(false)
@@ -108,8 +96,8 @@ class SearchCitiesFragment :
                 lang =
                     if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
 
-                mViewModel.searchCities(Constants.END_POTINS.CITIES_SEARCH)
-                observeCities()
+                mViewModel.searchLocations()//Constants.END_POTINS.CITIES_SEARCH
+                observeLocations()
             }
 
 
@@ -117,20 +105,22 @@ class SearchCitiesFragment :
         }
     }
 
-    private fun observeCities() {
-        mViewModel.citiesResponse.observe(viewLifecycleOwner) {
+    private fun observeLocations() {
+        mViewModel.locationsResponse.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    Log.e("LocationResponseSuccess",it.value.toString())
                     binding.progress.showHideView(false)
-                    initStartRv(it.value)
-                    mViewModel._citiesResponse.value = null
+                    initStartRv(it.value.data)
+                    mViewModel._locationsResponse.value = null
 
                 }
                 is Resource.Failure -> {
+                    Log.e("LocationResponseFailure","${it.errorCode}-->${it.errorBody}")
                     binding.progress.showHideView(false)
                     loading.cancel()
                     handleApiErrors(it)
-                    mViewModel._citiesResponse.value = null
+                    mViewModel._locationsResponse.value = null
                 }
                 is Resource.Loading -> {
                     binding.progress.showHideView(true)
@@ -139,45 +129,17 @@ class SearchCitiesFragment :
         }
     }
 
-    private fun initStartRv(value: CitiesResponse) {
-        /*val imm =  context?.getSystemService(INPUT_METHOD_SERVICE)
-        Toast.makeText(context,imm.toString(),Toast.LENGTH_SHORT).show()*/
-
-        val citiesEn = value.cities?.filter { it.translations[1].name.contains(binding.edtSearch.text,true)} as MutableList
-        val citiesAr = value.cities?.filter { String(it.translations[0].name.toByteArray(),StandardCharsets.UTF_8).contains(binding.edtSearch.text,true)} as MutableList
-        if (citiesEn.size != 0){
-            searchLang = "en"
-            mCitySearchResultsAdapter = CitiesSearchResultsAdapter(citiesEn, this,searchLang)
-        }else if (citiesAr.size != 0){
-            searchLang = "ar"
-            mCitySearchResultsAdapter = CitiesSearchResultsAdapter(citiesAr, this,searchLang)
-        }else{
-            mCitySearchResultsAdapter = CitiesSearchResultsAdapter(citiesAr, this,searchLang)
-        }
-
-
-
-
-        /*val cities = if (lang == "en-UK"){
-            value.cities?.filter { it.name.contains(binding.edtSearch.text, ignoreCase = true) } as MutableList
-        }else{
-            value.cities?.filter { String(it.translations[0].name.toByteArray(),StandardCharsets.UTF_8).contains(binding.edtSearch.text)} as MutableList
-        }*/
-
-
-        binding.rvPlaces.adapter = mCitySearchResultsAdapter
+    private fun initStartRv(value: List<LocationResponseItem>?) {
+        val locations = value?.filter { it.name.contains(binding.edtSearch.text,true)} as MutableList
+        mLocationSearchResultsAdapter = LocationSearchResultsAdapter(locations, this,searchLang)
+        binding.rvPlaces.adapter = mLocationSearchResultsAdapter
         binding.rvPlaces.showHideView(true)
 
     }
 
-    override fun onItemClicked(item: City) {
+    override fun onItemClicked(item: LocationResponseItem) {
         val data = mutableMapOf<String,Any>()
         data["item"] = item
-        if (searchLang == "en"){
-            data["nameLang"] = item.translations[1].name
-        }else{
-            data["nameLang"] = String(item.translations[0].name.encodeToByteArray(),StandardCharsets.UTF_8)
-        }
         if (args.isSearchFromStart)
             setFragmentResult(Constants.START_DESTINATION, bundleOf(Constants.START_DESTINATION to data))
         else

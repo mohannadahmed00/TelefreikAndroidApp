@@ -17,14 +17,15 @@ abstract class BaseRepo {
                 Log.e("BaseRepo->","$throwable")
                 when (throwable) {
                     is HttpException -> {
+                        Log.e("BaseRepoHttpErrorBody->","${throwable.response()!!.errorBody()}")
                         Resource.Failure(
                             false,
                             throwable.code(),
                             throwable.response()!!.errorBody() as ResponseBody
                         )
                     }
-
                     is JsonSyntaxException -> {
+                        Log.e("BaseRepoJsonErrorBody->", throwable.localizedMessage)
                         Resource.Failure(
                             false,
                             0,

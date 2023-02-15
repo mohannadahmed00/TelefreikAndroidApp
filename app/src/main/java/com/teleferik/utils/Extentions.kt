@@ -15,6 +15,7 @@ import android.provider.Settings
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.util.TypedValue
 import android.view.Gravity
@@ -145,9 +146,11 @@ fun Fragment.handleApiErrorsLogin(
         failure.errorCode == HTTPCODES.CODEINTERNALSERVERERROR.code -> showTopToast(getString(R.string.internal_server_error))
         else -> {
             if (failure.errorBody is ResponseBody) {
+                Log.e("ExErrorBody",failure.errorBody.string())
+                Log.e("ExErrorBody",failure.errorCode.toString())
                 val error = failure.errorBody.string()
-                val baseResponse = Gson().fromJson(error, ErrorResponse::class.java)
-                showTopToast(baseResponse.errors)
+                val baseResponse:ErrorResponse? = Gson().fromJson(error, ErrorResponse::class.java)
+                baseResponse?.errors?.let { showTopToast(it) }
             } else if (failure.errorBody is String) {
                 showTopToast(failure.errorBody)
             }

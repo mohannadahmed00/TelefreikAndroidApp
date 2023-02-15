@@ -1,5 +1,6 @@
 package com.teleferik.ui.otp
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,13 +28,21 @@ class OtpFragment : BaseFragment<AuthViewModel, FragmentOtpBinding, AuthRepo>() 
     }
 
     override fun handleView() {
-        currentOTP = args.otp
-        showTopToast(currentOTP)
+        //currentOTP = args.otp
+        //showTopToast(currentOTP)
+        /*if (!args.isUserExistBefore){
+            sendOTPToNewUser(args.phoneNumber)
+        }*/
         handleClicks()
         handleOtp()
         bindPhoneNumber()
-        binding.tvTimer.countDownTimer(30000, 1000, binding.tvResend, binding.tvTimer)
+        binding.tvTimer.countDownTimer(300000, 1000, binding.tvResend, binding.tvTimer)//edit to 5 mins
     }
+
+    /*private fun sendOTPToNewUser(phoneNumber: String) {
+        mViewModel.sendOTP(phoneNumber)
+
+    }*/
 
     private fun bindPhoneNumber() {
         binding.tvMessageSent.text = getString(R.string.enter_code_hint, "+20${args.phoneNumber}")
@@ -54,8 +63,14 @@ class OtpFragment : BaseFragment<AuthViewModel, FragmentOtpBinding, AuthRepo>() 
         binding.tvBack.setOnClickListener { findNavController().navigateUp() }
         binding.btnNext.setOnClickListener {
             binding.tvVerificationError.visibility = View.INVISIBLE
-            if (getCodeFromView().isNotEmpty() && getCodeFromView() == currentOTP) {
-                mViewModel.verifyOTP(currentOTP)
+            if (getCodeFromView().isNotEmpty() /*&& getCodeFromView() == currentOTP*/) {
+                val otp = HashMap<String,Any>()
+                Log.e("ExErrorBody","..${args.phoneNumber}..20..${getCodeFromView()}..")
+                /*if (args.isUserExistBefore){
+                    mViewModel.oldVerifyOTP(args.phoneNumber,"20",getCodeFromView())
+                }else{*/
+                mViewModel.verifyOTP(args.phoneNumber,Constants.EGYPT_PHONE_CODE,getCodeFromView())
+                //}
                 observeVerifyOTP()
             } else {
                 binding.tvVerificationError.visibility = View.VISIBLE
@@ -75,14 +90,24 @@ class OtpFragment : BaseFragment<AuthViewModel, FragmentOtpBinding, AuthRepo>() 
             R.drawable.ic_phone_verified_success,
             getString(R.string.phone_number_verified_successfuly)
         ) {
-            if (args.isUserExistBefore) {
+            Log.e("OtpSuccess",args.isUserExistBefore.toString())
+            if (args.isUserExistBefore){
                 findNavController().setGraph(R.navigation.teleferik_navigation)
-            } else
+            }else{
+                findNavController().navigate(OtpFragmentDirections.actionOtpFragmentToSignupFragment().apply {
+                    phoneNumber = args.phoneNumber
+                })
+            }
+
+            /*if (args.isUserExistBefore) {
+                findNavController().setGraph(R.navigation.teleferik_navigation)
+            } else {
                 findNavController().navigate(
                     OtpFragmentDirections.actionOtpFragmentToSignupFragment().apply {
                         phoneNumber = args.phoneNumber
                     }
                 )
+            }*/
         }
     }
 
@@ -100,20 +125,45 @@ class OtpFragment : BaseFragment<AuthViewModel, FragmentOtpBinding, AuthRepo>() 
     }
 
     private fun observeVerifyOTP() {
-        mViewModel.loginResponse.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Success -> {
-                    loading.cancel()
-                    showCodeSuccessDialog()
-                    mViewModel._loginResponse.value = null
+        Log.e("OtpResponseSuccess", "is exist before-->${args.isUserExistBefore}")
+        if (args.isUserExistBefore){
+            mViewModel.otpResponse.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Success -> {
+                        Log.e("OtpResponseSuccess", "${it.value.toString()}..${args.isUserExistBefore}")
+                        loading.cancel()
+                        showCodeSuccessDialog()
+                        mViewModel._loginResponse.value = null
+                    }
+                    is Resource.Failure -> {
+                        Log.e("OtpResponseFailure", it.errorBody.toString())
+                        loading.cancel()
+                        handleApiErrorsLogin(it)
+                        mViewModel._loginResponse.value = null
+                    }
+                    is Resource.Loading -> {
+                        loading.show()
+                    }
                 }
-                is Resource.Failure -> {
-                    loading.cancel()
-                    handleApiErrorsLogin(it)
-                    mViewModel._loginResponse.value = null
-                }
-                is Resource.Loading -> {
-                    loading.show()
+            }
+        }else {
+            mViewModel.otpResponse.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Success -> {
+                        Log.e("OtpResponseSuccess", it.value.data.toString())
+                        loading.cancel()
+                        showCodeSuccessDialog()
+                        mViewModel._loginResponse.value = null
+                    }
+                    is Resource.Failure -> {
+                        Log.e("OtpResponseFailure", it.errorBody.toString())
+                        loading.cancel()
+                        handleApiErrorsLogin(it)
+                        mViewModel._loginResponse.value = null
+                    }
+                    is Resource.Loading -> {
+                        loading.show()
+                    }
                 }
             }
         }

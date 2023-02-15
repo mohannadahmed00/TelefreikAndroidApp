@@ -1,5 +1,6 @@
 package com.teleferik.data.network.apisInterfaces
 
+import android.util.Log
 import com.teleferik.models.BaseResponse
 import com.teleferik.models.EditPhoneRequest
 import com.teleferik.models.RegisterRequest
@@ -16,10 +17,11 @@ import com.teleferik.models.tickets.SingleTicketResponse
 import com.teleferik.models.tickets.Ticket
 import com.teleferik.models.tickets.TicketsForCustomerResponse
 import com.teleferik.models.webus.cities.CitiesResponse
+import com.teleferik.models.webus.locations.LocationResponse
+import com.teleferik.models.webus.locations.LocationResponseItem
 import com.teleferik.utils.Constants
 import com.teleferik.utils.Constants.PARAMS.TICKET_ID
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -27,22 +29,46 @@ import retrofit2.http.*
 interface ApisService {
 
     @FormUrlEncoded
+    //@Headers("Accept-Language: ar")
     @POST(Constants.END_POTINS.LOGIN)
     suspend fun login(
-        @Field(Constants.PARAMS.PHONE) phone: String,
+        @Field(Constants.PARAMS.MOBILE) phone: String,
+        @Field(Constants.PARAMS.PHONE_CODE) code: String
+    ): BaseResponse<LoginResponse>
+
+    @FormUrlEncoded
+    //@Headers("Accept-Language: en")
+    @POST(Constants.END_POTINS.SEND_OTP)
+    suspend fun sendOTP(
+        @Field(Constants.PARAMS.MOBILE) phone: String,
+        @Field(Constants.PARAMS.PHONE_CODE) code: String
+    ): BaseResponse<LoginResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.END_POTINS.VERIFY_OTP)
+    suspend fun verifyOTP(
+        @Field(Constants.PARAMS.MOBILE) phone: String,
+        @Field(Constants.PARAMS.PHONE_CODE) phoneCode: String,
         @Field(Constants.PARAMS.CODE) code: String
     ): BaseResponse<LoginResponse>
+
+    @POST(Constants.END_POTINS.REGISTER)
+    suspend fun register(@Body registerRequest: RegisterRequest): BaseResponse<LoginResponse>
+
+    /*@FormUrlEncoded
+    @POST(Constants.END_POTINS.VERIFY_OTP)
+    suspend fun oldVerifyOTP(
+        @Field(Constants.PARAMS.MOBILE) phone: String,
+        @Field(Constants.PARAMS.PHONE_CODE) phoneCode: String,
+        @Field("code") code: String
+    ):  BaseResponse<LoginResponse>*/
+
 
 
     @POST(Constants.END_POTINS.SOCIAL_REGISTER)
     suspend fun socialRegister(@Body registerRequest: RegisterRequest): BaseResponse<LoginResponse>
 
-    @POST(Constants.END_POTINS.REGISTER)
-    suspend fun register(@Body registerRequest: RegisterRequest): BaseResponse<LoginResponse>
 
-    @FormUrlEncoded
-    @POST(Constants.END_POTINS.VERIFY_OTP)
-    suspend fun verifyOTP(@Field("code") OTP: String): BaseResponse<LoginResponse>
 
     @FormUrlEncoded
     @POST(Constants.END_POTINS.RESEND_OTP)
@@ -106,23 +132,11 @@ interface ApisService {
     suspend fun getTripsSearchResults(
         @Url url:String
     ):SearchResultsResponse
-    // ================= WE BUS ==================
-    fun createBusSession(
-        @Url url: String,
-        @Field("cabinclass") cabinclass: String,
-        @Field("country") country: String,
-        @Field("currency") currency: String,
-        @Field("locale") locale: String,
-        @Field("locationSchema") locationSchema: String,
-        @Field("originplace") originplace: String,
-        @Field("destinationplace") destinationplace: String,
-        @Field("outbounddate") outbounddate: String,
-        @Field("inbounddate") inbounddate: String,
-        @Field("adults") adults: Int,
-        @Field("children") children: Int,
-        @Field("infants") infants: Int,
-        @Field("apikey") apikey: String
-    ): Call<Any>
+    // ================= Bus Trips ==================
+
+    @GET(Constants.END_POTINS.SEARCH_LOCATIONS)
+    suspend fun searchLocations(): BaseResponse<LocationResponse>
+
     @GET
     suspend fun searchCities(
         @Url url:String

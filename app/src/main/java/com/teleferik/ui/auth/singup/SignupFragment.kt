@@ -1,5 +1,6 @@
 package com.teleferik.ui.auth.singup
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
@@ -30,10 +31,10 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
     }
 
     override fun handleView() {
-        if (args.email.isNotEmpty())
-            binding.edtMail.setText(args.email)
-        if (args.name.isNotEmpty())
-            binding.edtName.setText(args.name)
+        if (args.email.isNotEmpty())//from social
+            //binding.edtMail.setText(args.email)
+        if (args.name.isNotEmpty())//from social
+            //binding.edtName.setText(args.name)
         initClicks()
         getFcmToken()
     }
@@ -64,14 +65,12 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
     }
 
     private fun isRegisterFormValid(): Boolean {
-
         binding.edtName.error = null
         binding.edtMail.error = null
         if (binding.edtName.captureText().isEmpty()) {
             binding.edtName.error = getString(R.string.enter_valid_name)
             return false
         }
-
         if (!binding.edtMail.captureText().isValidEmail()) {
             binding.edtMail.error = getString(R.string.enter_valid_email)
             return false
@@ -81,10 +80,11 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
     }
 
     private fun callRegisterRequest() {
+        Log.e("RegisterRequest","${args.phoneNumber}..${binding.edtMail.captureText()}..${binding.edtName.captureText()}..${fcmToken}")
         mViewModel.register(
             RegisterRequest(
-                args.phoneNumber,
                 binding.edtMail.captureText(),
+                args.phoneNumber,
                 binding.edtName.captureText(),
                 fcmToken
             )
@@ -94,10 +94,13 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
 
     private fun observeRegister() {
         mViewModel.loginResponse.observe(viewLifecycleOwner) {
+            Log.e("RegisterRequest","${args.phoneNumber}-->${binding.edtMail.captureText()}-->${binding.edtName.captureText()}-->${fcmToken}")
             when (it) {
                 is Resource.Success -> {
                     loading.cancel()
-                    AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data?.token!!)
+                    Log.e("RegisterResponseSuccess",it.value.data.toString())
+                    //AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data?.token!!)
+                    //AppController.Prefs.putAny(Constants.USER_NAME, it.value.data.name!!)
                     DialogUtils.showPopupDialog(
                         requireActivity(),
                         R.drawable.user_singup_success,
@@ -105,11 +108,19 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
                     ) {
                         findNavController().setGraph(R.navigation.teleferik_navigation)
                     }
-                    AppController.Prefs.putAny(Constants.USER_NAME, it.value.data.name!!)
                     mViewModel._loginResponse.value = null
+
+                    /*findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToOtpFragment().apply {
+                        //otp = it.value.data?.OTP!!
+                        isUserExistBefore = false
+                        phoneNumber = args.phoneNumber
+                    })*/
+
                 }
                 is Resource.Failure -> {
                     loading.cancel()
+                    Log.e("RegisterResponseFailure","${it.errorCode}-->${it.errorBody}")
+
                     handleApiErrors(failure = it, edtToShowValidation = binding.edtMail)
                     mViewModel._loginResponse.value = null
                 }
@@ -127,7 +138,6 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
     override fun getFragmentRepo(): AuthRepo {
         return AuthRepo(remoteDataSource.buildApi(ApisService::class.java))
     }
-
 
     private fun getFcmToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener { tokenData ->

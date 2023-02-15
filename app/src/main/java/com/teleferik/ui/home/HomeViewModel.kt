@@ -16,6 +16,7 @@ import com.teleferik.models.skyscanner.searchResults.BookingDetailsLink
 import com.teleferik.models.skyscanner.searchResults.Itinerary
 import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
 import com.teleferik.models.webus.cities.CitiesResponse
+import com.teleferik.models.webus.locations.LocationResponse
 import kotlinx.coroutines.launch
 
 
@@ -25,6 +26,11 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
     private var tripType = 1  // 0 go only // 1 go and return
     val _airPortsResponse = MutableLiveData<Resource<AirPortsResponse>>()
     val airPortsResponse: LiveData<Resource<AirPortsResponse>> get() = _airPortsResponse
+
+    val _locationsResponse = MutableLiveData<Resource<BaseResponse<LocationResponse>>>()
+    val locationsResponse: LiveData<Resource<BaseResponse<LocationResponse>>> get() = _locationsResponse
+
+
 
     val _citiesResponse = MutableLiveData<Resource<CitiesResponse>>()
     val citiesResponse: LiveData<Resource<CitiesResponse>> get() = _citiesResponse
@@ -40,10 +46,14 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
         _airPortsResponse.value = homeRepo.searchAirPorts(url)
     }
 
+    fun searchLocations() = viewModelScope.launch {
+        _locationsResponse.value = Resource.Loading
+        _locationsResponse.value = homeRepo.searchLocations()
+    }
+
     fun searchCities(url: String) = viewModelScope.launch {
         _citiesResponse.value = Resource.Loading
         _citiesResponse.value = homeRepo.searchCities(url)
-
     }
 
     fun getTripsSearchResults(url: String) = viewModelScope.launch {

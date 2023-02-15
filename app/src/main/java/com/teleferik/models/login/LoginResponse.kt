@@ -31,7 +31,7 @@ data class LoginResponse(
     val name: String?,
     @SerializedName("status")
     @Expose
-    val status: Any?,
+    val status: String?,
     @SerializedName("token")
     @Expose
     val token: String?,
@@ -40,5 +40,12 @@ data class LoginResponse(
     val updatedAt: String?,
     @SerializedName("user_image")
     @Expose
-    val userImage: Any?
+    val userImage: String?,
+    /*@SerializedName("phonecode")
+    @Expose
+    val phonecode: Any?,
+    @SerializedName("api_token")
+    @Expose
+    val api_token: String?,*/
+
 )

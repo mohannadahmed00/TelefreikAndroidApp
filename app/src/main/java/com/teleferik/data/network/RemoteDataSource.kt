@@ -12,7 +12,8 @@ import java.util.concurrent.TimeUnit
 class RemoteDataSource {
     private val release:String = "https://api.telefreik.com/api/v1/mobile/"
     private val local:String = "http://192.168.1.2:80/api/v1/mobile/"
-    private val staging:String = "http://telefreik.4fdev.com/api/v1/mobile/"
+    //private val staging:String = "http://telefreik.4fdev.com/api/v1/mobile/"
+    private val staging:String = "http://167.99.206.76/api/"//http://167.99.206.76
     private val dev:String = "https://dev.telefreik.com/api/v1/mobile/"
     fun <Api> buildApi(
         api: Class<Api>,
