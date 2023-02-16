@@ -1,4 +1,4 @@
-package com.teleferik.ui.home.searchCities
+package com.teleferik.ui.home.searchLocations
 
 import android.content.Context
 import android.util.Log
@@ -16,7 +16,7 @@ import com.teleferik.AppController
 import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
-import com.teleferik.databinding.FragmentSearchCitiesBinding
+import com.teleferik.databinding.FragmentSearchLocationsBinding
 import com.teleferik.models.webus.locations.LocationResponseItem
 import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
@@ -27,10 +27,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class SearchCitiesFragment :
-    BaseFragment<HomeViewModel, FragmentSearchCitiesBinding, HomeRepo>(),
+class SearchLocationsFragment :
+    BaseFragment<HomeViewModel, FragmentSearchLocationsBinding, HomeRepo>(),
     LocationSearchResultsAdapter.OnItemClickListener {
-    private val args: SearchCitiesFragmentArgs by navArgs()
+    private val args: SearchLocationsFragmentArgs by navArgs()
     lateinit var mLocationSearchResultsAdapter: LocationSearchResultsAdapter
     private var typingJob: Job? = null
     lateinit var text:String
@@ -45,7 +45,7 @@ class SearchCitiesFragment :
         inflater: LayoutInflater,
         container: ViewGroup?,
         b: Boolean
-    ) = FragmentSearchCitiesBinding.inflate(layoutInflater)
+    ) = FragmentSearchLocationsBinding.inflate(layoutInflater)
 
     override fun getFragmentRepo(): HomeRepo {
         return HomeRepo(remoteDataSource.buildApi(ApisService::class.java))
@@ -95,8 +95,7 @@ class SearchCitiesFragment :
                 typingJob?.cancel()
                 lang =
                     if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
-
-                mViewModel.searchLocations()//Constants.END_POTINS.CITIES_SEARCH
+                mViewModel.searchLocations()
                 observeLocations()
             }
 

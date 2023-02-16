@@ -32,23 +32,20 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
 
     override fun handleView() {
         if (args.email.isNotEmpty())//from social
-            //binding.edtMail.setText(args.email)
-        if (args.name.isNotEmpty())//from social
+        //binding.edtMail.setText(args.email)
+            if (args.name.isNotEmpty())//from social
             //binding.edtName.setText(args.name)
-        initClicks()
+                initClicks()
         getFcmToken()
     }
 
     private fun initClicks() {
         binding.tvBack.setOnClickListener { findNavController().navigateUp() }
         binding.btnSignup.setOnClickListener {
-            if (isRegisterFormValid())
-            {
-                if (args.registrationType == "default")
-                {
+            if (isRegisterFormValid()) {
+                if (args.registrationType == "default") {
                     callRegisterRequest()
-                }
-                else{
+                } else {
                     callSocialRegister(
                         RegisterRequest(
                             args.phoneNumber,
@@ -80,7 +77,10 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
     }
 
     private fun callRegisterRequest() {
-        Log.e("RegisterRequest","${args.phoneNumber}..${binding.edtMail.captureText()}..${binding.edtName.captureText()}..${fcmToken}")
+        Log.e(
+            "RegisterRequest",
+            "${args.phoneNumber}..${binding.edtMail.captureText()}..${binding.edtName.captureText()}..${fcmToken}"
+        )
         mViewModel.register(
             RegisterRequest(
                 binding.edtMail.captureText(),
@@ -93,14 +93,45 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
     }
 
     private fun observeRegister() {
-        mViewModel.loginResponse.observe(viewLifecycleOwner) {
-            Log.e("RegisterRequest","${args.phoneNumber}-->${binding.edtMail.captureText()}-->${binding.edtName.captureText()}-->${fcmToken}")
+        mViewModel.registerResponse.observe(viewLifecycleOwner) {
+            Log.e(
+                "RegisterRequest",
+                "${args.phoneNumber}-->${binding.edtMail.captureText()}-->${binding.edtName.captureText()}-->${fcmToken}"
+            )
             when (it) {
                 is Resource.Success -> {
                     loading.cancel()
-                    Log.e("RegisterResponseSuccess",it.value.data.toString())
+                    Log.e("RegisterResponseSuccess", it.value.data.toString())
                     //AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data?.token!!)
                     //AppController.Prefs.putAny(Constants.USER_NAME, it.value.data.name!!)
+                    mViewModel.login(args.phoneNumber)
+                    observeLogin()
+                    mViewModel._loginResponse.value = null
+
+                }
+                is Resource.Failure -> {
+                    loading.cancel()
+                    Log.e("RegisterResponseFailure", "${it.errorCode}-->${it.errorBody}")
+                    handleApiErrors(failure = it, edtToShowValidation = binding.edtMail)
+                    mViewModel._loginResponse.value = null
+                }
+                is Resource.Loading -> {
+                    loading.show()
+                }
+            }
+        }
+    }
+
+    private fun observeLogin() {
+        mViewModel.loginResponse.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    Log.e("LoginResponseSuccess", it.value.toString())
+                    loading.cancel()
+                    AppController.Prefs.putAny(Constants.USER_NAME, it.value.data?.name!!)
+                    AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data.api_token!!)
+                    AppController.Prefs.putAny(Constants.USER_EMAIL, it.value.data.email!!)
+                    AppController.Prefs.putAny(Constants.USER_PHONE, args.phoneNumber)
                     DialogUtils.showPopupDialog(
                         requireActivity(),
                         R.drawable.user_singup_success,
@@ -109,19 +140,11 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
                         findNavController().setGraph(R.navigation.teleferik_navigation)
                     }
                     mViewModel._loginResponse.value = null
-
-                    /*findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToOtpFragment().apply {
-                        //otp = it.value.data?.OTP!!
-                        isUserExistBefore = false
-                        phoneNumber = args.phoneNumber
-                    })*/
-
                 }
                 is Resource.Failure -> {
+                    Log.e("LoginResponseFailure", "${it.errorBody.toString()}..${it.errorCode}")
                     loading.cancel()
-                    Log.e("RegisterResponseFailure","${it.errorCode}-->${it.errorBody}")
-
-                    handleApiErrors(failure = it, edtToShowValidation = binding.edtMail)
+                    handleApiErrorsLogin(it)
                     mViewModel._loginResponse.value = null
                 }
                 is Resource.Loading -> {
@@ -162,7 +185,7 @@ class SignupFragment : BaseFragment<AuthViewModel, FragmentSignupBinding, AuthRe
             when (it) {
                 is Resource.Success -> {
                     loading.cancel()
-                    AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data?.token!!)
+                    AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data?.api_token!!)
                     DialogUtils.showPopupDialog(
                         requireActivity(),
                         R.drawable.user_singup_success,

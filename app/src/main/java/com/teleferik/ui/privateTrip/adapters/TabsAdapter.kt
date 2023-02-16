@@ -1,16 +1,9 @@
 package com.teleferik.ui.privateTrip.adapters
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.teleferik.ui.home.HomeFragment
-import com.teleferik.ui.home.HomeRepo
-import com.teleferik.ui.home.searchAirPorts.SearchAriPortsFragment
-import com.teleferik.ui.home.searchCities.SearchCitiesFragment
-import com.teleferik.ui.notifications.NotificationFragment
 
 internal class TabsAdapter(supportFragmentManager: FragmentManager,private val totalTabs:Int) :
     FragmentPagerAdapter(supportFragmentManager) {

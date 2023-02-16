@@ -48,9 +48,6 @@ class TransportationTypeAdapter(
                     imgChecked.setImageResource(R.drawable.ic_checked)
                     imgChecked.invisibleView(data.isSelected)
                 }
-
-
-
                 imgTransport.setImageResource(data.icon)
                 tvTransportationName.text = data.name
                 if (data.isSelected)

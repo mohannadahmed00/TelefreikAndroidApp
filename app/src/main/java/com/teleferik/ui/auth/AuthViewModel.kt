@@ -18,6 +18,9 @@ class AuthViewModel(private val authRepo: AuthRepo) : ViewModel() {
     val _loginResponse = MutableLiveData<Resource<BaseResponse<LoginResponse>>>()
     val loginResponse: LiveData<Resource<BaseResponse<LoginResponse>>> get() = _loginResponse
 
+    val _registerResponse = MutableLiveData<Resource<BaseResponse<LoginResponse>>>()
+    val registerResponse: LiveData<Resource<BaseResponse<LoginResponse>>> get() = _registerResponse
+
     val _otpResponse = MutableLiveData<Resource<BaseResponse<LoginResponse>>>()
     val otpResponse: LiveData<Resource<BaseResponse<LoginResponse>>> get() = _otpResponse
 
@@ -46,9 +49,9 @@ class AuthViewModel(private val authRepo: AuthRepo) : ViewModel() {
     }
 
     fun register(registerRequest: RegisterRequest) = viewModelScope.launch {
-        _loginResponse.value = Resource.Loading
+        _registerResponse.value = Resource.Loading
         Log.e("ResponseRegisterNumber",registerRequest.toString())
-        _loginResponse.value = authRepo.register(registerRequest)
+        _registerResponse.value = authRepo.register(registerRequest)
     }
 
     /*fun oldVerifyOTP(phone: String,phoneCode:String,code:String) = viewModelScope.launch {

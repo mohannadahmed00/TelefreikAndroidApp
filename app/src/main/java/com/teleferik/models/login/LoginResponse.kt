@@ -32,9 +32,9 @@ data class LoginResponse(
     @SerializedName("status")
     @Expose
     val status: String?,
-    @SerializedName("token")
+    @SerializedName("api_token")
     @Expose
-    val token: String?,
+    val api_token: String?,
     @SerializedName("updated_at")
     @Expose
     val updatedAt: String?,

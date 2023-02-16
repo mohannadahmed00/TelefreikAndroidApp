@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -33,7 +32,6 @@ import com.teleferik.databinding.FragmentHomeBinding
 import com.teleferik.models.ErrorResponse
 import com.teleferik.models.promotionalOffer.Offer
 import com.teleferik.models.skyscanner.airPorts.Place
-import com.teleferik.models.webus.cities.City
 import com.teleferik.models.webus.locations.LocationResponseItem
 import com.teleferik.ui.home.adapters.TransportationTypeAdapter
 import com.teleferik.ui.home.adapters.ViewPagerAdapter
@@ -53,8 +51,10 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     TransportationTypeAdapter.OnItemClickListener {
     var mStartDestinationPlace: Place? = null
     var mEndDestinationPlace: Place? = null
+
     var mStartDestinationLocation: LocationResponseItem? = null
     var mEndDestinationLocation: LocationResponseItem? = null
+
     lateinit var mProfileViewModel: ProfileViewModel
     var currentStartDate by Delegates.notNull<Long>()
     var currentEndDate by Delegates.notNull<Long>()
@@ -318,58 +318,75 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         }
 
         binding.includeTripType.btnGoAndBack.setOnClickListener {
-            makeTripTypeSelected(
-                binding.includeTripType.btnGoAndBack,
-                binding.includeTripType.btnGo
-            )
-            mViewModel.setTripType(1)
-            binding.includeDates.datesguideline.setGuidelinePercent(0.5F)
-            binding.includeDates.tvReturnDate.showHideView(mViewModel.getTripType() != 0)
-            binding.includeDates.tvReturnTitle.showHideView(mViewModel.getTripType() != 0)
+            if (category == "Bus"){
+                Toast.makeText(context,"This option cannot be used if you choose Bus",Toast.LENGTH_LONG).show()
+            }else {
+                makeTripTypeSelected(
+                    binding.includeTripType.btnGoAndBack,
+                    binding.includeTripType.btnGo
+                )
+                mViewModel.setTripType(1)
+                binding.includeDates.datesguideline.setGuidelinePercent(0.5F)
+                binding.includeDates.tvReturnDate.showHideView(mViewModel.getTripType() != 0)
+                binding.includeDates.tvReturnTitle.showHideView(mViewModel.getTripType() != 0)
+            }
         }
 
         binding.include.edtStart.setOnTouchListener { _, event ->
-            if (MotionEvent.ACTION_UP == event.action) {
-                if (category == "Flight") {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment()
-                            .apply {
-                                searchKey = binding.include.edtStart.captureText().ifEmpty { "-" }
-                            })
-                } else {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionNavigationHomeToSearchCitiesFragment()//pass cities list
-                            .apply {
-                                searchKey = binding.include.edtStart.captureText().ifEmpty { "-" }
-                            }
-                    )
+            if(checkSelectCategory()) {
+                if (MotionEvent.ACTION_UP == event.action) {
+                    if (category == "Flight") {
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment()
+                                .apply {
+                                    searchKey =
+                                        binding.include.edtStart.captureText().ifEmpty { "-" }
+                                })
+                    } else {
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionNavigationHomeToSearchLocationsFragment()//pass cities list
+                                .apply {
+                                    searchKey =
+                                        binding.include.edtStart.captureText().ifEmpty { "-" }
+                                }
+                        )
+                    }
                 }
+                binding.include.edtStart.performClick()
+                 // return is important...
+            }else{
+                showTopToast(getString(R.string.select_category))
             }
-            binding.include.edtStart.performClick()
-            true // return is important...
+            true
+
         }
 
-        binding.include.edtEnd.setOnTouchListener(OnTouchListener { v, event ->
-            if (MotionEvent.ACTION_UP == event.action) {
-                if (category == "Flight") {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment()
-                            .apply {
-                                isSearchFromStart = false
-                                searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
-                            })
-                } else {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionNavigationHomeToSearchCitiesFragment()
-                            .apply {
-                                isSearchFromStart = false
-                                searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
-                            }
-                    )
+        binding.include.edtEnd.setOnTouchListener { _, event ->
+            if(checkSelectCategory()) {
+                if (MotionEvent.ACTION_UP == event.action) {
+                    if (category == "Flight") {
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionNavigationHomeToSearchAriPortsFragment()
+                                .apply {
+                                    isSearchFromStart = false
+                                    searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
+                                })
+                    } else {
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionNavigationHomeToSearchLocationsFragment()
+                                .apply {
+                                    isSearchFromStart = false
+                                    searchKey = binding.include.edtEnd.captureText().ifEmpty { "-" }
+                                }
+                        )
+                    }
                 }
+                binding.include.edtEnd.performClick()
+            }else{
+                showTopToast(getString(R.string.select_category))
             }
-            true // return is important...
-        })
+            true// return is important...
+        }
 
         binding.include.switchDirections.setOnClickListener {
             val temp = binding.include.edtStart.text
@@ -524,10 +541,28 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                     if (list[i].type == "Flight") {
                         if (list[i].isSelected) {
                             binding.includeClasses.root.visibility = View.VISIBLE
-                            true
                         } else {
                             binding.includeClasses.root.visibility = View.GONE
-                            false
+                        }
+                    }else if (list[i].type == "Bus"){
+                        if (list[i].isSelected) {
+                            makeTripTypeSelected(
+                                binding.includeTripType.btnGo,
+                                binding.includeTripType.btnGoAndBack
+                            )
+                            mViewModel.setTripType(0)
+                            binding.includeDates.datesguideline.setGuidelinePercent(1F)
+                            binding.includeDates.tvReturnDate.showHideView(false)
+                            binding.includeDates.tvReturnTitle.showHideView(false)
+                        } else {
+                            makeTripTypeSelected(
+                                binding.includeTripType.btnGoAndBack,
+                                binding.includeTripType.btnGo
+                            )
+                            mViewModel.setTripType(1)
+                            binding.includeDates.datesguideline.setGuidelinePercent(0.5F)
+                            binding.includeDates.tvReturnDate.showHideView(true)
+                            binding.includeDates.tvReturnTitle.showHideView(true)
                         }
                     }
 

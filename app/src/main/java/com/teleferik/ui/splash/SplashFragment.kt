@@ -1,14 +1,10 @@
 package com.teleferik.ui.splash
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.daimajia.androidanimations.library.Techniques
@@ -34,16 +30,9 @@ class SplashFragment : BaseBindingFragment<FragmentSplashBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//            requireActivity().window.decorView.systemUiVisibility =
-//                requireActivity().window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             requireActivity().window.statusBarColor = Color.parseColor("#1D4179")
-            requireActivity().window.navigationBarColor =
-                ContextCompat.getColor(requireActivity(), R.color.base_app_color);
-        }
-
-
+            requireActivity().window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.base_app_color)
     }
 
     override fun handleView() {

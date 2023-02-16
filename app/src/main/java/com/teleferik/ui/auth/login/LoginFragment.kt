@@ -3,7 +3,6 @@ package com.teleferik.ui.auth.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,17 +19,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.teleferik.AppController
 import com.teleferik.R
 import com.teleferik.WebViewActivity
 import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.databinding.FragmentLoginBinding
-import com.teleferik.models.RegisterRequest
 import com.teleferik.ui.auth.AuthRepo
 import com.teleferik.ui.auth.AuthViewModel
-import com.teleferik.ui.otp.OtpFragmentDirections
 import com.teleferik.utils.*
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo>() , FacebookCallback<LoginResult>{
@@ -49,7 +45,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
     override fun handleView() {
         binding.edtPhone.requestFocus()
-        binding.edtPhone.setText("1200862852")
+        binding.edtPhone.setText("")
         //prepareGoogleSignIn()
         //prepareFacebookSignIn()
         handleClicks()
@@ -211,29 +207,27 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     Log.e("LoginResponseSuccess",it.value.toString())
                     loading.cancel()
-                    if (it.value.need_verfication != null && it.value.need_verfication){
-                        findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToOtpFragment().apply {
-                                //otp = it.value.data?.OTP!!
-                                isUserExistBefore = true
-                                phoneNumber = this@LoginFragment.getPhoneNumber()
-                            })
-                    }else{
-                        findNavController().setGraph(R.navigation.teleferik_navigation)
-                    }
-
-                    /*AppController.Prefs.putAny(Constants.USER_NAME, it.value.data?.name!!)
-                    AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data.token!!)
-                    AppController.Prefs.putAny(Constants.USER_EMAIL,it.value.data.email!!)*/
-                    //AppController.Prefs.putAny(Constants.USER_PHONE,this@LoginFragment.getPhoneNumber())
-                    mViewModel._loginResponseArr.value = null
+                    /*if (it.value.need_verfication == null){
+                        AppController.Prefs.putAny(Constants.USER_NAME, it.value.data?.name!!)
+                        AppController.Prefs.putAny(Constants.USER_TOKEN, it.value.data.api_token!!)
+                        AppController.Prefs.putAny(Constants.USER_EMAIL,it.value.data.email!!)
+                        AppController.Prefs.putAny(Constants.USER_PHONE,this@LoginFragment.getPhoneNumber())
+                    }*/
+                    /*findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOtpFragment().apply {
+                            //otp = it.value.data?.OTP!!
+                            isUserExistBefore = true
+                            phoneNumber = this@LoginFragment.getPhoneNumber()
+                        })*/
+                    mViewModel.sendOTP(this@LoginFragment.getPhoneNumber())//todo check if there is 0 or not
+                    observeSendOTP(true)
+                    mViewModel._loginResponse.value = null
                 }
                 is Resource.Failure -> {
                     Log.e("LoginResponseFailure","${it.errorBody.toString()}..${it.errorCode}")
                     loading.cancel()
                     mViewModel.sendOTP(this@LoginFragment.getPhoneNumber())//todo check if there is 0 or not
-                    observeSendOTP()
-                    mViewModel._loginResponseArr.value = null
+                    observeSendOTP(false)
+                    mViewModel._loginResponse.value = null
                 }
                 is Resource.Loading -> {
                     loading.show()
@@ -242,7 +236,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         }
     }
 
-    private fun observeSendOTP(){
+    private fun observeSendOTP(isExistUser:Boolean){
         mViewModel.otpResponse.observe(viewLifecycleOwner){
             when(it){
                 is Resource.Success -> {
@@ -250,15 +244,15 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                     loading.cancel()
                     findNavController().navigate(
                         LoginFragmentDirections.actionLoginFragmentToOtpFragment().apply {
-                            isUserExistBefore = false
+                            isUserExistBefore = isExistUser
                             phoneNumber = this@LoginFragment.getPhoneNumber()
                         })
-                    mViewModel._loginResponseArr.value = null
+                    mViewModel._otpResponse.value = null
                 }
                 is Resource.Failure -> {
                     Log.e("SendOtpResponseFailure","${it.errorBody.toString()}..${it.errorCode}")
                     loading.cancel()
-                    mViewModel._loginResponseArr.value = null
+                    mViewModel._otpResponse.value = null
                 }
                 is Resource.Loading -> {
                     loading.show()

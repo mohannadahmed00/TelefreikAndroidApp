@@ -25,8 +25,8 @@
             android:id="@+id/action_navigation_home_to_searchAriPortsFragment"
             app:destination="@id/searchAriPortsFragment" />
         <action
-            android:id="@+id/action_navigation_home_to_searchCitiesFragment"
-            app:destination="@id/searchCitiesFragment" />
+            android:id="@+id/action_navigation_home_to_searchLocationsFragment"
+            app:destination="@id/searchLocationsFragment" />
         <action
             android:id="@+id/action_navigation_home_to_support_graph"
             app:destination="@id/support_graph" />
@@ -131,10 +131,10 @@
             android:defaultValue="-" />
     </fragment>
     <fragment
-        android:id="@+id/searchCitiesFragment"
-        android:name="com.teleferik.ui.home.searchCities.SearchCitiesFragment"
-        android:label="fragment_search_cities"
-        tools:layout="@layout/fragment_search_cities" >
+        android:id="@+id/searchLocationsFragment"
+        android:name="com.teleferik.ui.home.searchLocations.SearchLocationsFragment"
+        android:label="fragment_search_locations"
+        tools:layout="@layout/fragment_search_locations" >
         <argument
             android:name="isSearchFromStart"
             app:argType="boolean"

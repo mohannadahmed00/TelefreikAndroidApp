@@ -34,37 +34,12 @@ class MoreFragment : BaseBindingFragment<FragmentMoreBinding>() {
         getOtherLang()
     }
 
-    private fun getOtherLang() {
-        if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC)
-            binding.tvLang.text = "English"
-        else binding.tvLang.text = "العربية"
-    }
-
-    private fun handleGuestUser() {
-        val isUserLoggedIn = AppController.Prefs.getString(Constants.USER_TOKEN, "")
-        if (isUserLoggedIn.isNullOrEmpty()) {
-            binding.tvProfile.hide()
-            binding.tvLogout.hide()
-//            binding.tvSupport.hide()
-            binding.tvUserName.text = getString(R.string.login)
-            binding.tvUserName.paintFlags =
-                binding.tvUserName.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-            binding.tvUserName.setOnClickListener {
-                val uri = Uri.parse("android-app://com.teleferik.name/login")
-                findNavController().navigate(uri)
-            }
-        }else{
-            val name = AppController.Prefs.getString(Constants.USER_NAME,"")
-            binding.tvUserName.text = name
-        }
-    }
-
     private fun initClicks() {
         binding.tvTerms.setOnClickListener {
             openTermsScreen()
         }
         binding.tvLogout.setOnClickListener {
-            AppController.Prefs.putAny(Constants.USER_TOKEN,"")
+            AppController.Prefs.putAny(Constants.USER_TOKEN,"")//todo clear all user's data
             startActivity(Intent(requireActivity(),MainActivity::class.java))
             requireActivity().finish()
         }
@@ -78,12 +53,41 @@ class MoreFragment : BaseBindingFragment<FragmentMoreBinding>() {
         }
     }
 
+    private fun handleGuestUser() {
+        val isUserLoggedIn = AppController.Prefs.getString(Constants.USER_TOKEN, "")
+        if (isUserLoggedIn.isNullOrEmpty()) {
+            binding.tvProfile.hide()
+            binding.tvLogout.hide()
+            binding.tvSupport.hide()
+            binding.tvUserName.text = getString(R.string.login)
+            binding.tvUserName.paintFlags = binding.tvUserName.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+            binding.tvUserName.setOnClickListener {
+                val uri = Uri.parse("android-app://com.teleferik.name/login")
+                findNavController().navigate(uri)
+            }
+        }
+        else{
+            val name = AppController.Prefs.getString(Constants.USER_NAME,"")
+            binding.tvUserName.text = name
+        }
+    }
+
+    private fun getOtherLang() {
+        if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC)
+            binding.tvLang.text = "English"
+        else binding.tvLang.text = "العربية"
+    }
+
+
+
+
+
     private fun changeApplicationLanguage(lang: String,context: Context) {
         AppController.localeManager!!.setNewLocale(context, lang)
         AppController.Prefs.putAny(Constants.IS_LANG_SELECTED,true)
         val intent = Intent(context, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        ProcessPhoenix.triggerRebirth(context, intent);
+        ProcessPhoenix.triggerRebirth(context, intent)
     }
 
     private fun openTermsScreen() {
