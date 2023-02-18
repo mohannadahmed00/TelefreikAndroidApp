@@ -1,4 +1,4 @@
-package com.teleferik.models.webus.searchResults
+package com.teleferik.models.bus.searchResults
 
 data class Seat(
     val bus_id: String,

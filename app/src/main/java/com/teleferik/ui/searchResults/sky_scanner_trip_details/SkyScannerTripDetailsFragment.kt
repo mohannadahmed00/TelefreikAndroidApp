@@ -18,10 +18,9 @@ import com.teleferik.databinding.FragmentSkyScannerTripDetailsBinding
 import com.teleferik.models.skyscanner.searchResults.Itinerary
 import com.teleferik.models.skyscanner.searchResults.Leg
 import com.teleferik.models.skyscanner.searchResults.PricingOption
-import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
+import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
 import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
-import com.teleferik.ui.searchResults.SearchResultsFragmentDirections
 import com.teleferik.ui.searchResults.adapter.PricingOptionsAdapter
 import com.teleferik.utils.Constants
 import com.teleferik.utils.loadImage
@@ -35,7 +34,7 @@ class SkyScannerTripDetailsFragment :
     BaseFragment<HomeViewModel, FragmentSkyScannerTripDetailsBinding, HomeRepo>(),
     PricingOptionsAdapter.OnItemClickListener {
     private var tripData: Itinerary? = null
-    private var searchData: SearchResultsResponse? = null
+    private var searchData: FlightSearchResultsResponse? = null
     lateinit var mPricingOptionsAdapter: PricingOptionsAdapter
     val args: SkyScannerTripDetailsFragmentArgs by navArgs()
     override fun getViewModel(): Class<HomeViewModel> {

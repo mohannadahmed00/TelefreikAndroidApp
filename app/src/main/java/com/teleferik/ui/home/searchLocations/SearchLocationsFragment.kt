@@ -17,7 +17,7 @@ import com.teleferik.base.BaseFragment
 import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.databinding.FragmentSearchLocationsBinding
-import com.teleferik.models.webus.locations.LocationResponseItem
+import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
 import com.teleferik.ui.home.adapters.LocationSearchResultsAdapter
@@ -128,7 +128,7 @@ class SearchLocationsFragment :
         }
     }
 
-    private fun initStartRv(value: List<LocationResponseItem>?) {
+    private fun initStartRv(value: List<LocationsResponseItem>?) {
         val locations = value?.filter { it.name.contains(binding.edtSearch.text,true)} as MutableList
         mLocationSearchResultsAdapter = LocationSearchResultsAdapter(locations, this,searchLang)
         binding.rvPlaces.adapter = mLocationSearchResultsAdapter
@@ -136,7 +136,7 @@ class SearchLocationsFragment :
 
     }
 
-    override fun onItemClicked(item: LocationResponseItem) {
+    override fun onItemClicked(item: LocationsResponseItem) {
         val data = mutableMapOf<String,Any>()
         data["item"] = item
         if (args.isSearchFromStart)

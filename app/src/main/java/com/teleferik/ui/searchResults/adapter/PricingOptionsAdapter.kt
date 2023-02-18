@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teleferik.R
 import com.teleferik.databinding.RowPricingOptionsBinding
 import com.teleferik.models.skyscanner.searchResults.PricingOption
-import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
+import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
 
 
 class PricingOptionsAdapter(
     var list: MutableList<PricingOption>,
     private val iClick: OnItemClickListener,
-    private val searchData: SearchResultsResponse?
+    private val searchData: FlightSearchResultsResponse?
 ) : RecyclerView.Adapter<PricingOptionsAdapter.ViewHolder>() {
 
 

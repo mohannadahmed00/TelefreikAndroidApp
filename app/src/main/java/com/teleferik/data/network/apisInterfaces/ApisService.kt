@@ -1,6 +1,5 @@
 package com.teleferik.data.network.apisInterfaces
 
-import android.util.Log
 import com.teleferik.models.BaseResponse
 import com.teleferik.models.EditPhoneRequest
 import com.teleferik.models.RegisterRequest
@@ -10,15 +9,13 @@ import com.teleferik.models.notificationList.NotificationListResponse
 import com.teleferik.models.promotionalOffer.PromotionalOffer
 import com.teleferik.models.showProfile.ShowProfileResponse
 import com.teleferik.models.skyscanner.airPorts.AirPortsResponse
-import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
+import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
 import com.teleferik.models.ticketReservation.TicketReservation
 import com.teleferik.models.tickets.CreateTicketBodyRequest
 import com.teleferik.models.tickets.SingleTicketResponse
 import com.teleferik.models.tickets.Ticket
 import com.teleferik.models.tickets.TicketsForCustomerResponse
-import com.teleferik.models.webus.cities.CitiesResponse
-import com.teleferik.models.webus.locations.LocationResponse
-import com.teleferik.models.webus.locations.LocationResponseItem
+import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.utils.Constants
 import com.teleferik.utils.Constants.PARAMS.TICKET_ID
 import okhttp3.MultipartBody
@@ -30,7 +27,7 @@ interface ApisService {
 
     @FormUrlEncoded
     //@Headers("Accept-Language: ar")
-    @POST(Constants.END_POTINS.LOGIN)
+    @POST("api/v1/mobile/customer/login")//(Constants.END_POTINS.LOGIN)
     suspend fun login(
         @Field(Constants.PARAMS.MOBILE) phone: String,
         @Field(Constants.PARAMS.PHONE_CODE) code: String
@@ -38,21 +35,21 @@ interface ApisService {
 
     @FormUrlEncoded
     //@Headers("Accept-Language: en")
-    @POST(Constants.END_POTINS.SEND_OTP)
+    @POST("api/v1/mobile/customer/send-otp")//(Constants.END_POTINS.SEND_OTP)
     suspend fun sendOTP(
         @Field(Constants.PARAMS.MOBILE) phone: String,
         @Field(Constants.PARAMS.PHONE_CODE) code: String
     ): BaseResponse<LoginResponse>
 
     @FormUrlEncoded
-    @POST(Constants.END_POTINS.VERIFY_OTP)
+    @POST("api/v1/mobile/customer/verify-otp")//(Constants.END_POTINS.VERIFY_OTP)
     suspend fun verifyOTP(
         @Field(Constants.PARAMS.MOBILE) phone: String,
         @Field(Constants.PARAMS.PHONE_CODE) phoneCode: String,
         @Field(Constants.PARAMS.CODE) code: String
     ): BaseResponse<LoginResponse>
 
-    @POST(Constants.END_POTINS.REGISTER)
+    @POST("api/v1/mobile/customer/register")//(Constants.END_POTINS.REGISTER)
     suspend fun register(@Body registerRequest: RegisterRequest): BaseResponse<LoginResponse>
 
     /*@FormUrlEncoded
@@ -129,18 +126,13 @@ interface ApisService {
 
 
     @GET
-    suspend fun getTripsSearchResults(
+    suspend fun getFlighTripsSearchResults(
         @Url url:String
-    ):SearchResultsResponse
+    ):FlightSearchResultsResponse
     // ================= Bus Trips ==================
 
-    @GET(Constants.END_POTINS.SEARCH_LOCATIONS)
-    suspend fun searchLocations(): BaseResponse<LocationResponse>
-
-    @GET
-    suspend fun searchCities(
-        @Url url:String
-    ): CitiesResponse
+    @GET("api/transports/locations")//(Constants.END_POTINS.SEARCH_LOCATIONS)
+    suspend fun searchLocations(): BaseResponse<List<LocationsResponseItem>>
 
 
 
