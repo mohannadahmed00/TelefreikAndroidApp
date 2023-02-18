@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.teleferik.data.network.Resource
+import com.teleferik.models.BaseListResponse
 import com.teleferik.models.BaseResponse
+import com.teleferik.models.bus.busTrips.BusTrip
 import com.teleferik.models.promotionalOffer.PromotionalOffer
 import com.teleferik.models.skyscanner.airPorts.AirPortsResponse
 import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
 import com.teleferik.models.bus.locations.LocationsResponseItem
+import com.teleferik.models.seats.AvailableSeat
 import kotlinx.coroutines.launch
 
 
@@ -30,6 +33,16 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
 
     val _promotionalOffersList = MutableLiveData<Resource<BaseResponse<PromotionalOffer>>>()
     val promotionalOffersList: LiveData<Resource<BaseResponse<PromotionalOffer>>> get() = _promotionalOffersList
+
+    val _busTripsResponse = MutableLiveData<Resource<BaseListResponse<List<BusTrip>>>>()
+    val busTripsResponse : LiveData<Resource<BaseListResponse<List<BusTrip>>>> get() = _busTripsResponse
+
+    val _tripDetailsResponse = MutableLiveData<Resource<BaseListResponse<BusTrip>>>()
+    val tripDetailsResponse : LiveData<Resource<BaseListResponse<BusTrip>>> get() = _tripDetailsResponse
+
+    val _availableSeatsResponse = MutableLiveData<Resource<BaseListResponse<List<AvailableSeat>>>>()
+    val availableSeatsResponse : LiveData<Resource<BaseListResponse<List<AvailableSeat>>>> get() = _availableSeatsResponse
+
 
     fun searchAirPorts(url: String) = viewModelScope.launch {
         _airPortsResponse.value = Resource.Loading
@@ -59,4 +72,20 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
      fun setTripType(type: Int) {
         tripType = type
     }
+
+    fun getBusTripsSearch(from:String , to:String , date:String) = viewModelScope.launch {
+        _busTripsResponse.value = Resource.Loading
+        _busTripsResponse.value = homeRepo.searchBusTrips(from, to, date)
+    }
+
+    fun getTripDetails(tripId :String) = viewModelScope.launch {
+        _tripDetailsResponse.value = Resource.Loading
+        _tripDetailsResponse.value = homeRepo.getBusTripDetails(tripId)
+    }
+
+    fun getAvailableSeats(tripId: String) = viewModelScope.launch {
+        _availableSeatsResponse.value = Resource.Loading
+        _availableSeatsResponse.value = homeRepo.getAvailableSeats(tripId)
+    }
+
 }

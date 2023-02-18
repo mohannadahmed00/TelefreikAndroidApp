@@ -102,6 +102,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         setFragmentResultListener(Constants.START_DESTINATION) { _, bundle ->
             if (category == "Flight") {
                 val data = bundle.getParcelable<Place>(Constants.START_DESTINATION)
+                Log.d("Adel Fl St Dest : ",data.toString())
                 if (data != null) {
                     binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     binding.include.edtStart.setText(data.placeName)
@@ -110,6 +111,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             }
             else {
                 val data = bundle.get(Constants.START_DESTINATION) as MutableMap<*, *>
+                Log.d("Adel other St Dest : ",data["item"].toString())
                 if (data.isNotEmpty()) {
                     mStartDestinationLocation = data["item"] as LocationsResponseItem
                     binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
@@ -300,7 +302,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.btnSearch.setOnClickListener {
             if (isSearchFormValid()) {
-                if (category == "Flight") callSearch() else findNavController().navigate(
+                if (category == "Flight") {
+                    callSearch()
+                }else if (category =="Bus"){
+
+                } else findNavController().navigate(
                     //HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment()
                 HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,null)
                 )
@@ -632,6 +638,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         })
     }
 
+
+    private fun callBusTripSearch(){
+        mViewModel.getBusTripsSearch(
+            from = mStartDestinationLocation?.id.toString(),
+            to = mEndDestinationLocation?.id.toString(),
+            date = binding.includeDates.tvStartDate.text.toString()
+        )
+
+        findNavController().navigate(
+            HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,"")
+        )
+    }
     private fun handelPollSessionResponse(response: Response<Any>) {
         if (response.code() == 400) {
             val errorBody = response.errorBody()?.string()

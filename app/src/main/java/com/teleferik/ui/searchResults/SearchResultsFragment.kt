@@ -65,6 +65,25 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
         }
     }
 
+    private fun observeBusTripsSearch(){
+      mViewModel.busTripsResponse.observe(viewLifecycleOwner){
+          when(it){
+              is Resource.Failure -> {
+                  loading.cancel()
+                  handleApiErrors(it)
+                  mViewModel._busTripsResponse.value = null
+              }
+              Resource.Loading -> loading.show()
+              is Resource.Success -> {
+                  loading.cancel()
+                  //["bus":{code-category}]
+                  //initRecycler()
+                  mViewModel._busTripsResponse.value = null
+              }
+          }
+      }
+    }
+
     private fun initClicks() {
         binding.imgBack.setOnClickListener { findNavController().navigateUp() }
     }

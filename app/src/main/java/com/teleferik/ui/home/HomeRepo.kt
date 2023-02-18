@@ -27,4 +27,17 @@ class HomeRepo(private val api: ApisService) : BaseRepo() {
     suspend fun promotionalOffersList() = safeApiCalls {
         api.promotionalOffersList()
     }
+
+    suspend fun searchBusTrips(from:String , to:String , date:String) = safeApiCalls {
+        api.searchBusTrips(from, to, date)
+    }
+
+    suspend fun getBusTripDetails(tripId :String) = safeApiCalls {
+        api.getBusTripDetails(tripId)
+    }
+
+    suspend fun getAvailableSeats(tripId :String) = safeApiCalls {
+        api.getAvailableSeats(tripId)
+    }
+
 }

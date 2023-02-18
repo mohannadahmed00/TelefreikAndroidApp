@@ -97,6 +97,8 @@ object Constants {
         const val HOME_PROMOTIONAL_OFFERS_LIST = "promotionaloffers/list"
         const val CREATE_TICKET_RESERVATION = "ticketreservation/create"
         const val TICKET_RESERVATION_LIST = "ticketreservation/search"
+
+        const val SEARCH_BUS_TRIPS = "transports/trips"
     }
 
     object LINKS {
@@ -113,6 +115,10 @@ object Constants {
         const val TICKET_ID = "ticketId"
         const val NOTIFICATION_ID = "notification_id"
         const val NOTIFICATION_READ = "notification_read"
+
+        const val CITY_FROM = "city_from"
+        const val CITY_TO = "city_to"
+        const val DATE = "date"
     }
 
 

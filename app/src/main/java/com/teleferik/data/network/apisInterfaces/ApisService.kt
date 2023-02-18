@@ -1,8 +1,10 @@
 package com.teleferik.data.network.apisInterfaces
 
+import com.teleferik.models.BaseListResponse
 import com.teleferik.models.BaseResponse
 import com.teleferik.models.EditPhoneRequest
 import com.teleferik.models.RegisterRequest
+import com.teleferik.models.bus.busTrips.BusTrip
 import com.teleferik.models.editPhoneResponse.EditPhoneResponse
 import com.teleferik.models.login.LoginResponse
 import com.teleferik.models.notificationList.NotificationListResponse
@@ -16,6 +18,7 @@ import com.teleferik.models.tickets.SingleTicketResponse
 import com.teleferik.models.tickets.Ticket
 import com.teleferik.models.tickets.TicketsForCustomerResponse
 import com.teleferik.models.bus.locations.LocationsResponseItem
+import com.teleferik.models.seats.AvailableSeat
 import com.teleferik.utils.Constants
 import com.teleferik.utils.Constants.PARAMS.TICKET_ID
 import okhttp3.MultipartBody
@@ -134,6 +137,24 @@ interface ApisService {
     @GET("api/transports/locations")//(Constants.END_POTINS.SEARCH_LOCATIONS)
     suspend fun searchLocations(): BaseResponse<List<LocationsResponseItem>>
 
+
+    /////////////////////////////////////////////////////////
+    @POST(Constants.END_POTINS.SEARCH_BUS_TRIPS)
+    suspend fun searchBusTrips(
+        @Field(Constants.PARAMS.CITY_FROM) from: String,
+        @Field(Constants.PARAMS.CITY_TO) to : String,
+        @Field(Constants.PARAMS.DATE) date :String
+    ): BaseListResponse<List<BusTrip>>
+
+    @GET(Constants.END_POTINS.SEARCH_BUS_TRIPS+"/{tripId}")
+    suspend fun getBusTripDetails(
+        @Path("tripId") tripId:String
+    ):BaseListResponse<BusTrip>
+
+    @GET(Constants.END_POTINS.SEARCH_BUS_TRIPS+"/{tripId}/available-seats")
+    suspend fun getAvailableSeats(
+        @Path("tripId") tripId:String
+    ):BaseListResponse<List<AvailableSeat>>
 
 
     // ================= TICKETS ==================
