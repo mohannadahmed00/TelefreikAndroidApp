@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teleferik.databinding.RowAirPortsSearchResultsBinding
-import com.teleferik.models.bus.locations.LocationsResponseItem
+import com.teleferik.models.webus.locations.LocationResponseItem
 
-class LocationSearchResultsAdapter(var list:MutableList<LocationsResponseItem>, private val iClick: OnItemClickListener, val lang:String?) : RecyclerView.Adapter<LocationSearchResultsAdapter.ViewHolder>() {
+class LocationSearchResultsAdapter(var list:MutableList<LocationResponseItem>, private val iClick: OnItemClickListener, val lang:String?) : RecyclerView.Adapter<LocationSearchResultsAdapter.ViewHolder>() {
 
 
     override fun getItemCount() = list.size
@@ -29,7 +29,7 @@ class LocationSearchResultsAdapter(var list:MutableList<LocationsResponseItem>, 
         Toast.makeText(context,x,Toast.LENGTH_LONG).show()*/
     inner class ViewHolder(var viewBinding: RowAirPortsSearchResultsBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
-        fun bind(data: LocationsResponseItem) {
+        fun bind(data: LocationResponseItem) {
             viewBinding.apply {
                 /*if (lang == "en"){
                     tvName.text = data.translations[1].name
@@ -46,6 +46,6 @@ class LocationSearchResultsAdapter(var list:MutableList<LocationsResponseItem>, 
     }
 
     interface OnItemClickListener {
-        fun onItemClicked(item: LocationsResponseItem)
+        fun onItemClicked(item: LocationResponseItem)
     }
 }

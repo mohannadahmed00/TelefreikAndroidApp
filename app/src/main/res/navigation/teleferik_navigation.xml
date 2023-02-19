@@ -12,9 +12,9 @@
         android:name="com.teleferik.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
-        <!--<action
+        <action
             android:id="@+id/action_navigation_home_to_seatSelectionFragment"
-            app:destination="@id/seatSelectionFragment" />-->
+            app:destination="@id/seatSelectionFragment" />
         <action
             android:id="@+id/action_navigation_home_to_notificationFragment"
             app:destination="@id/notificationFragment" />
@@ -93,20 +93,25 @@
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" >
         <argument
-            android:name="categoryType"
-            app:argType="string"
-            app:nullable="false" />
-        <argument
             android:name="searchUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="fromLocation"
+            app:argType="com.teleferik.models.bus.locations.LocationsResponseItem"
+            app:nullable="true" />
+        <argument
+            android:name="toLocation"
+            app:argType="com.teleferik.models.bus.locations.LocationsResponseItem"
+            app:nullable="true" />
+        <argument
+            android:name="date"
             app:argType="string"
             app:nullable="true" />
 
         <action
             android:id="@+id/action_searchResultsFragment_to_skyScannerTripDetailsFragment"
             app:destination="@id/skyScannerTripDetailsFragment" />
-        <action
-            android:id="@+id/action_searchResultsFragment_to_busTripSeatsFragment"
-            app:destination="@id/seatSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/skyScannerTripDetailsFragment"
@@ -115,7 +120,7 @@
         tools:layout="@layout/fragment_sky_scanner_trip_details" >
         <argument
             android:name="searchData"
-            app:argType="com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse"
+            app:argType="com.teleferik.models.skyscanner.searchResults.SearchResultsResponse"
             app:nullable="true" />
         <argument
             android:name="tripData"

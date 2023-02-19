@@ -19,11 +19,11 @@ import com.teleferik.utils.showHideView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SearchResultsAdapter(
+class FlightSearchResultsAdapter(
     var list: MutableList<Itinerary>,
     private val searchData: FlightSearchResultsResponse,
     private val iClick: OnItemClickListener
-) : RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<FlightSearchResultsAdapter.ViewHolder>() {
 
 
     override fun getItemCount() = list.size

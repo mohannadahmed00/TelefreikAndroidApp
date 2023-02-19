@@ -5,7 +5,8 @@ import com.teleferik.base.BaseRepo
 import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.models.BaseResponse
-import com.teleferik.models.bus.locations.LocationsResponseItem
+import com.teleferik.models.webus.locations.LocationResponse
+import com.teleferik.models.webus.locations.LocationResponseItem
 
 
 class HomeRepo(private val api: ApisService) : BaseRepo() {
@@ -14,30 +15,20 @@ class HomeRepo(private val api: ApisService) : BaseRepo() {
         api.searchAirPorts(url)
     }
 
-    suspend fun searchLocations():Resource<BaseResponse<List<LocationsResponseItem>>> {
+    suspend fun searchLocations():Resource<BaseResponse<LocationResponse>> {
         return safeApiCalls {
             api.searchLocations()
         }
     }
+    suspend fun searchCities(url: String) = safeApiCalls {
+        api.searchCities(url)
+    }
 
-    suspend fun getFlightTripsSearchResults(url: String) = safeApiCalls {
-        api.getFlighTripsSearchResults(url)
+    suspend fun getTripsSearchResults(url: String) = safeApiCalls {
+        api.getTripsSearchResults(url)
     }
 
     suspend fun promotionalOffersList() = safeApiCalls {
         api.promotionalOffersList()
     }
-
-    suspend fun searchBusTrips(from:String , to:String , date:String) = safeApiCalls {
-        api.searchBusTrips(from, to, date)
-    }
-
-    suspend fun getBusTripDetails(tripId :String) = safeApiCalls {
-        api.getBusTripDetails(tripId)
-    }
-
-    suspend fun getAvailableSeats(tripId :String) = safeApiCalls {
-        api.getAvailableSeats(tripId)
-    }
-
 }

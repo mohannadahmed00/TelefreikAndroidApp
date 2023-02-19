@@ -20,12 +20,12 @@ data class BaseResponse<T: Any?> (
         val need_verfication:Boolean?
 )
 
-data class BaseListResponse<T: Any?> (
+/*data class BaseListResponse<T: Any?> (
         val status: Int,
         val message: String,
         val errors: T?,
         val data: T?,
-)
+)*/
 
 class Errors(
         @SerializedName("mobile")
