@@ -9,7 +9,7 @@ import com.teleferik.data.network.Resource
 import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.databinding.FragmentSearchResultsBinding
 import com.teleferik.models.skyscanner.searchResults.Itinerary
-import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
+import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
 import com.teleferik.ui.home.HomeRepo
 import com.teleferik.ui.home.HomeViewModel
 import com.teleferik.ui.searchResults.adapter.SearchResultsAdapter
@@ -19,7 +19,7 @@ import com.teleferik.utils.showHideView
 
 class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsBinding, HomeRepo>(),
     SearchResultsAdapter.OnItemClickListener {
-    private lateinit var mSearchResultsAdapter: SearchResultsAdapter
+    lateinit var mSearchResultsAdapter: SearchResultsAdapter
     private val args: SearchResultsFragmentArgs by navArgs()
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -36,26 +36,23 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
     }
 
     private fun callSearchResultsRequest() {
-        if(args.searchUrl!=null) {
-            mViewModel.getFlightTripsSearchResults(args.searchUrl + "?apikey=prtl6749387986743898559646983194&sortType=price&sortOrder=asc")
-            observeSearchResults()
-        }else{
-            //todo start search bus trips from here
-        }
+        //if (flight)
+        mViewModel.getTripsSearchResults(args.searchUrl + "?apikey=prtl6749387986743898559646983194&sortType=price&sortOrder=asc")
+        observeSearchResults()
     }
 
     private fun observeSearchResults() {
-        mViewModel.tripsFlightSearchResultsResponse.observe(viewLifecycleOwner) {
+        mViewModel.tripsSearchResultsResponse.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
                     loading.cancel()
                     initRecycler(it.value.itineraries, it.value)
-                    mViewModel._tripsFlightSearchResultsResponse.value = null
+                    mViewModel._tripsSearchResultsResponse.value = null
                 }
                 is Resource.Failure -> {
                     loading.cancel()
                     handleApiErrors(it)
-                    mViewModel._tripsFlightSearchResultsResponse.value = null
+                    mViewModel._tripsSearchResultsResponse.value = null
                 }
                 is Resource.Loading -> {
                     loading.show()
@@ -69,7 +66,7 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
         binding.imgBack.setOnClickListener { findNavController().navigateUp() }
     }
 
-    private fun initRecycler(itinerary: List<Itinerary>?, value: FlightSearchResultsResponse) {
+    private fun initRecycler(itinerary: List<Itinerary>?, value: SearchResultsResponse) {
         if (!itinerary.isNullOrEmpty()) {
             binding.rvSearchResults.showHideView(true)
             binding.noSearchResults.showHideView(false)
@@ -82,7 +79,7 @@ class SearchResultsFragment : BaseFragment<HomeViewModel, FragmentSearchResultsB
         }
     }
 
-    override fun onItemClicked(item: Itinerary, searchData: FlightSearchResultsResponse) {
+    override fun onItemClicked(item: Itinerary, searchData: SearchResultsResponse) {
         findNavController().navigate(
             SearchResultsFragmentDirections.actionSearchResultsFragmentToSkyScannerTripDetailsFragment(
                 searchData,

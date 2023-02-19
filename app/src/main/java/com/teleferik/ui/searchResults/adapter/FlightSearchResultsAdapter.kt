@@ -13,7 +13,7 @@ import com.teleferik.databinding.RowSearchResultsBinding
 import com.teleferik.models.skyscanner.searchResults.Itinerary
 
 import com.teleferik.models.skyscanner.searchResults.Leg
-import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
+import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
 import com.teleferik.utils.loadImage
 import com.teleferik.utils.showHideView
 import java.text.SimpleDateFormat
@@ -21,7 +21,7 @@ import java.util.*
 
 class FlightSearchResultsAdapter(
     var list: MutableList<Itinerary>,
-    private val searchData: FlightSearchResultsResponse,
+    private val searchData: SearchResultsResponse,
     private val iClick: OnItemClickListener
 ) : RecyclerView.Adapter<FlightSearchResultsAdapter.ViewHolder>() {
 
@@ -164,7 +164,7 @@ class FlightSearchResultsAdapter(
         return context.getString(R.string.trip_duration,"${hours.toString()}","${min.toString()}")
     }
     interface OnItemClickListener {
-        fun onItemClicked(item: Itinerary, searchData: FlightSearchResultsResponse)
+        fun onItemClicked(item: Itinerary, searchData: SearchResultsResponse)
     }
 
 }

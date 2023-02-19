@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class FlightSearchResultsResponse(
+data class SearchResultsResponse(
     @SerializedName("Agents")
     @Expose
     val agents: List<Agent>?,

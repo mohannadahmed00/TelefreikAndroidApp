@@ -1,6 +1,9 @@
 package com.teleferik.ui.home
 
 
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,9 +14,17 @@ import com.teleferik.models.BaseResponse
 import com.teleferik.models.bus.busTrips.BusTrip
 import com.teleferik.models.promotionalOffer.PromotionalOffer
 import com.teleferik.models.skyscanner.airPorts.AirPortsResponse
+<<<<<<< HEAD
 import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
 import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.models.seats.AvailableSeat
+=======
+import com.teleferik.models.skyscanner.searchResults.BookingDetailsLink
+import com.teleferik.models.skyscanner.searchResults.Itinerary
+import com.teleferik.models.skyscanner.searchResults.SearchResultsResponse
+import com.teleferik.models.webus.cities.CitiesResponse
+import com.teleferik.models.webus.locations.LocationResponse
+>>>>>>> parent of 8c4015a (everything is ready to work on search trips)
 import kotlinx.coroutines.launch
 
 
@@ -24,12 +35,16 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
     val _airPortsResponse = MutableLiveData<Resource<AirPortsResponse>>()
     val airPortsResponse: LiveData<Resource<AirPortsResponse>> get() = _airPortsResponse
 
-    val _locationsResponse = MutableLiveData<Resource<BaseResponse<List<LocationsResponseItem>>>>()
-    val locationsResponse: LiveData<Resource<BaseResponse<List<LocationsResponseItem>>>> get() = _locationsResponse
+    val _locationsResponse = MutableLiveData<Resource<BaseResponse<LocationResponse>>>()
+    val locationsResponse: LiveData<Resource<BaseResponse<LocationResponse>>> get() = _locationsResponse
 
 
-    val _tripsFlightSearchResultsResponse = MutableLiveData<Resource<FlightSearchResultsResponse>>()
-    val tripsFlightSearchResultsResponse: LiveData<Resource<FlightSearchResultsResponse>> get() = _tripsFlightSearchResultsResponse
+
+    val _citiesResponse = MutableLiveData<Resource<CitiesResponse>>()
+    val citiesResponse: LiveData<Resource<CitiesResponse>> get() = _citiesResponse
+
+    val _tripsSearchResultsResponse = MutableLiveData<Resource<SearchResultsResponse>>()
+    val tripsSearchResultsResponse: LiveData<Resource<SearchResultsResponse>> get() = _tripsSearchResultsResponse
 
     val _promotionalOffersList = MutableLiveData<Resource<BaseResponse<PromotionalOffer>>>()
     val promotionalOffersList: LiveData<Resource<BaseResponse<PromotionalOffer>>> get() = _promotionalOffersList
@@ -54,10 +69,14 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
         _locationsResponse.value = homeRepo.searchLocations()
     }
 
+    fun searchCities(url: String) = viewModelScope.launch {
+        _citiesResponse.value = Resource.Loading
+        _citiesResponse.value = homeRepo.searchCities(url)
+    }
 
-    fun getFlightTripsSearchResults(url: String) = viewModelScope.launch {
-        _tripsFlightSearchResultsResponse.value = Resource.Loading
-        _tripsFlightSearchResultsResponse.value = homeRepo.getFlightTripsSearchResults(url)/*Resource.Success(SearchResultsResponse(null,null,null,list,null,null,null,null,null,null))*///
+    fun getTripsSearchResults(url: String) = viewModelScope.launch {
+        _tripsSearchResultsResponse.value = Resource.Loading
+        _tripsSearchResultsResponse.value = homeRepo.getTripsSearchResults(url)/*Resource.Success(SearchResultsResponse(null,null,null,list,null,null,null,null,null,null))*///
     }
 
     fun promotionalOffersList() = viewModelScope.launch {
