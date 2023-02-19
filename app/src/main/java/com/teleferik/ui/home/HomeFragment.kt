@@ -32,7 +32,7 @@ import com.teleferik.databinding.FragmentHomeBinding
 import com.teleferik.models.ErrorResponse
 import com.teleferik.models.promotionalOffer.Offer
 import com.teleferik.models.skyscanner.airPorts.Place
-import com.teleferik.models.webus.locations.LocationResponseItem
+import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.ui.home.adapters.TransportationTypeAdapter
 import com.teleferik.ui.home.adapters.ViewPagerAdapter
 import com.teleferik.ui.home.adapters.ViewPagerPageChangeListener
@@ -52,8 +52,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     var mStartDestinationPlace: Place? = null
     var mEndDestinationPlace: Place? = null
 
-    var mStartDestinationLocation: LocationResponseItem? = null
-    var mEndDestinationLocation: LocationResponseItem? = null
+    var mStartDestinationLocation: LocationsResponseItem? = null
+    var mEndDestinationLocation: LocationsResponseItem? = null
 
     lateinit var mProfileViewModel: ProfileViewModel
     var currentStartDate by Delegates.notNull<Long>()
@@ -102,6 +102,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         setFragmentResultListener(Constants.START_DESTINATION) { _, bundle ->
             if (category == "Flight") {
                 val data = bundle.getParcelable<Place>(Constants.START_DESTINATION)
+                Log.d("Adel Fl St Dest : ",data.toString())
                 if (data != null) {
                     binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     binding.include.edtStart.setText(data.placeName)
@@ -110,8 +111,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             }
             else {
                 val data = bundle.get(Constants.START_DESTINATION) as MutableMap<*, *>
+                Log.d("Adel other St Dest : ",data["item"].toString())
                 if (data.isNotEmpty()) {
-                    mStartDestinationLocation = data["item"] as LocationResponseItem
+                    mStartDestinationLocation = data["item"] as LocationsResponseItem
                     binding.include.edtStart.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     binding.include.edtStart.setText(mStartDestinationLocation?.name)
                 }
@@ -128,7 +130,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             } else {
                 val data = bundle.get(Constants.ARRIVAL_DESTINATION) as MutableMap<*, *>
                 if (data.isNotEmpty()) {
-                    mEndDestinationLocation = data["item"] as LocationResponseItem
+                    mEndDestinationLocation = data["item"] as LocationsResponseItem
                     binding.include.edtEnd.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     binding.include.edtEnd.setText(mEndDestinationLocation?.name)
                 }
@@ -300,8 +302,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.btnSearch.setOnClickListener {
             if (isSearchFormValid()) {
-                if (category == "Flight") callSearch() else findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment()
+                if (category == "Flight") {
+                    callSearch()
+                }else if (category =="Bus"){
+
+                } else findNavController().navigate(
+                    //HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment()
+                HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,null)
                 )
             }
         }
@@ -631,6 +638,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         })
     }
 
+
+    private fun callBusTripSearch(){
+        mViewModel.getBusTripsSearch(
+            from = mStartDestinationLocation?.id.toString(),
+            to = mEndDestinationLocation?.id.toString(),
+            date = binding.includeDates.tvStartDate.text.toString()
+        )
+
+        findNavController().navigate(
+            HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,"")
+        )
+    }
     private fun handelPollSessionResponse(response: Response<Any>) {
         if (response.code() == 400) {
             val errorBody = response.errorBody()?.string()
@@ -642,9 +661,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                 Log.v("header", "${header.first} ------> ${header.second}")
                 if (header.first == "Location") {
                     findNavController().navigate(
-                        HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(
+                        /*HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(
+                            category,
                             header.second
-                        )
+                        )*/
+                    HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,header.second)
                     )
                     return
                 }
