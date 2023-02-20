@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/ivPlaneOut"
+        android:id="@+id/ivTransOut"
         android:layout_width="@dimen/_60dp"
         android:layout_height="@dimen/_60dp"
         android:layout_marginStart="@dimen/_24dp"
@@ -17,9 +17,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivDirPlaneOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ivDirTransOut"
+        android:layout_width="20.71dp"
+        android:layout_height="20.5dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
@@ -133,7 +133,6 @@
         android:id="@+id/tvStopsNumberOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_11dp"
         android:layout_marginTop="@dimen/_8dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/regular"
@@ -152,6 +151,7 @@
         android:fontFamily="@font/regular"
         android:textColor="@color/base_app_color"
         android:textSize="@dimen/_10sp"
+        android:paddingEnd="@dimen/_11dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvStopsNumberOut"
         app:layout_constraintStart_toStartOf="@+id/tvDatesOut"
         app:layout_constraintTop_toTopOf="@+id/tvStopsNumberOut"

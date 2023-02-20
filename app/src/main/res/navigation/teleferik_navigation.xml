@@ -100,6 +100,27 @@
             android:name="searchUrl"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="city_from"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="city_to"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="city_from_name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="city_to_name"
+            app:argType="string"
+            app:nullable="true" />
+        <!--com.teleferik.models.bus.locations.LocationsResponseItem-->
+        <argument
+            android:name="date"
+            app:argType="string"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_searchResultsFragment_to_skyScannerTripDetailsFragment"

@@ -11,6 +11,7 @@ import com.teleferik.models.promotionalOffer.PromotionalOffer
 import com.teleferik.models.skyscanner.airPorts.AirPortsResponse
 import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
 import com.teleferik.models.bus.locations.LocationsResponseItem
+import com.teleferik.models.bus.searchResults.TripsSearchResponseItem
 import kotlinx.coroutines.launch
 
 
@@ -27,6 +28,9 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
 
     val _tripsFlightSearchResultsResponse = MutableLiveData<Resource<FlightSearchResultsResponse>>()
     val tripsFlightSearchResultsResponse: LiveData<Resource<FlightSearchResultsResponse>> get() = _tripsFlightSearchResultsResponse
+
+    val _tripsBusSearchResultsResponse = MutableLiveData<Resource<BaseResponse<List<TripsSearchResponseItem>>>>()
+    val tripsBusSearchResultsResponse: LiveData<Resource<BaseResponse<List<TripsSearchResponseItem>>>> get() = _tripsBusSearchResultsResponse
 
     val _promotionalOffersList = MutableLiveData<Resource<BaseResponse<PromotionalOffer>>>()
     val promotionalOffersList: LiveData<Resource<BaseResponse<PromotionalOffer>>> get() = _promotionalOffersList
@@ -45,6 +49,11 @@ class HomeViewModel(private val homeRepo: HomeRepo) : ViewModel() {
     fun getFlightTripsSearchResults(url: String) = viewModelScope.launch {
         _tripsFlightSearchResultsResponse.value = Resource.Loading
         _tripsFlightSearchResultsResponse.value = homeRepo.getFlightTripsSearchResults(url)/*Resource.Success(SearchResultsResponse(null,null,null,list,null,null,null,null,null,null))*///
+    }
+
+    fun getBusTripsSearchResults(city_from: String, city_to:String, date:String) = viewModelScope.launch {
+        _tripsBusSearchResultsResponse.value = Resource.Loading
+        _tripsBusSearchResultsResponse.value = homeRepo.getBusTripsSearchResults(city_from,city_to,date)/*Resource.Success(SearchResultsResponse(null,null,null,list,null,null,null,null,null,null))*///
     }
 
     fun promotionalOffersList() = viewModelScope.launch {

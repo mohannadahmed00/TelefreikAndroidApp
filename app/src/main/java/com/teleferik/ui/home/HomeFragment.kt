@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
     var adultCount: String = "1"
     var childCount: String = "0"
     lateinit var selectedClass: String
-    var hasClass: Boolean = false
+    //var hasClass: Boolean = false
     var displayChildCount: Boolean = false
     private var runnable: Runnable? = null
     var category: String = ""
@@ -97,8 +97,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         } else {
             requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         }
-        val lang =
-            if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
+        //val lang = if (AppController.localeManager?.language == LocaleManager.LANGUAGE_ARABIC) "ar-AE" else "en-UK"
         setFragmentResultListener(Constants.START_DESTINATION) { _, bundle ->
             if (category == "Flight") {
                 val data = bundle.getParcelable<Place>(Constants.START_DESTINATION)
@@ -233,17 +232,19 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
         mProfileViewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
     }
 
-    private fun setStartAndEndDate() {
+    /*private fun setStartAndEndDate() {
         val currentDate =
             SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH).format(Date())
         binding.includeDates.tvStartDate.text = currentDate
-        binding.includeDates.tvReturnDate.text = currentDate
+        //binding.includeDates.tvReturnDate.text = currentDate
     }
-
     private fun handleTripDates() {
+
         binding.includeDates.tvStartDate.setOnClickListener {
             currentStartDate = Date().time
             currentEndDate = Date().time
+
+            //currentStartDate = Date().time
             // date validator
             val dateValidator: DateValidator = DateValidatorPointForward.from(currentStartDate)
             // set start of calender + validator
@@ -256,7 +257,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                     .setCalendarConstraints(constraintsBuilder.build())
                     .build()
             datePicker.addOnPositiveButtonClickListener {
-                currentEndDate = it
+                currentStartDate = it
                 val simpleDateFormat =
                     SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH)
                 val dateString: String = simpleDateFormat.format(it)
@@ -269,6 +270,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
 
         binding.includeDates.tvReturnDate.setOnClickListener {
+            //currentEndDate = Date().time
             // date validator
             val dateValidator: DateValidator = DateValidatorPointForward.from(currentEndDate)
             // set start of calender + validator
@@ -281,6 +283,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                     .setCalendarConstraints(constraintsBuilder.build())
                     .build()
             datePicker.addOnPositiveButtonClickListener {
+                currentEndDate = it
                 val simpleDateFormat =
                     SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH)
                 val dateString: String = simpleDateFormat.format(it)
@@ -289,6 +292,63 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
             datePicker.show(childFragmentManager, "")
         }
 
+    }*/
+    private fun setStartAndEndDate() {
+        val currentDate =  SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH).format(Date())
+        binding.includeDates.tvStartDate.text = currentDate
+        //binding.includeDates.tvReturnDate.text = currentDate
+    }
+
+    private fun handleTripDates() {
+        currentStartDate = Date().time
+        binding.includeDates.tvStartDate.setOnClickListener {
+            // date validator
+            val dateValidator: DateValidator = DateValidatorPointForward.now()
+            // set start of calender + validator
+            val constraintsBuilder = CalendarConstraints.Builder().setStart(Date().time)
+            constraintsBuilder.setValidator(dateValidator)
+            // initiate calender
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker()
+                    .setSelection(currentStartDate)
+                    .setTitleText(getString(R.string.travel_date))
+                    .setCalendarConstraints(constraintsBuilder.build())
+                    .build()
+            datePicker.addOnPositiveButtonClickListener {
+                currentStartDate = it
+                val simpleDateFormat =
+                    SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH)
+                val dateString: String = simpleDateFormat.format(it)
+                binding.includeDates.tvStartDate.text = dateString
+                binding.includeDates.tvReturnDate.text = "" // reset date
+                binding.includeDates.tvReturnDate.isEnabled = true
+            }
+            datePicker.show(childFragmentManager, "")
+        }
+        currentEndDate = Date().time
+        binding.includeDates.tvReturnDate.setOnClickListener {
+
+
+            // date validator
+            val dateValidator: DateValidator = DateValidatorPointForward.from(currentStartDate)
+            // set start of calender + validator
+            val constraintsBuilder = CalendarConstraints.Builder().setStart(currentStartDate)
+            constraintsBuilder.setValidator(dateValidator)
+            // initiate calender
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker()
+                    .setSelection(currentEndDate)
+                    .setTitleText(getString(R.string.back_day))
+                    .setCalendarConstraints(constraintsBuilder.build())
+                    .build()
+            datePicker.addOnPositiveButtonClickListener {
+                val simpleDateFormat =
+                    SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH)
+                val dateString: String = simpleDateFormat.format(it)
+                binding.includeDates.tvReturnDate.text = dateString
+            }
+            datePicker.show(childFragmentManager, "")
+        }
     }
 
     private fun initClicks() {
@@ -300,10 +360,41 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
 
         binding.btnSearch.setOnClickListener {
             if (isSearchFormValid()) {
-                if (category == "Flight") callSearch() else findNavController().navigate(
-                    //HomeFragmentDirections.actionNavigationHomeToSeatSelectionFragment()
-                HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,null)
-                )
+                when (category) {
+                    "Flight" -> {
+                        callSearch()
+                    }
+                    "Bus" -> {
+
+                        val simpleDateFormat = SimpleDateFormat(Constants.DATE_YYYY_MM_DD_FORMAT, Locale.ENGLISH)
+                        val dateString: String = simpleDateFormat.format(currentStartDate)
+                        Log.e("BusSearchTripsResponse1","$category--$mStartDestinationLocation--$mEndDestinationLocation--$dateString")
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(
+                                category,
+                                null,
+                                mStartDestinationLocation?.id.toString(),
+                                mEndDestinationLocation?.id.toString(),
+                                mStartDestinationLocation?.name.toString(),
+                                mEndDestinationLocation?.name.toString(),
+                                dateString
+                            )
+                        )
+                    }
+                    else -> {
+                        findNavController().navigate(
+                            HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(
+                                category,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                        )
+                    }
+                }
             }
         }
 
@@ -647,7 +738,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeRepo>(
                             category,
                             header.second
                         )*/
-                    HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,header.second)
+                    HomeFragmentDirections.actionNavigationHomeToSearchResultsFragment(category,header.second,null,null,null,null,null)
                     )
                     return
                 }
