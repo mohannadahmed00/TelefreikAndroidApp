@@ -135,14 +135,12 @@
         android:id="@+id/tvStopsNumberIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_11dp"
         android:layout_marginTop="@dimen/_8dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/regular"
         android:textColor="@color/green2"
         android:textDirection="anyRtl"
         android:textSize="@dimen/_10sp"
-        app:layout_constraintBottom_toTopOf="@+id/incInboundTripIn"
         app:layout_constraintStart_toEndOf="@+id/tvDurationIn"
         app:layout_constraintTop_toBottomOf="@+id/tvDatesIn"
         tools:text="+1 محطات توقف" />
@@ -150,6 +148,7 @@
     <TextView
         android:id="@+id/tvDurationIn"
         android:layout_width="wrap_content"
+        android:paddingEnd="@dimen/_11dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
         android:textColor="@color/base_app_color"

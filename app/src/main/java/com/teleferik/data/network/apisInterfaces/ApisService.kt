@@ -16,6 +16,7 @@ import com.teleferik.models.tickets.SingleTicketResponse
 import com.teleferik.models.tickets.Ticket
 import com.teleferik.models.tickets.TicketsForCustomerResponse
 import com.teleferik.models.bus.locations.LocationsResponseItem
+import com.teleferik.models.bus.searchResults.TripsSearchResponseItem
 import com.teleferik.utils.Constants
 import com.teleferik.utils.Constants.PARAMS.TICKET_ID
 import okhttp3.MultipartBody
@@ -134,8 +135,16 @@ interface ApisService {
     @GET("api/transports/locations")//(Constants.END_POTINS.SEARCH_LOCATIONS)
     suspend fun searchLocations(): BaseResponse<List<LocationsResponseItem>>
 
-
-
+    @FormUrlEncoded
+    @POST("api/transports/trips")
+    suspend fun getBusTripsSearchResults(
+        @Field("city_from") city_from: String,
+        @Field("city_to") city_to: String,
+        @Field("date") date: String
+        /*,
+        @Field("station_from") station_from: String,
+        @Field("station_to") station_to: String,*/
+    ):BaseResponse<List<TripsSearchResponseItem>>
     // ================= TICKETS ==================
     @POST(Constants.END_POTINS.CREATE_TICKET)
     suspend fun createTicket(@Body createTicketBodyRequest: CreateTicketBodyRequest): BaseResponse<Ticket>

@@ -97,6 +97,7 @@
             app:argType="string"
             app:nullable="true" />
         <argument
+<<<<<<< HEAD
             android:name="fromLocation"
             app:argType="com.teleferik.models.bus.locations.LocationsResponseItem"
             app:nullable="true" />
@@ -105,6 +106,25 @@
             app:argType="com.teleferik.models.bus.locations.LocationsResponseItem"
             app:nullable="true" />
         <argument
+=======
+            android:name="city_from"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="city_to"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="city_from_name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="city_to_name"
+            app:argType="string"
+            app:nullable="true" />
+        <!--com.teleferik.models.bus.locations.LocationsResponseItem-->
+        <argument
+>>>>>>> tmp
             android:name="date"
             app:argType="string"
             app:nullable="true" />

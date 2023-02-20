@@ -117,7 +117,7 @@ class SkyScannerTripDetailsFragment :
 
 
     private fun bindDuration(duration: Int?, tvDuration: TextView) {
-        //tvDuration.text = timeConvert(duration!!, tvDuration.context)
+        tvDuration.text = timeConvert(duration!!, tvDuration.context)
     }
 
     private fun bindDates(departure: String?, arrival: String?, tvDates: TextView) {

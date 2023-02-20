@@ -55,8 +55,8 @@ class FlightSearchResultsAdapter(
                 bindStops(outBoundLeg.stops,incOutboundTrip.tvStopsNumberOut)
                 bindDates(outBoundLeg.departure,outBoundLeg.arrival,incOutboundTrip.tvDatesOut)
                 bindStartPrice(data.pricingOptions?.first()?.price,tvPrice)
-                bindDuration(outBoundLeg.duration,incInboundTrip.tvDurationIn)
                 bindPriceOfferCounts(data.pricingOptions?.size)
+                bindDuration(outBoundLeg.duration,incOutboundTrip.tvDurationOut)
 
             }
 
@@ -106,11 +106,9 @@ class FlightSearchResultsAdapter(
                 tvStopsNumber.showHideView(true)
             }else {
                 if (stops.size == 1)
-                    tvStopsNumber.text =
-                        viewBinding.root.context.getString(R.string.one_stop)
+                    tvStopsNumber.text = viewBinding.root.context.getString(R.string.one_stop)
                 else
-                tvStopsNumber.text =
-                    viewBinding.root.context.getString(R.string.stops_Number, stops.size.toString())
+                tvStopsNumber.text = viewBinding.root.context.getString(R.string.stops_Number, stops.size.toString())
             }
         }
 
