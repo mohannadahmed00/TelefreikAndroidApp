@@ -7,9 +7,8 @@ import com.teleferik.data.network.apisInterfaces.ApisService
 import com.teleferik.models.BaseResponse
 <<<<<<< HEAD
 import com.teleferik.models.webus.locations.LocationResponse
-import com.teleferik.models.webus.locations.LocationResponseItem
+
 =======
-import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.models.bus.searchResults.TripsSearchResponseItem
 >>>>>>> tmp
 

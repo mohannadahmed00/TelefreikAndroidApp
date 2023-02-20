@@ -15,7 +15,6 @@ import com.teleferik.models.tickets.CreateTicketBodyRequest
 import com.teleferik.models.tickets.SingleTicketResponse
 import com.teleferik.models.tickets.Ticket
 import com.teleferik.models.tickets.TicketsForCustomerResponse
-import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.models.bus.searchResults.TripsSearchResponseItem
 import com.teleferik.utils.Constants
 import com.teleferik.utils.Constants.PARAMS.TICKET_ID

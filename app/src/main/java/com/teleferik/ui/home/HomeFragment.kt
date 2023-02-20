@@ -32,7 +32,6 @@ import com.teleferik.databinding.FragmentHomeBinding
 import com.teleferik.models.ErrorResponse
 import com.teleferik.models.promotionalOffer.Offer
 import com.teleferik.models.skyscanner.airPorts.Place
-import com.teleferik.models.bus.locations.LocationsResponseItem
 import com.teleferik.ui.home.adapters.TransportationTypeAdapter
 import com.teleferik.ui.home.adapters.ViewPagerAdapter
 import com.teleferik.ui.home.adapters.ViewPagerPageChangeListener

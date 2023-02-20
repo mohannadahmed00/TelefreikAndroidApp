@@ -18,13 +18,8 @@
 
     <ImageView
         android:id="@+id/ivDirTransOut"
-<<<<<<< HEAD
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-=======
         android:layout_width="20.71dp"
         android:layout_height="20.5dp"
->>>>>>> tmp
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"

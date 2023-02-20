@@ -12,7 +12,7 @@ import com.teleferik.models.bus.busTrips.BusTrip
 import com.teleferik.models.promotionalOffer.PromotionalOffer
 import com.teleferik.models.skyscanner.airPorts.AirPortsResponse
 import com.teleferik.models.skyscanner.searchResults.FlightSearchResultsResponse
-import com.teleferik.models.bus.locations.LocationsResponseItem
+
 <<<<<<< HEAD
 import com.teleferik.models.seats.AvailableSeat
 =======
